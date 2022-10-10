@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
+    'import_export',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -29,8 +30,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.core.apps.CoreConfig',
     'apps.auth_app.apps.AuthAppConfig',
+    'apps.order',
     'rest_framework.authtoken',
-    'import_export'
+    
 ]
 
 MIDDLEWARE = [

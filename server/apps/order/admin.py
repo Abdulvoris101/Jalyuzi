@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Order
 
-# Register your models here.
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('user', 'product', 'status', 'overall_price')
+    list_display_links = ('user', 'product' )
