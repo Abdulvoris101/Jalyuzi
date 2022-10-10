@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from auth_app.models import CustomUser
+from apps.auth_app.models import CustomUser
 from django.contrib.auth.models import Group
 
 

@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 
 
-class CoreConfig(AppConfig):
+class OrderConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'core'
-    icon = 'fa-product-hunt'
+    name = 'apps.order'
