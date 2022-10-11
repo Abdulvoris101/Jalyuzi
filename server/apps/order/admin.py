@@ -5,3 +5,6 @@ from .models import Order
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'status', 'overall_price')
     list_display_links = ('user', 'product' )
+    list_editable = ('status',)
+    list_filter = ('user', )
+

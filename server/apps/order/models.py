@@ -8,7 +8,6 @@ from apps.auth_app.models import CustomUser
 STATUS_CHOICES = (
     ("pending", "pending"),
     ("canceled", "canceled"),
-    ("ready", "ready"),
     ("sold", "sold"),
 )
 

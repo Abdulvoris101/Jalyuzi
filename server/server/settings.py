@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'apps.auth_app.apps.AuthAppConfig',
     'apps.order',
     'rest_framework.authtoken',
+    'django_filters'
     
 ]
 
@@ -96,6 +97,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'auth_app.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -231,7 +236,9 @@ JAZZMIN_SETTINGS = {
         "core.catalog": "fas fa-sort-amount-up",
         "core.property": "fas fa-grip-horizontal",
         "core.fabrictype": "fas fa-sliders-h",
-        "auth_app.customuser": "fas fa-user-friends"
+        "auth_app.customuser": "fas fa-user-friends",
+        "order.order": "fas fa-shopping-cart",
+        # fab fa-opencart
     },
     # <i class="<i class="fa-thin fa-chart-simple"></i>"></i>
     # Icons that are used when one is not manually specified
