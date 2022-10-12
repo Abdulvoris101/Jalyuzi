@@ -3,21 +3,18 @@
     "name": "users",
     "path": "/users",
     "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Code\\\\projects\\\\Jalyuzi\\\\frontend\\\\pages\\\\users\\\\index.vue",
-    "chunkName": "pages/users/index",
-    "_name": "_db8eae1e"
+    "chunkName": "pages/users/index"
   },
   {
     "name": "users-id",
     "path": "/users/:id",
     "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Code\\\\projects\\\\Jalyuzi\\\\frontend\\\\pages\\\\users\\\\_id.vue",
-    "chunkName": "pages/users/_id",
-    "_name": "_6d0e3399"
+    "chunkName": "pages/users/_id"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\User\\\\Desktop\\\\Code\\\\projects\\\\Jalyuzi\\\\frontend\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_65c13f8a"
+    "chunkName": "pages/index"
   }
 ]
