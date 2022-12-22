@@ -9,11 +9,12 @@ admin.site.register(FabricType)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'name', 'category', 'subcategory', 'weight', 'count', 'price')
+    list_display = ('get_image', 'name', 'category', 'subcategory', 'weight', 'count', 'status', 'price')
     list_display_links = ('get_image', 'name', 'weight', 'count', 'price')
     prepopulated_fields = {'model': ('name',),}
     search_fields = ('name', 'count')
     list_filter = ('category', 'subcategory', 'catalog')
+    list_editable = ('status', )
 
     def get_image(self, obj):
         

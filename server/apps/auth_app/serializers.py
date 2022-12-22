@@ -1,22 +1,30 @@
+from requests import Response
 from .models import CustomUser
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
-
 class UserSerializer(ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'phone_number', 'password']
+        fields = ['username', 'first_name', 'last_name', 'first_confirm', 'phone_number', 'password']
         
         extra_kwargs = {
             'phone_number': {'required': True},
+            'first_name': {'required': True},
+            'username': {'required': False},
+            'last_name': {'required': True},
             "password": {"write_only": True}
         }
 
 
     def create(self, validated_data):
+        username = validated_data['phone_number']
+        
+        
+        new_username = validated_data['phone_number']
+        
         user = CustomUser.objects.create(
-            username=validated_data['username'],
+            username=new_username,
             phone_number=validated_data['phone_number'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
@@ -27,3 +35,12 @@ class UserSerializer(ModelSerializer):
 
         return user
 
+    
+        
+
+# {
+#         "first_name": "Akkkk",
+#         "last_name": "LLLLL",
+#         "phone_number": "998909174225",
+#         "password": "AErkinov101"
+#     }

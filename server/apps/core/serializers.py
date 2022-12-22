@@ -5,13 +5,44 @@ from rest_framework import serializers
 
 class CategorySerializer(ModelSerializer):
     products = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Category
-        fields = ['name', 'image', 'products']
-
-class ProductSerializer(ModelSerializer):
+    subcategories = serializers.StringRelatedField(many=True)
     
     class Meta:
+        model = Category
+        fields = ['id', 'name', 'image', 'products', 'subcategories']
+
+class ProductSerializer(ModelSerializer):
+    class Meta:
         model = Product
+        fields = '__all__'
+    
+class ColorSerializer(ModelSerializer):
+
+    class Meta:
+        model = Color
+        fields = '__all__'
+    
+class CatalogSerializer(ModelSerializer):
+    class Meta:
+        model = Catalog
+        fields = '__all__'
+
+class PropertySerializer(ModelSerializer):
+    class Meta:
+        model = Property
+        fields = '__all__'
+
+class SubCategorySerializer(ModelSerializer):
+    class Meta:
+        model = SubCategory
+        fields =  '__all__'
+
+class AchievementSerializer(ModelSerializer):
+    class Meta:
+        model = Achievement
+        fields = '__all__'
+
+class ContactSerializer(ModelSerializer):
+    class Meta:
+        model = Contact
         fields = '__all__'

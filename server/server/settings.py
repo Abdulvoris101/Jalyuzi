@@ -130,7 +130,41 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:27610"
+]
+
+
+# CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:27610"
+]
+
+
+
+
+
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+# ]
+
+
+
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 
 JAZZMIN_SETTINGS = {
@@ -157,7 +191,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the Jalyuzi Admin",
+    "welcome_sign": "Добро пожаловат в Jalyuzi Admin",
 
     # Copyright on the footer
     "copyright": "Jalyuzi copyright",

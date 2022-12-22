@@ -3,7 +3,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='category_images/')
-
+    
     def __str__(self):
         return self.name
 
@@ -63,6 +63,7 @@ class Catalog(models.Model):
         verbose_name = 'Каталог'
         verbose_name_plural = 'Каталогы'
 
+
 class Product(models.Model):
     name = models.CharField('Название', max_length=255)
     model = models.CharField('Модел', max_length=255)
@@ -77,6 +78,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products', null=True)
     price = models.BigIntegerField()
     count = models.IntegerField()
+    status = models.BooleanField('Публикация', default=False)
     
     def __str__(self):
         return self.name
@@ -84,3 +86,17 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Имя')
+    email = models.EmailField('Маил', max_length=255)
+    phone_number = models.CharField('Номер', max_length=255)
+    message = models.TextField('Сообщение', max_length=255)
+
+
+class Achievement(models.Model):
+    clients = models.CharField('Клиенты', max_length=255)
+    experience = models.CharField('Опыт работы', max_length=255)
+    products = models.CharField('Продукты', max_length=255)
