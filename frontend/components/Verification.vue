@@ -123,8 +123,6 @@ export default {
                     confirm: this.confirmCode,
                     phone_number: this.phone_number,
                     password: this.password
-
-
                 }
                 
                 this.postRegister(body)
