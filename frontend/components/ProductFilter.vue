@@ -156,12 +156,13 @@ export default {
             }
             
             this.filter.catalogs = arr
+            this.submitFilter()
         },
 
         changeColor(event) {
             let arr = this.filter.colors
 
-            // 
+            // // 
             let item  = arr.find(element => element == event);
 
             let index = arr.indexOf(item)
@@ -173,6 +174,8 @@ export default {
             }
 
             this.filter.colors = arr
+
+            this.submitFilter()
         },
 
         changeProperties(event) {
@@ -190,7 +193,7 @@ export default {
 
             this.filter.properties = arr
 
-            
+            this.submitFilter()
         },
     }
 }

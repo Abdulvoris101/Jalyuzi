@@ -89,7 +89,7 @@
                             </ul>
 
                             <div  v-if="isLogined">
-                                <button class="btn btn-success w-100 mt-3" v-if="(addresses.length >= 1)" @click="buyProducts">Оформить Заказ</button>
+                                <button class="btn btn-success w-100 mt-3" v-if="(addresses)" @click="buyProducts">Оформить Заказ</button>
                                 <div v-else>
                                     <button class="btn btn-success w-100 mt-3" disabled>Оформить Заказ</button>
                                     <span class="error-authenticate text-danger">*Чтобы оформить заказ добавьте адреса</span>
@@ -110,7 +110,7 @@
                                     Адресы
 
                                 </h4>
-                                <div v-if="(addresses.length < 1)">
+                                <div v-if="(addresses == false)">
                                     <button v-if="(addAdress == false)" class="btn btn-outline-danger" @click="(addAdress = !addAdress)">Добавить аддрес + </button>
                                     <button v-else class="btn btn-outline-success" @click="fetchAddress()">Сохранить</button>
                                 </div>
@@ -125,7 +125,7 @@
                                 <input type="text" class="form-control mt-3" placeholder="Улица и Махалла" v-model="fulladdress" required>
                                 
                             </div>
-                            <div v-if="(addresses.length >= 1)">
+                            <div v-if="(addresses)">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -228,7 +228,7 @@ export default {
                     'address': this.addresses[0].id,
                     'amount': product.current_count
                 }]
-
+                
                 this.createOrder(JSON.stringify(data))
 
             } 
@@ -331,32 +331,14 @@ export default {
 
         allPrice() {
             let overall_price = null
-
             if (this.cart_products.length > 1) {
-                
                 for (let i = 0; i < this.cart_products.length; i++) {
-                    if (overall_price != null ) {
-                        overall_price = overall_price + this.cart_products[i].current_price
-                    } else {
-                        overall_price = this.cart_products[i].current_price
-                    }
+                console.log(this.cart_products[i]);
+
+                    overall_price += this.cart_products[i].current_price 
+                    
                 }
-
-                overall_price = overall_price.toString()
-                overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
-                this.allOverPrice = overall_price
-
-            } else if (this.cart_products.length == 1) {
-                overall_price = this.cart_products[0].current_price
-                overall_price = overall_price.toString()
-                overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
-
-                this.allOverPrice = overall_price
-
-            } else {
-                this.allOverPrice = 0
             }
-
         },
 
         editSquare(id) {
@@ -367,13 +349,14 @@ export default {
 
         increaseCount(id) {
             let product = this.cart_products.find(obj => obj.id == id)
+            let product_s = JSON.parse(localStorage.getItem('product' + product.id))
 
             if (product.current_count <= product.count) {
                 product.current_count =  product.current_count + 1
-                product.current_price = product.current_price * product.current_count
-
+                product.current_price = parseInt(product_s.overall_price) * product.current_count
+                
                 localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
-                localStorage.setItem('product' + id, JSON.stringify(product))
+                // localStorage.setItem('product' + id, JSON.stringify(product))
 
                 this.allPrice()
 
@@ -404,18 +387,21 @@ export default {
 
         decreaseCount(id) {
             let product = this.cart_products.find(obj => obj.id == id)
+            let product_s = JSON.parse(localStorage.getItem('product' + product.id))
 
             if (product.current_count > 1) {
 
-                product.current_price = product.current_price / product.current_count
+                
+
+                product.current_price = product.current_price - parseInt(product_s.overall_price)
 
                 product.current_count =  product.current_count - 1
 
 
-                localStorage.setItem('product' + id, JSON.stringify(product))
+                // localStorage.setItem('product' + id, JSON.stringify(product))
                 localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
 
-                this.allPrice()
+                this.allPrice() 
 
 
             } else {
@@ -436,18 +422,22 @@ export default {
                 overall_price = overall_price * product.current_count
 
 
-                let price = overall_price;
+                let price = overall_price.toString();
 
                 product.current_width = this.editWidth
                 product.current_height = this.editHeight
+
+
+
                 product.current_price = price
 
                 product_cart.width = this.editWidth
                 product_cart.height = this.editHeight
+                product_cart.overall_price = parseInt(overall_price)
 
-                product_cart.overall_price = overall_price
 
                 
+                console.log(product_cart);
 
                 localStorage.setItem('product' + id, JSON.stringify(product_cart))
                 localStorage.setItem('cart_products', JSON.stringify(this.cart_products))

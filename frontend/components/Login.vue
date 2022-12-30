@@ -116,12 +116,13 @@ export default {
         },
 
         postLogin(body) {
+            let csrf_token = useCookie('csrftoken').value
             fetch('http://localhost:8000/api/users/login/', {
-                method: 'POST', // or 'PUT'
+                method: 'POST',
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-csrftoken': this.csrf_token
+                    'x-csrftoken': csrf_token
                 },
                 body: JSON.stringify(body),
             })
@@ -137,10 +138,13 @@ export default {
                 else if (this.statusCode == 200) {
                     this.response.errors = []
                     
-                    this.store.$patch({ firstName: data.first_name, isLogined: true })
+                    let store = AccountStore()
 
-                    this.store.getMe()
+                    let user_token = useCookie('user_token')
+                    user_token.value = data.token
                     
+                    store.getMe()
+                    store.getAdresses()
 
                     this.closeLogin()
 
@@ -151,6 +155,8 @@ export default {
             .catch((error) => {
                 console.log(error);
             }); 
+
+
 
         }
 

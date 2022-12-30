@@ -15,14 +15,16 @@ class OrderView(ListCreateAPIView):
     authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
 
     
-    def create(self, request, *args, **kwargs):
-         data = request.data
-         
-         serializer = OrderSerializer(data=data, many=True)
-         serializer.is_valid(raise_exception=True)
-         serializer.save(client=self.request.user)
+    # def perform_create(self, serializer):
+    #     return serializer.save(client=self.request.user)
 
-         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        serializer = OrderSerializer(data=data, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(client=self.request.user)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 

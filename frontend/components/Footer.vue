@@ -17,8 +17,8 @@
                             </ul>
                         </div>
                         <div class="footer_info">
-                            <h4 class="twiiter-last">Last tweets</h4>
-                            <div class="twitter">
+                            <h4 class="telegram-last">Last telegram posts</h4>
+                            <div class="telegram-channel">
 
                             </div>
                         </div>
@@ -66,24 +66,11 @@
 
 
 <script setup>
-// import { TwitterApi } from 'twitter-api-v2';
-
-// const userClient = new TwitterApi({
-//   appKey: 'fDoYGqqakTNwf3FBrINhYJS9o',
-//   appSecret: 'RE55yAbsvjgCrWRS03ELBlfhoARaaepVyuf7XgSfiiXENXsTre',
-//   accessToken: '1506570071606497283-NyTOXYIJK4nmXnZBVRlbhmOgxoldVU',
-//   accessSecret: 'uBCnhZX77LFaDKc5DMp5ljJVxAroQK7BQXV6wWPLQQ8QR',
-// });
-
-
-// console.log(userClient);
-
-// Acess Token 1506570071606497283-NyTOXYIJK4nmXnZBVRlbhmOgxoldVU
-// Acess TOken secret uBCnhZX77LFaDKc5DMp5ljJVxAroQK7BQXV6wWPLQQ8QR
 
 </script>
 
 <style>
+
     #footer {
         padding-top: 40px;
         background: #F9F9F9;
@@ -133,5 +120,8 @@
     }
     .icon-link {
         margin-right: 10px;
+    }
+    .telegram-channel {
+        
     }
 </style>

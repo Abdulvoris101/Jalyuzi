@@ -190,7 +190,9 @@ export default {
 
                     this.ToVerification()
 
+
                     this.store.getMe()
+                    this.store.getAdresses()
                     
                 }
             })

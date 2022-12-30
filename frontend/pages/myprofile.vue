@@ -120,6 +120,9 @@ export default {
                     this.logout = 'Вы выходили из аккаунта!'
                     let userToken = useCookie('user_token')
                     userToken.value = null
+                    let store = AccountStore()
+                    store.getMe()
+                    store.getAdresses()
                 }
             })
 

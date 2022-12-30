@@ -26,8 +26,9 @@
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
                                         <div class="card-body">
                                             <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="nav-link">
+                                                
                                                 <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
-                                                <span class="card-price">{{ product.price }} сум</span>
+                                                <span class="card-price">{{ product.b_price }} сум</span>
                                             </NuxtLink>
                                             <div>
 
@@ -79,6 +80,7 @@ export default {
         ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
         ...mapStores(ProductStore, FilterStore),
     },
+
 
     methods: {
 

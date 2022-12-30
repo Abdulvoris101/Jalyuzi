@@ -4,10 +4,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <nuxt-link to="tel:998909174227" class="phone_numb top-link">
+                        <nuxt-link to="tel:99894-994-00-00" class="phone_numb top-link">
                             <b-icon-telephone class="top-icon" />
                             
-                            +998909174227
+                            +998 94-994-00-00
                         </nuxt-link>
                         <nuxt-link to="mailto:jalyuzi@mail.com"   class="email top-link">
                             <b-icon-envelope class="top-icon" />
@@ -51,12 +51,13 @@
                             </nuxt-link>
 
                             <div class="account-i">
+
                                 <nuxt-link to=""  @click="toggleStoreModal" v-if="isLogined == false"  role="button" class="nav-link">
                                     <b-icon-person class="bottom-icon" />
                                 </nuxt-link>
                                 <nuxt-link :to="{name: 'myprofile'}"  v-if="isLogined"  role="button" class="nav-link account-true">
                                     <b-icon-person class="bottom-icon" />
-                                    <span class="firstName">{{ getFirstName }}</span>
+                                    <span class="firstName">{{ firstName }}</span>
                                 </nuxt-link>
                             </div>
                             

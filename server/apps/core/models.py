@@ -96,7 +96,14 @@ class Contact(models.Model):
     message = models.TextField('Сообщение', max_length=255)
 
 
+    def __str__(self):
+        return self.name
+
 class Achievement(models.Model):
     clients = models.CharField('Клиенты', max_length=255)
     experience = models.CharField('Опыт работы', max_length=255)
     products = models.CharField('Продукты', max_length=255)
+
+
+    def __str__(self):
+        return self.products

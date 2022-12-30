@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from requests import delete
 from .serializers import UserSerializer
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, DestroyAPIView
 from .models import CustomUser
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User
 from random import randint
 from twilio.rest import Client
 from django.contrib.auth import logout
+from rest_framework.authtoken.models import Token
 
 import os
 
@@ -175,7 +177,8 @@ class UserLoginView(APIView):
             response =  Response({
                 'token': token.key,
                 'user_id': user.id,
-                'first_name': user.first_name
+                'first_name': user.first_name,
+                'phone_number': user.phone_number
             })
 
             user_cookie = request.COOKIES.get('user_token') 
@@ -201,13 +204,24 @@ class UserLogout(APIView):
 
 class UserMe(APIView):
     def get(self, request):
-        
-        if str(request.user) != 'AnonymousUser':
-            user = CustomUser.objects.get(username=request.user.username)
+        token = request.headers.get('Authorization')
+
+        if token is not None:
+            token = token.split('Token ')[1]
+            user_id = Token.objects.get(key=token).user
+            user = CustomUser.objects.get(username=user_id)
+
             serializer = UserSerializer(user)
             return Response(serializer.data)
+        
+        elif str(request.user) != 'AnonymousUser':
+            user = CustomUser.objects.get(username=request.user.username)
+            serializer = UserSerializer(user)
+            
+            return Response(serializer.data)
+    
         else:
-            return Response({'You didn\'t login'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'You didn\'t login'}, status=status.HTTP_400_BAD_REQUEST)
 
 
     

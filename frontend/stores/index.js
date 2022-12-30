@@ -22,6 +22,12 @@ export const ProductStore = defineStore('product', {
 
             if (data.value.length >= 1) {
                 this.products = data.value
+                for (let i = 0; i < this.products.length; i++) {
+                    let overall_price = this.products[i].price.toString()
+                    overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
+                    this.products[i].b_price = overall_price
+                }
+                
                 this.is_product = true
             } else {
                 this.products = []
@@ -76,7 +82,6 @@ export const ProductStore = defineStore('product', {
                 this.category_products = data.value
                 this.inCategoryCart()
                 this.inTheCart()
-                this.increaseCart()
                 this.is_data = true
                 this.is_data = true
 
@@ -151,36 +156,40 @@ export const ProductStore = defineStore('product', {
         
 
         getCartProducts() {
-            let len = parseInt(localStorage.getItem('lastID'))
-            let cart_products = localStorage.getItem('cart_products')
 
-            for (let i = 1; i <= len; i++) {
-                let item = window.localStorage.getItem('product' + i)
+            if (localStorage.getItem('lastID')) {
+                let len = parseInt(localStorage.getItem('lastID'))
+                let cart_products = localStorage.getItem('cart_products')
 
-                if (item != null) {
-                    let obj = this.products.find(obj => obj.id == JSON.parse(item).id)
-                    obj.current_width = JSON.parse(item).width
-                    obj.current_height = JSON.parse(item).height
-                    obj.current_price = JSON.parse(item).overall_price
-                    obj.current_count = 1
-                    
+                for (let i = 1; i <= len; i++) {
+                    let item = window.localStorage.getItem('product' + i)
 
-                    if (cart_products != null) {
-                        this.cart_products = JSON.parse(localStorage.getItem('cart_products'))
-                        let finded = this.cart_products.findIndex(el => el.id  == obj.id)
+                    if (item != null) {
+                        let obj = this.products.find(obj => obj.id == JSON.parse(item).id)
+                        obj.current_width = JSON.parse(item).width
+                        obj.current_height = JSON.parse(item).height
+                        obj.current_price = JSON.parse(item).overall_price
+                        obj.current_count = 1
                         
-                        if (finded == -1) {
+
+                        if (cart_products != null) {
+                            this.cart_products = JSON.parse(localStorage.getItem('cart_products'))
+                            let finded = this.cart_products.findIndex(el => el.id  == obj.id)
+                            
+                            if (finded == -1) {
+                                this.cart_products.push(obj)
+                                localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
+                            }
+                        }
+                        else {
                             this.cart_products.push(obj)
                             localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
                         }
-                    }
-                    else {
-                        this.cart_products.push(obj)
-                        localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
-                    }
 
-                }
+                    }
             }
+            }
+            
         },
         
     },
@@ -309,31 +318,41 @@ export const AccountStore = defineStore('modal', {
         },
 
         async getMe() {
-            this.userToken = useCookie('user_token')
-
-            const { data, error } = await useLazyAsyncData('Abdulvoris', () => $fetch('http://localhost:8000/api/users/me/', {
-                headers: useRequestHeaders(['cookie']) 
-            }))
+            this.userToken = useCookie('user_token').value
+            let csrfToken = useCookie('csrftoken').value
 
 
-            if (error.value) {
+
+            let {data, error} = await useFetch('http://localhost:8000/api/users/me/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + this.userToken,
+                    'x-csrftoken': csrfToken
+                },
+                initialCache: false,
+            })
+
+
+            if (data.value == null) {
                 console.log('You did\'nt login');
                 this.isLogined = false
+
             } else {
-                this.phone_number = data.value.phone_number
                 this.firstConfirm = data.value.first_confirm
                 
+                this.isLogined = true   
 
                 if (data.value.first_name == '') {
                     this.firstName = data.value.username
                 } else {
+                    this.phone_number = data.value.username
+
                     this.firstName = data.value.first_name
                 }
 
                 this.lastName = data.value.last_name
-                this.isLogined = true
-
             }
+
 
         },
 
@@ -346,12 +365,33 @@ export const AccountStore = defineStore('modal', {
 
         
         async getAdresses() {
-            const { data, error } = await useFetch('http://localhost:8000/api/orders/address/', {
-                headers: useRequestHeaders(['cookie']),
-            })
-           
-            this.addresses = data.value
+            let user_token = useCookie('user_token').value
+            let csrfToken = useCookie('csrftoken').value
 
+            const { data, error } = await useFetch('http://localhost:8000/api/orders/address/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + user_token,
+                    'x-csrftoken': csrfToken
+                },
+                initialCache: false,
+            })
+            
+
+            if (this.addresses != null ) {
+                console.log('null');
+
+                if (this.addresses.length < 1) {
+                    this.addresses = false
+                } else {
+
+                    this.addresses = data.value
+                    console.log(data.value);
+                }
+
+            } else {
+                this.addresses = false
+            }
 
         },
 
