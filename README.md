@@ -15,6 +15,7 @@ Jalyuzi.uz - created for salling products in internet, and this web app have man
 - Jazzmin Admin panel
 
 **API** - url
+
 **Demo** - url
 
     
