@@ -458,13 +458,14 @@ code {
 .modal-wrapper {
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  bottom: 0;
+  /* bottom: 0; */
   display: flex;
   justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 1000;
 }
 
 
@@ -483,5 +484,7 @@ code {
 .close {
     justify-content: right;
 }
+
+
 </style>
 

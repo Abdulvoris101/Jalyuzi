@@ -123,7 +123,4 @@
     .icon-link {
         margin-right: 10px;
     }
-    .telegram-channel {
-        
-    }
 </style>

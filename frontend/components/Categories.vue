@@ -2,8 +2,8 @@
     <div id="categories">
         <h3 class="title mb-3">Категории</h3>
 
-        <div class="row gx-3">
-            <div class="col-lg-3" v-for="category in categories" :key="category.id">
+        <div class="row gx-2">
+            <div class="col-lg-3 col-md-4 col-6" v-for="category in categories" :key="category.id">
                 
                 <NuxtLink  :to='"category/" + category.id'>
                     <div class="grid">
@@ -42,10 +42,10 @@ export default {
             categories: []
         }
     },
+
     async created() {
         const { data } = await useFetch('http://localhost:8000/api/categories/')
         this.categories = data.value
-
     }
 }
 </script>
@@ -55,6 +55,7 @@ export default {
         font-size: 28px;
         padding-bottom: 15px;
     }
+
     .card_box {
         overflow:hidden;
         transition: all .5s;
@@ -73,6 +74,23 @@ export default {
         text-align: center;
         cursor: pointer;
     }
+
+    @media screen and (max-width: 500px) {
+        .title {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 0 !important;
+
+        }
+
+        .grid figure {
+            min-width: 220px;
+
+        }
+        
+    }
+
     
     .grid figure img {
         position: relative;

@@ -32,10 +32,10 @@ export default {
         <section class="getsample_section">
             <div class="container-fluid">
                 <div class="row gx-4">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <img src="@/assets/images/bg-home-sec.webp" class="img-fluid" alt="">
                     </div>
-                    <div class="col-md-6 text-col">
+                    <div class="col-md-6 text-col pb-4 pt-3">
                         <div class="getsample_text">
                             <h3>Доступные цены</h3>
                             <p>

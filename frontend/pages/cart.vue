@@ -335,11 +335,14 @@ export default {
             for (let i = 0; i < this.cart_products.length; i++) {
                 overall_price += this.cart_products[i].current_price    
             }
-            overall_price = overall_price.toString()
-            overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
+            if (overall_price != null) {
+                overall_price = overall_price.toString()
+                overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
 
 
-            this.allOverPrice = overall_price
+                this.allOverPrice = overall_price
+            }
+            
 
         },
 

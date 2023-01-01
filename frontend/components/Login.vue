@@ -261,6 +261,8 @@ export default {
   
 .login-wrap {
     position: relative;
+    z-index: 1000 !important;
+
     background: #fff;
     border-radius: 10px;
     -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
@@ -412,13 +414,15 @@ code {
 .modal-wrapper {
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 1000 !important;
+  
+
 }
 
 

@@ -57,6 +57,7 @@ import '@splidejs/vue-splide/css';
 </script>
 
 <style>
+
     .slide-bg-img {
         
         width: 100%;
@@ -70,6 +71,24 @@ import '@splidejs/vue-splide/css';
         padding-left: 100px;
         padding-top: 160px;
     }
+
+    @media screen and (max-width: 500px) {
+        .slide-bg-img {
+            padding-left: 60px !important;
+
+        }
+        .slide-bg-img div {
+            width: 95%;
+        }
+        .slide-title {
+            font-size: 27px !important;
+        }
+
+        .slide-subtitle {
+            font-size: 18px;
+        }
+    }
+
     .slide-1 {
         background-image: url('@/assets/images/1.png');
     }

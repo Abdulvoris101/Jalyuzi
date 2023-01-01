@@ -415,7 +415,6 @@ code {
 .modal-wrapper {
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
-  bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;

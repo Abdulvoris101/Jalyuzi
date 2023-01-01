@@ -54,7 +54,6 @@
 
 <style>
     .under-card {
-        
         background-blend-mode: multiply;
         background-color: rgba(51, 51, 51, 0.753);
         width: 100%;
@@ -63,6 +62,14 @@
         background-position: center;
         margin-bottom: 30px;
         margin-top: 20px;
+    }
+
+    @media screen and (max-width: 500px) {
+        .under-card {
+            margin-bottom: 0 !important;
+
+        }
+        
     }
     .under-card .text {
         color: #fff;

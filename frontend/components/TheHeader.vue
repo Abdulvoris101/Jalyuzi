@@ -30,15 +30,29 @@
         <div class="main-nav">
 
             <div class="container">
-                <div class="row gx-5">
-                    <div class="col-lg-3">
+
+                <div class="row gx-3">
+
+                    <div class="col-lg-3 col-flex d-flex">
+                        <a @click="showMenu = !showMenu">
+                                <b-icon-list class="bi-list" />
+                        </a>
                         <div class="logo">
-                            <img src="@/assets/images/logo.png" width="170" alt="">
+                            
+                            <nuxt-link :to="{name: 'index'}" class="nav-link">      
+                                <img src="@/assets/images/logo.png" width="170" alt="">
+                            </nuxt-link>
+
+                        </div>
+                        <div class="d-flex">
+                            <nuxt-link :to="{name: 'cart'}" class="nav-link">
+
+                                <b-icon-bag class="bag-icon-m" />
+                            </nuxt-link>
                         </div>
                     </div>
                     
                     <div class="col-lg-5 nav-items">
-                        <b-icon-list class="bi-list" />
                         <div class="nav-links">
                             <nuxt-link :to="{name: 'index'}" class="nav-link">Главная</nuxt-link>
                             <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
@@ -47,6 +61,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
+
                         <div class="nav-side-i">
                             <nuxt-link to="#" class="nav-link search-i">
                                 <b-icon-search class="bag-icon" style="margin-bottom: 4px;" />
@@ -63,7 +78,7 @@
                                 </nuxt-link>
                             </div>
                             
-                            <nuxt-link :to="{name: 'cart'}" class="nav-link">
+                            <nuxt-link :to="{name: 'cart'}" class="nav-link bag-ic">
 
                                 <b-icon-bag class="bag-icon" />
                             </nuxt-link>
@@ -78,6 +93,8 @@
         </div>
 
     </nav>
+    <mobile-nav v-if="showMenu" :first_name="firstName" @updateshowmenu="changeShowMenu" :showMenu="showMenu" :isLogined="isLogined"></mobile-nav>
+
 </template>
 
 
@@ -92,6 +109,7 @@ export default {
         return {
             store: '',
             sticky: false,
+            showMenu: false,
         }
     },
 
@@ -112,6 +130,16 @@ export default {
 
     mounted() {
         this.setCartItem()
+
+        window.addEventListener('scroll', this.fixedToTop);
+
+
+    },
+
+    watch: {
+        '$route' () {
+            this.showMenu = false
+        }
     },
     
     methods: {
@@ -122,14 +150,21 @@ export default {
         },
 
         fixedToTop(event) {
-            let sticky = this.$el.querySelector('.top-nav').offsetTop
+            let sticky = this.$el.querySelector('.top-nav')
 
-            if (window.pageYOffset > sticky) {
-                this.sticky = true
-            } else {
-                this.sticky = false
+            if (sticky){
+                if (window.pageYOffset > sticky.offsetTop) {
+                    this.sticky = true
+                } else {
+                    this.sticky = false
+                }
             }
+           
             
+        },
+        changeShowMenu(value) {
+            this.store.regToggleModal()
+            this.showMenu = value
         }
     }
     
@@ -140,8 +175,41 @@ export default {
 <style>
 
 
+    .bi-list {
+        display: none;
+    }
+
+    .bag-icon-m{
+        display: none
+    }
+
+    
 
     @media screen and (max-width: 500px) {
+        .account-i .nav-link svg {
+            font-size: 32px;
+            font-weight: normal;
+            text-align: center;
+
+        }
+
+        .bag-icon-m {
+            font-size: 20px;
+            display: block;
+        }
+
+        .nav-m-links a {
+            font-size: 25px;
+            font-weight: normal;
+            text-align: center;
+            padding-top: 13px;
+        }
+        .nav-m-links {
+            padding-top: 80px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
         .top-nav {
             display: none;
         }
@@ -152,8 +220,19 @@ export default {
             display: none !important;
         }
         .logo {
-            margin-left: 15px !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
         }
+        .col-flex {
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bi-list {
+            display: block;
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
     }
 
    
