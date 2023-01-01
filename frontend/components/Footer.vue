@@ -19,6 +19,8 @@
                         <div class="footer_info">
                             <h4 class="telegram-last">Last telegram posts</h4>
                             <div class="telegram-channel">
+                                
+
 
                             </div>
                         </div>
@@ -65,7 +67,7 @@
 </template>
 
 
-<script setup>
+<script>
 
 </script>
 

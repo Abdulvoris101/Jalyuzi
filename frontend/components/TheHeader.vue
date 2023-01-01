@@ -1,6 +1,6 @@
 <template>
     <nav class="nav">
-        <div class="top-nav">
+        <div class="top-nav " :class="{ 'sticky': sticky }">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
@@ -88,6 +88,7 @@ export default {
     data() {
         return {
             store: '',
+            sticky: false,
         }
     },
 
@@ -100,20 +101,36 @@ export default {
 
     created() {
         this.store = AccountStore()
-        
+
     },
+    destroyed () {
+        window.removeEventListener('scroll', this.fixedToTop);
+    },
+
     mounted() {
         this.setCartItem()
+        window.addEventListener('scroll', this.fixedToTop);
+
     },
     
     methods: {
         ...mapActions(ProductStore, ['setCartItem']),
+
         toggleStoreModal() {
             this.store.regToggleModal()
         },
 
-        
-    },
+        fixedToTop(event) {
+            let sticky = this.$el.querySelector('.top-nav').offsetTop
+
+            if (window.pageYOffset > sticky) {
+                this.sticky = true
+            } else {
+                this.sticky = false
+            }
+            
+        }
+    }
     
 
 }
@@ -151,6 +168,16 @@ export default {
     .nav {
         width: 100%;
     }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10000;
+        border-bottom: 1px solid rgb(197, 197, 197) !important;
+        transition: .2s linear all;
+    }
+
     .top-nav {
         width:100%;
         height: 30px;
@@ -182,7 +209,6 @@ export default {
     }
     .nav-links {
         display: flex;
-        margin-right: 35px;
     }
     .nav-link {
         padding-right: 15px;

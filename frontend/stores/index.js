@@ -96,7 +96,7 @@ export const ProductStore = defineStore('product', {
 
         addToCart(obj, id) {
             let product_name = 'product' + id
-            window.localStorage.setItem(product_name, obj)
+            localStorage.setItem(product_name, obj)
             let lastID = localStorage.getItem('lastID')
 
             if (lastID == null) {
@@ -109,6 +109,8 @@ export const ProductStore = defineStore('product', {
             }
 
             this.inTheCart()
+            this.inCategoryCart()
+            
         },
 
         inCategoryCart() {
@@ -351,6 +353,7 @@ export const AccountStore = defineStore('modal', {
                 }
 
                 this.lastName = data.value.last_name
+                this.getAdresses()
             }
 
 
@@ -373,20 +376,17 @@ export const AccountStore = defineStore('modal', {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + user_token,
                     'x-csrftoken': csrfToken
-                },
-                initialCache: false,
+                }
             })
             
 
             if (this.addresses != null ) {
-                console.log('null');
 
                 if (this.addresses.length < 1) {
                     this.addresses = false
                 } else {
 
                     this.addresses = data.value
-                    console.log(data.value);
                 }
 
             } else {

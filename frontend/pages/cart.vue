@@ -331,14 +331,16 @@ export default {
 
         allPrice() {
             let overall_price = null
-            if (this.cart_products.length > 1) {
-                for (let i = 0; i < this.cart_products.length; i++) {
-                console.log(this.cart_products[i]);
 
-                    overall_price += this.cart_products[i].current_price 
-                    
-                }
+            for (let i = 0; i < this.cart_products.length; i++) {
+                overall_price += this.cart_products[i].current_price    
             }
+            overall_price = overall_price.toString()
+            overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
+
+
+            this.allOverPrice = overall_price
+
         },
 
         editSquare(id) {
@@ -422,7 +424,7 @@ export default {
                 overall_price = overall_price * product.current_count
 
 
-                let price = overall_price.toString();
+                let price = overall_price;
 
                 product.current_width = this.editWidth
                 product.current_height = this.editHeight
@@ -437,7 +439,6 @@ export default {
 
 
                 
-                console.log(product_cart);
 
                 localStorage.setItem('product' + id, JSON.stringify(product_cart))
                 localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
