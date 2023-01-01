@@ -36,7 +36,9 @@
                             <img src="@/assets/images/logo.png" width="170" alt="">
                         </div>
                     </div>
+                    
                     <div class="col-lg-5 nav-items">
+                        <b-icon-list class="bi-list" />
                         <div class="nav-links">
                             <nuxt-link :to="{name: 'index'}" class="nav-link">Главная</nuxt-link>
                             <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
@@ -74,6 +76,7 @@
 
             </div> <!-- container end //-->
         </div>
+
     </nav>
 </template>
 
@@ -101,7 +104,7 @@ export default {
 
     created() {
         this.store = AccountStore()
-
+        
     },
     destroyed () {
         window.removeEventListener('scroll', this.fixedToTop);
@@ -109,8 +112,6 @@ export default {
 
     mounted() {
         this.setCartItem()
-        window.addEventListener('scroll', this.fixedToTop);
-
     },
     
     methods: {
@@ -137,6 +138,25 @@ export default {
 </script>
 
 <style>
+
+
+
+    @media screen and (max-width: 500px) {
+        .top-nav {
+            display: none;
+        }
+        .nav-links {
+            display: none !important;
+        }
+        .nav-side-i {
+            display: none !important;
+        }
+        .logo {
+            margin-left: 15px !important;
+        }
+    }
+
+   
     .bag-icon {
         margin-bottom: 2px;
     }
