@@ -1,6 +1,6 @@
 <template>
     <nav class="nav">
-        <div class="top-nav">
+        <div class="top-nav" v-if="mobileNav == false">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
@@ -36,7 +36,9 @@
                             <img src="@/assets/images/logo.png" width="170" alt="">
                         </div>
                     </div>
+                    
                     <div class="col-lg-5 nav-items">
+                        <b-icon-list class="bi-list" />
                         <div class="nav-links">
                             <nuxt-link :to="{name: 'index'}" class="nav-link">Главная</nuxt-link>
                             <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
@@ -74,6 +76,7 @@
 
             </div> <!-- container end //-->
         </div>
+
     </nav>
 </template>
 
@@ -88,6 +91,7 @@ export default {
     data() {
         return {
             store: '',
+
         }
     },
 
@@ -101,9 +105,11 @@ export default {
     created() {
         this.store = AccountStore()
         
+
     },
     mounted() {
         this.setCartItem()
+       
     },
     
     methods: {
@@ -120,6 +126,25 @@ export default {
 </script>
 
 <style>
+
+
+
+    @media screen and (max-width: 500px) {
+        .top-nav {
+            display: none;
+        }
+        .nav-links {
+            display: none !important;
+        }
+        .nav-side-i {
+            display: none !important;
+        }
+        .logo {
+            margin-left: 15px !important;
+        }
+    }
+
+   
     .bag-icon {
         margin-bottom: 2px;
     }
@@ -151,6 +176,9 @@ export default {
     .nav {
         width: 100%;
     }
+    
+
+     
     .top-nav {
         width:100%;
         height: 30px;
