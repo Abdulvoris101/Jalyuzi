@@ -309,6 +309,10 @@ export default {
     margin-top: 5px;
 }
 
+.side-left-mb {
+    display: none;
+}
+
 @media screen and (max-device-width: 997px) {
     .side-left {
         display: none;

@@ -492,6 +492,9 @@ export default {
     .cart-item-price {
         font-size: 17px !important;
     }
+    .card-r {
+        margin-top: 10px;
+    }
 }
 .order-content {
     font-size: 17px;

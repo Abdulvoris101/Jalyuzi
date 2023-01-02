@@ -177,6 +177,7 @@ export default {
 
                 let json_obj = JSON.stringify(new_p)
 
+
                 this.addToCart(json_obj, product_obj.id)
                 this.increaseCart()
 
@@ -285,6 +286,11 @@ export default {
         .main-container {
             width: 900px;
         }
+
+        .icon-filter {
+            display: none;
+        }
+        
     }
 
     .card-price {

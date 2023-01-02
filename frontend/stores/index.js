@@ -18,7 +18,8 @@ export const ProductStore = defineStore('product', {
     },
     actions: {
         async fetchProducts() {
-            const { data, pending, error } = await useAsyncData('products',  () => $fetch('http://localhost:8000/api/products/'), { initialCache : false })
+            let { data, pending, error } = await useAsyncData('products',  () => $fetch('http://localhost:8000/api/products/'), { initialCache : false })
+            data.value = data.value.results
 
             if (data.value.length >= 1) {
                 this.products = data.value
@@ -45,8 +46,11 @@ export const ProductStore = defineStore('product', {
         },
 
         async getCategoryProducts(category_id) {
-            const { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}`), { initialCache : false })
+            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}`), { initialCache : false })
             
+            data.value = data.value.results
+
+
 
             if (data.value.length >= 1) {
                 this.category_products = data.value
@@ -60,7 +64,8 @@ export const ProductStore = defineStore('product', {
         },
 
         async getSubCategoryProducts(id) {
-            const { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?subcategory=${id}`, { initialCache : false })
+            let { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?subcategory=${id}`, { initialCache : false })
+            data.value = data.value.results
 
             if (data.value.length >= 1) {
                 this.category_products = data.value
@@ -102,7 +107,6 @@ export const ProductStore = defineStore('product', {
             if (lastID == null) {
                 localStorage.setItem('lastID', id)
             } else {
-                
                 if (parseInt(lastID) < id) {
                     localStorage.setItem('lastID', id)
                 }
@@ -118,7 +122,6 @@ export const ProductStore = defineStore('product', {
             for (let i = 0; i < this.category_products.length; i++) {
                 let obj_s = window.localStorage.getItem('product' + this.category_products[i].id)
                 let obj = JSON.parse(obj_s)
-
 
                 if (obj == null) {
                     this.category_products[i].inCart = false
@@ -150,7 +153,7 @@ export const ProductStore = defineStore('product', {
 
         setCartItem() {
             if (localStorage.length > 1) {
-                this.countOfCart = parseInt(localStorage.length) - 2
+                this.countOfCart = parseInt(localStorage.length) - 1
             } else {
                 this.countOfCart = 0
             }
@@ -162,12 +165,15 @@ export const ProductStore = defineStore('product', {
             if (localStorage.getItem('lastID')) {
                 let len = parseInt(localStorage.getItem('lastID'))
                 let cart_products = localStorage.getItem('cart_products')
-
+                
                 for (let i = 1; i <= len; i++) {
                     let item = window.localStorage.getItem('product' + i)
 
-                    if (item != null) {
+                    console.log(this.products);
+                    
+                    if (item != null) { 
                         let obj = this.products.find(obj => obj.id == JSON.parse(item).id)
+
                         obj.current_width = JSON.parse(item).width
                         obj.current_height = JSON.parse(item).height
                         obj.current_price = JSON.parse(item).overall_price
@@ -176,9 +182,9 @@ export const ProductStore = defineStore('product', {
 
                         if (cart_products != null) {
                             this.cart_products = JSON.parse(localStorage.getItem('cart_products'))
-                            let finded = this.cart_products.findIndex(el => el.id  == obj.id)
+                            let found = this.cart_products.findIndex(el => el.id  == obj.id)
                             
-                            if (finded == -1) {
+                            if (found == -1) {
                                 this.cart_products.push(obj)
                                 localStorage.setItem('cart_products', JSON.stringify(this.cart_products))
                             }

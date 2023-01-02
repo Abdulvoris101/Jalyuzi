@@ -5,8 +5,9 @@
             <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
             <nuxt-link :to="{name: 'portfolio'}" class="nav-link">Портфолио</nuxt-link>
             <nuxt-link :to="{name: 'contact'}" class="nav-link">Контакт</nuxt-link>
-            <nuxt-link to="#" class="nav-link search-i">
+            <nuxt-link :to="{name: 'search'}" class="nav-link search-i">
                 <b-icon-search class="bag-icon me-3" style="margin-bottom: 4px;" />
+                
                 <span style="font-size: 16px;">Search</span>
 
             </nuxt-link>

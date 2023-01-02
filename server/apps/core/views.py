@@ -9,7 +9,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from django.db.models import Q
 from .permissions import IsAdminUserOrReadOnly
-
+from .pagination import ProductsPagination
 
 class AchievementView(ListCreateAPIView):
     queryset = Achievement.objects.filter(id=1)
@@ -53,55 +53,68 @@ class ProductView(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     authentication_classes = [BasicAuthentication, TokenAuthentication, SessionAuthentication]
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-
+    pagination_class = ProductsPagination
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
         queryset = self.get_queryset()
-        products = Product.objects.all()
-
-        print(self.request.GET)
-
-        if len(self.request.GET) >= 1:
-            serializer = ProductSerializer(queryset, many=True)
-        else:
-            serializer = ProductSerializer(products, many=True)
         
-        return Response(serializer.data)
+
+        page = self.paginate_queryset(queryset)
+
+        
+        if page is not None:
+            serializer = ProductSerializer(page, many=True)
+            result = self.get_paginated_response(serializer.data)
+            data = result.data # pagination data
+
+        else:
+            serializer = self.get_serializer(queryset, many=True)
+            data = serializer.data
+
+        
+        return Response(data)
+
 
 
     def get_queryset(self):
-        query_color = self.request.GET.get('color')
-        query_category = self.request.GET.get('category')
-        query_subcategory = self.request.GET.get('subcategory')
-        query_property = self.request.GET.get('property')
-        query_catalog = self.request.GET.get('catalog')
+        if len(self.request.GET) >= 1:
 
+            query_color = self.request.GET.get('color')
+            query_category = self.request.GET.get('category')
+            query_subcategory = self.request.GET.get('subcategory')
+            query_property = self.request.GET.get('property')
+            query_catalog = self.request.GET.get('catalog')
+
+            
+            products = []
+
+            if query_category:
+                products = Product.objects.filter(category__id=query_category)
+            elif query_subcategory:
+                products = Product.objects.filter(subcategory__id=query_subcategory)
+            else:
+                products = Product.objects.all()
+            
+            
+
+            if query_catalog:
+                catalog = query_catalog.split(',')
+                products = products.filter(catalog__in=catalog)
+
+            if query_color:
+                color = query_color.split(',')
+                products = products.filter(color__in=color)
+
+            if query_property:
+                properti = query_property.split(',')
+                products = products.filter(property__in=properti)
         
-        products = []
 
-        if query_category:
-            products = Product.objects.filter(category__id=query_category)
-        elif query_subcategory:
-            products = Product.objects.filter(subcategory__id=query_subcategory)
-        else:
-            products = Product.objects.all()
+
+            return products
         
-        
-
-        if query_catalog:
-            catalog = query_catalog.split(',')
-            products = products.filter(catalog__in=catalog)
-
-        if query_color:
-            color = query_color.split(',')
-            products = products.filter(color__in=color)
-
-        if query_property:
-            properti = query_property.split(',')
-            products = products.filter(property__in=properti)
-      
-
+        products = Product.objects.all()
 
         return products
             

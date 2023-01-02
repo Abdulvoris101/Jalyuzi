@@ -2,7 +2,7 @@
     <div id="my-profile">
         <div class="container">
             <div class="row myprofile">
-                <div class="col-lg-4">
+                <div class="col-sm-4">
                     <div class="list-group list-profile">
                         <a @click="status = 'MyProfile'" style="cursor:pointer;"  class="list-group-item list-group-item-action" :class="myclass()">
                           Мой профиль
@@ -12,7 +12,7 @@
                       </div>
 
                 </div>
-                <div class="col-lg-8">
+                <div class="col-sm-8">
                     <div class="card" v-if="status == 'MyProfile'">
                         <div class="card-body">
                             <h4 class="myprofile-title">Личный кабинет</h4>
@@ -131,6 +131,12 @@ export default {
 }
 </script>
 <style>
+
+@media  (max-width: 570px) {
+    .list-profile {
+        margin-bottom: 15px !important;
+    }
+}
 
 .list-group-item.active {
     z-index: 0;

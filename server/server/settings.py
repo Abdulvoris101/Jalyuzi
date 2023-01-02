@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,7 +102,8 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = 'auth_app.CustomUser'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
 }
 
 # Internationalization

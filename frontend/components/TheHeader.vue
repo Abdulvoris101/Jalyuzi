@@ -61,10 +61,10 @@
                                 <nuxt-link :to="{name: 'contact'}" class="nav-link">Контакт</nuxt-link>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-3   ">
+                        <div class="col-lg-4 col-md-3">
     
                             <div class="nav-side-i">
-                                <nuxt-link to="#" class="nav-link search-i">
+                                <nuxt-link :to="{name: 'search'}" class="nav-link search-i">
                                     <b-icon-search class="bag-icon" style="margin-bottom: 4px;" />
                                 </nuxt-link>
     

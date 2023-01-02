@@ -191,9 +191,7 @@ export default {
         font-weight: normal;
     }
     
-    .side-left-mb {
-        display: none;
-    }
+    
 
     @media (min-width: 926px) {
         .main-container {
@@ -202,6 +200,7 @@ export default {
         .icon-filter {
             display: none;
         }
+        
     }
 
     

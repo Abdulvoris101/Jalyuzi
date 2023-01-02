@@ -258,6 +258,11 @@ export default {
         .main-container {
             width: 900px;
         }
+
+        .icon-filter {
+            display: none;
+        }
+        
     }
 
     @media (max-width: 550px) {
