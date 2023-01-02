@@ -209,7 +209,6 @@ export default {
     padding-top: 14px;
 }
 .contact-form-inner input {
-    width: 365px !important;
     margin-right: 15px;
 }
 .contact-form-inner input:last-of-type {

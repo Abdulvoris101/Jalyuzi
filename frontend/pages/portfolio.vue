@@ -4,7 +4,7 @@
             <h4 class="portfolio-title mt-3 mb-3">Portfolio</h4>
 
             <div class="row mb-5">
-                <div class="col-md-3" v-for="(post, index) in posts" :key="index">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6" v-for="(post, index) in posts" :key="index">
 
                     <nuxt-link :to="post.permalink" class="text-dark" style="text-decoration: none;">
                         <article class="card insta-card" style="box-shadow: none !important;">

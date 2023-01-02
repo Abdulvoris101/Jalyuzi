@@ -1,100 +1,104 @@
 <template>
-    <nav class="nav">
-        <div class="top-nav " :class="{ 'sticky': sticky }">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <nuxt-link to="tel:99894-994-00-00" class="phone_numb top-link">
-                            <b-icon-telephone class="top-icon" />
-                            
-                            +998 94-994-00-00
-                        </nuxt-link>
-                        <nuxt-link to="mailto:jalyuzi@mail.com"   class="email top-link">
-                            <b-icon-envelope class="top-icon" />
-                            jalyuzi@mail.com
-                        </nuxt-link>
-                    </div>
-                    <div class="col-lg-3">
-                        <nuxt-link :to="{name: 'contact'}" class="phone_numb top-link">
-                            <b-icon-geo-alt class="top-icon" />
-                            Store Location
-                        </nuxt-link>
-                        <nuxt-link :to="{name: 'contact'}"  class="top-link email">
-                            FAQ
-                        </nuxt-link>
-                    </div>
-                </div>
-            </div> <!-- container end //-->
-        </div> <!-- top -nav end // -->
-
-        <div class="main-nav">
-
-            <div class="container">
-
-                <div class="row gx-3">
-
-                    <div class="col-lg-3 col-flex d-flex">
-                        <a @click="showMenu = !showMenu">
-                                <b-icon-list class="bi-list" />
-                        </a>
-                        <div class="logo">
-                            
-                            <nuxt-link :to="{name: 'index'}" class="nav-link">      
-                                <img src="@/assets/images/logo.png" width="170" alt="">
+    <div id="header">
+        <nav class="nav">
+            <div class="top-nav " :class="{ 'sticky': sticky }">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-8 col-sm-8">
+                            <nuxt-link to="tel:99894-994-00-00" class="phone_numb top-link">
+                                <b-icon-telephone class="top-icon" />
+                                
+                                +998 94-994-00-00
                             </nuxt-link>
-
+                            <nuxt-link to="mailto:jalyuzi@mail.com"   class="email top-link">
+                                <b-icon-envelope class="top-icon" />
+                                jalyuzi@mail.com
+                            </nuxt-link>
                         </div>
-                        <div class="d-flex">
-                            <nuxt-link :to="{name: 'cart'}" class="nav-link">
-
-                                <b-icon-bag class="bag-icon-m" />
+                        <div class="col-lg-3 col-md-4  col-sm-4 ">
+                            <nuxt-link :to="{name: 'contact'}" class="phone_numb top-link">
+                                <b-icon-geo-alt class="top-icon" />
+                                Store Location
+                            </nuxt-link>
+                            <nuxt-link :to="{name: 'contact'}"  class="top-link email">
+                                FAQ
                             </nuxt-link>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-5 nav-items">
-                        <div class="nav-links">
-                            <nuxt-link :to="{name: 'index'}" class="nav-link">Главная</nuxt-link>
-                            <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
-                            <nuxt-link :to="{name: 'portfolio'}" class="nav-link">Портфолио</nuxt-link>
-                            <nuxt-link :to="{name: 'contact'}" class="nav-link">Контакт</nuxt-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-
-                        <div class="nav-side-i">
-                            <nuxt-link to="#" class="nav-link search-i">
-                                <b-icon-search class="bag-icon" style="margin-bottom: 4px;" />
-                            </nuxt-link>
-
-                            <div class="account-i">
-
-                                <nuxt-link to=""  @click="toggleStoreModal" v-if="isLogined == false"  role="button" class="nav-link">
-                                    <b-icon-person class="bottom-icon" />
+                </div> <!-- container end //-->
+            </div> <!-- top -nav end // -->
+    
+            <div class="main-nav">
+    
+                <div class="container">
+    
+                    <div class="row">
+    
+                        <div class="col-lg-3 col-md-3 col-flex d-flex">
+                            <a @click="showMenu = !showMenu">
+                                    <b-icon-list class="bi-list" />
+                            </a>
+                            <div class="logo">
+                                
+                                <nuxt-link :to="{name: 'index'}" class="nav-link">      
+                                    <img src="@/assets/images/logo.png" width="170" alt="">
                                 </nuxt-link>
-                                <nuxt-link :to="{name: 'myprofile'}"  v-if="isLogined"  role="button" class="nav-link account-true">
-                                    <b-icon-person class="bottom-icon" />
-                                    <span class="firstName">{{ firstName }}</span>
+    
+                            </div>
+                            <div class="d-flex">
+                                <nuxt-link :to="{name: 'cart'}" class="nav-link">
+    
+                                    <b-icon-bag class="bag-icon-m" />
                                 </nuxt-link>
                             </div>
-                            
-                            <nuxt-link :to="{name: 'cart'}" class="nav-link bag-ic">
-
-                                <b-icon-bag class="bag-icon" />
-                            </nuxt-link>
-
-                            {{ countOfCart }}
-
                         </div>
-                    </div>
-                </div> <!-- row end //-->
+                        
+                        <div class="col-lg-5 col-md-6  nav-items">
+                            <div class="nav-links">
+                                <nuxt-link :to="{name: 'index'}" class="nav-link">Главная</nuxt-link>
+                                <nuxt-link :to="{name: 'about'}" class="nav-link">О нас</nuxt-link>
+                                <nuxt-link :to="{name: 'portfolio'}" class="nav-link">Портфолио</nuxt-link>
+                                <nuxt-link :to="{name: 'contact'}" class="nav-link">Контакт</nuxt-link>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-3   ">
+    
+                            <div class="nav-side-i">
+                                <nuxt-link to="#" class="nav-link search-i">
+                                    <b-icon-search class="bag-icon" style="margin-bottom: 4px;" />
+                                </nuxt-link>
+    
+                                <div class="account-i">
+    
+                                    <nuxt-link to=""  @click="toggleStoreModal" v-if="isLogined == false"  role="button" class="nav-link">
+                                        <b-icon-person class="bottom-icon" />
+                                    </nuxt-link>
 
-            </div> <!-- container end //-->
-        </div>
-
-    </nav>
-    <mobile-nav v-if="showMenu" :first_name="firstName" @updateshowmenu="changeShowMenu" :showMenu="showMenu" :isLogined="isLogined"></mobile-nav>
-
+                                    <nuxt-link :to="{name: 'myprofile'}"  v-if="isLogined"  role="button" class="nav-link account-true">
+                                        <b-icon-person class="bottom-icon" />
+                                        <span class="firstName">{{ firstName }}</span>
+                                    </nuxt-link>
+                                </div>
+                                
+                                <nuxt-link :to="{name: 'cart'}" class="nav-link bag-ic">
+    
+                                    <b-icon-bag class="bag-icon" />
+                                </nuxt-link>
+    
+                                {{ countOfCart }}
+    
+                            </div>
+                        </div>
+                    </div> <!-- row end //-->
+    
+                </div> <!-- container end //-->
+            </div>
+    
+        </nav>
+    
+        <mobile-nav v-if="showMenu" :first_name="firstName" @updateshowmenu="changeShowMenu" :showMenu="showMenu" :isLogined="isLogined"></mobile-nav>
+    
+    </div>
 </template>
 
 
@@ -183,9 +187,11 @@ export default {
         display: none
     }
 
+
+
     
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-device-width: 765px) {
         .account-i .nav-link svg {
             font-size: 32px;
             font-weight: normal;
@@ -234,6 +240,54 @@ export default {
         }
         
     }
+
+
+    
+
+
+    @media (min-device-width: 576px) and (max-device-width: 768px) {
+        .main-nav .container, .container-sm {
+            max-width: 95%;
+        }
+        .top-nav .container {
+            max-width: 91% !important;
+        }
+    }
+
+    @media (min-device-width: 619px) and (max-device-width: 758px) {
+        .container {
+            max-width: 90% !important;
+        }
+    }
+    
+
+    
+
+    @media screen and (min-device-width: 761px) and (max-device-width: 992px) {
+        .main-nav .container, .container-sm {
+            max-width: 90%;
+        }
+        .logo {
+            margin-left: -30px !important;
+            margin-right: 0 !important;
+        }
+        .firstName {
+            display: none !important;
+        }
+        .nav-link {
+            padding-right: 0 !important;
+        }
+        .nav-items {
+            padding-left: 0px !important;
+        }
+        .nav-links a {
+            font-size: 16px;
+        }
+        .nav-links {
+            padding-left: 30px !important;
+        }
+    }
+
 
    
     .bag-icon {
@@ -321,6 +375,9 @@ export default {
     .top-link {
         text-decoration: none;
     }
+
+
+
 
 
 </style>

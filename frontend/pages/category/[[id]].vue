@@ -1,27 +1,40 @@
 <template>
     <div id="products">
         <div class="row gx-0">
-            <div class="col-md-3">
-                <ProductFilter />
+            <div class="col-lg-3">
+                <ProductFilter :showFilter="showFilterStatus" @closeFilter="closeFilter" />
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <section class="main">
                     <div class="main-container">
 
                         <div class="main-top-card card">
+
                             <div class="card-body d-flex " style="justify-content:space-between">
-                                <h4 class="card-title">Категории - {{ category_name }}</h4>
-                                <select name="" id="" class="form-select">
-                                    <option value="">Сортировка по новизне</option>
-                                    <option value="">Сортировка по цене: по возрастанию</option>
-                                    <option value="">Сортировка по цене: по возрастанию</option>
-                                </select>
+                                <div style="width:100%">
+                                    <h4 class="card-title">Категории - {{ category_name }}</h4>
+    
+                                </div>
+                                <div class="d-flex" style="justify-content: flex-end">
+                                    <select name="" id="" class="form-select">
+                                        <option value="">Сортировка по новизне</option>
+                                        <option value="">Сортировка по цене: по возрастанию</option>
+                                        <option value="">Сортировка по цене: по возрастанию</option>
+                                    </select>
+                                    <div class="ms-4 me-2 mt-1 icon-filter">
+                                        <a @click="showFilter"><b-icon-funnel class=""></b-icon-funnel></a>
+    
+                                    </div>
+                                </div>
+    
                             </div>
                         </div>
 
+                        
+
                         <div v-if="subcategory_status">
                             <div class="row gx-3">
-                                <div class="col-md-3"  v-for="subcategory in subcategories" :key="subcategory.id">
+                                <div class="col-md-3 col-6 col-sm-4"  v-for="subcategory in subcategories" :key="subcategory.id">
                                     <div class="card main-card">
                                         <NuxtLink :to='"subcategory/" + subcategory.id' class="me-auto ms-auto nav-link">
                                             <img :src="subcategory.image" class="card-img" alt="...">
@@ -43,7 +56,7 @@
                         </div>
                         <div v-else>
                             <div class="row gx-3" v-if="is_data">
-                                <div class="col-md-3"  v-for="product in getData" :key="product.id">
+                                <div class="col-md-3 col-6 col-sm-4"  v-for="product in getData" :key="product.id">
                                     <div class="card main-card">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
                                         <div class="card-body">
@@ -92,7 +105,7 @@ export default {
             height: '150',
             width: '100',
             overall_price: '',
-
+            showFilterStatus: false,
             not_product: 'Продукты нет ):',
             
         }
@@ -116,6 +129,17 @@ export default {
 
     methods: {
         ...mapActions(ProductStore, ['getCategoryProducts']),
+
+        closeFilter() {
+            this.showFilterStatus = !this.showFilterStatus
+
+        },  
+
+
+        showFilter() {
+            this.showFilterStatus = !this.showFilterStatus
+        },
+
 
 
         ...mapActions(ProductStore, ['addToCart', 'increaseCart', 'inCategoryCart']),
@@ -256,8 +280,11 @@ export default {
         font-size: 18px;
         font-weight: normal;
     }
-    .main-container {
-        width: 900px;
+
+    @media (min-width: 997px) {
+        .main-container {
+            width: 900px;
+        }
     }
 
     .card-price {

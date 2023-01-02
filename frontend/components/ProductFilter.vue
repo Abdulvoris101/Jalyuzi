@@ -1,5 +1,6 @@
 <template>
     <div id="filter-section">
+
         <section class="side-left">
             <h4 class="filter-title">Filters-Diamonds</h4>
 
@@ -34,6 +35,60 @@
             <button class="btn btn-primary mt-4 " @click="submitFilter()">Фильтровать</button>
         
         </section>
+
+        <section class="side-left-mb ps-3">
+            <div class="d-flex" style="align-items: center; justify-content: space-between;">
+                <h4 class="filter-title">Filters-Diamonds</h4>
+                <a class="me-4 text-dark" @click="closeFilter">
+                    <b-icon-x-circle class=""></b-icon-x-circle>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-6">
+                    <div>
+                        <ul class="filter-catalog mt-1">
+                            <li ><span  class="catalog-title filter-link">Каталог</span></li>
+                            <li class="filter-catalog-item" v-for="catalog in getCatalogs" :key="catalog.id"><input @change="changeCatalog(catalog.id)"  type="checkbox" class="form-check-input" :id="'catalog' + catalog.id"> <label class="filter-link" :for="'catalog' + catalog.id">{{ catalog.name }}</label></li>
+                        </ul>
+                    </div>
+        
+                    
+                </div>
+                <div class="col-md-6 col-6">
+                    <div>
+                        <ul class="filter-catalog mt-3">
+                            <li ><span  class="catalog-title filter-link">Цветы</span></li>
+                            <li class="filter-catalog-item" v-for="color in getColors" :key="color.id"><input type="checkbox" class="form-check-input" @change="changeColor(color.id)" :id="'color' + color.id"> <label  :for="'color' + color.id"  class="filter-link">{{ color.name }}</label></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-6">
+                    <div>
+                        <ul class="filter-catalog mt-3">
+                            <li ><span  class="catalog-title filter-link">Свойства</span></li>
+                            <li class="filter-catalog-item" v-for="property in getProperties" :key="property.id"><input type="checkbox" :id="'property' + property.id" @change="changeProperties(property.id)" class="form-check-input"> <label   class="filter-link" :for="'property' + property.id">{{ property.name }}</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-6">
+                    <ul class="filter-catalog mt-3">
+                        <li ><span  class="catalog-title filter-link">Затемнение</span></li>
+                        <li class="filter-catalog-item"><input type="checkbox" class="form-check-input" id="idf1"> <label for="idf1"  class="filter-link">30%</label></li>
+                        <li class="filter-catalog-item"><input type="checkbox" class="form-check-input" id="idf3"> <label for="idf2"  class="filter-link">50%</label></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+
+            
+
+            
+
+        
+        </section>
+
     </div>
 </template>
 
@@ -43,6 +98,8 @@ import { mapActions, mapState, mapStores } from 'pinia'
 import { FilterStore, ProductStore } from '~~/stores'
 
 export default {
+    props: ['showFilter'],
+
     data() {
         return {
             category_status: false,
@@ -55,6 +112,20 @@ export default {
             }
         }
     },
+    watch: {
+        showFilter() {
+            let side = this.$el.querySelector('.side-left-mb')
+            console.log(this.showFilter);
+
+            if (this.showFilter) {
+                side.style.display = "block";
+            } else {
+                side.style.display = "none";
+
+            }
+        },
+        
+    },  
     computed: {
 
         getId() {
@@ -71,6 +142,10 @@ export default {
     },  
     methods: {
         ...mapActions(ProductStore, ['changeProducts', 'fetchProducts']),
+
+        closeFilter() {
+            this.$emit('closeFilter')
+        },
 
         submitFilter() {
             let catalogs = this.filter.catalogs
@@ -232,5 +307,14 @@ export default {
 }
 .filter-catalog-item {
     margin-top: 5px;
+}
+
+@media screen and (max-device-width: 997px) {
+    .side-left {
+        display: none;
+    }
+    .side-left-mb {
+        display: none;
+    }
 }
 </style>

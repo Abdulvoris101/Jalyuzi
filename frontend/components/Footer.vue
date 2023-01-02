@@ -1,12 +1,124 @@
 <template>
     <div id="footer">
-       <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <section class="left-side">
+       <div class="container">
+
+            <div class="row mobile-footer" style="justify-content:space-between">
+                <div class="col-6">
+                    <div class="logo">
+                        <img src="@/assets/images/logo.png" alt="">
+                    </div> 
+                </div>
+                <div class="col-6" style="text-align:right;">
+                    <div class="footer_info">
+
+                        <nuxt-link href="https://www.instagram.com/Jalyuzi.uz/" class="icon-link">
+                            <img src="@/assets/images/social/instagram.png" alt="" />
+                        </nuxt-link>
+                        <nuxt-link to="https://www.facebook.com/Jalyuzi.uz/" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/facebook.png" alt="">
+                        </nuxt-link>
+                        <nuxt-link to="https://t.me/jalyuzi" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/telegram.png" alt="">
+                        </nuxt-link>
+                        <nuxt-link to="https://twitter.com/Jalyuzi" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/twitter.png" alt="">
+                        </nuxt-link>
+                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footer">
+                <div class="col-md-3">
+                    <section class="">
                         <div class="logo">
                             <img src="@/assets/images/logo.png" alt="">
                         </div> 
+                        
+                    </section>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer_info">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><nuxt-link :to="{ name: 'index' }" class="footer_link">Home</nuxt-link></li>
+                            <li><nuxt-link :to="{ name: 'contact' }"  class="footer_link">Contact</nuxt-link></li>
+                            <li><nuxt-link :to="{ name: 'about' }" class="footer_link">About</nuxt-link></li>
+                            <li><nuxt-link :to="{ name: 'contact' }" class="footer_link">Portfolio</nuxt-link></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <section class="">
+                        <div class="footer_info">
+                            <h4>Contact</h4>
+                            <p>Beruniy, Huvaydo m.
+                                100169 Tashkent, 
+                                Uzbekistan
+                            </p>
+                        </div>
+                        
+                    </section>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer_info">
+                        <h4>Phone</h4>
+                        <ul>
+                            <li><nuxt-link to="tel:90-994-00-00" class="footer_link">+998 90-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:91-994-00-00"  class="footer_link">+998 91-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:94-994-00-00"  class="footer_link">+998 94-994-00-00</nuxt-link></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                    <div class="footer_info ms-5">
+
+                        <nuxt-link href="https://www.instagram.com/Jalyuzi.uz/" class="icon-link">
+                            <img src="@/assets/images/social/instagram.png" alt="" />
+                        </nuxt-link>
+                        <nuxt-link to="https://www.facebook.com/Jalyuzi.uz/" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/facebook.png" alt="">
+                        </nuxt-link>
+                        <nuxt-link to="https://t.me/jalyuzi" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/telegram.png" alt="">
+                        </nuxt-link>
+                        <nuxt-link to="https://twitter.com/Jalyuzi" target="_blank" class="icon-link">
+                            <img src="@/assets/images/social/twitter.png" alt="">
+                        </nuxt-link>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 ps-2 mobile-footer" >
+                <div class="col-4">
+                    <section class="">
+                        <div class="footer_info">
+                            <h4>Contact</h4>
+                            <p>Beruniy, Huvaydo m.
+                                100169 Tashkent, 
+                                Uzbekistan
+                            </p>
+                        </div>
+                    
+                    </section>
+                </div>
+                <div class="col-4">
+                    <div class="footer_info">
+                        <h4>Phone</h4>
+                        <ul>
+                            <li><nuxt-link to="tel:90-994-00-00" class="footer_link">+998 90-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:91-994-00-00"  class="footer_link">+998 91-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:94-994-00-00"  class="footer_link">+998 94-994-00-00</nuxt-link></li>
+                        </ul>
+                    </div>
+                    
+
+                    
+                </div>
+                <div class="col-4">
+                    <section class="left-side">
+                    
                         <div class="footer_info me-4">
                             <h4>Information</h4>
                             <ul>
@@ -16,50 +128,8 @@
                                 <li><nuxt-link :to="{ name: 'contact' }" class="footer_link">Portfolio</nuxt-link></li>
                             </ul>
                         </div>
-                        <div class="footer_info">
-                            <h4 class="telegram-last">Last telegram posts</h4>
-                            <div class="telegram-channel">
-                                
-
-
-                            </div>
-                        </div>
                     </section>
-                </div>
-                <div class="col-md-6">
-                    <section class="right-side">
-                        <div class="footer_info">
-                            <h4>Contact</h4>
-                            <p>Beruniy, Huvaydo m.
-                                100169 Tashkent, 
-                                Uzbekistan
-                            </p>
-                        </div>
-                        <div class="footer_info">
-                            <h4>Phone</h4>
-                            <ul>
-                                <li><nuxt-link to="tel:90-994-00-00" class="footer_link">+998 90-994-00-00</nuxt-link></li>
-                                <li><nuxt-link to="tel:91-994-00-00"  class="footer_link">+998 91-994-00-00</nuxt-link></li>
-                                <li><nuxt-link to="tel:94-994-00-00"  class="footer_link">+998 94-994-00-00</nuxt-link></li>
-                            </ul>
-                        </div>
-                        <div class="footer_info ms-5">
 
-                            <nuxt-link href="https://www.instagram.com/Jalyuzi.uz/" class="icon-link">
-                                <img src="@/assets/images/social/instagram.png" alt="" />
-                            </nuxt-link>
-                            <nuxt-link to="https://www.facebook.com/Jalyuzi.uz/" target="_blank" class="icon-link">
-                                <img src="@/assets/images/social/facebook.png" alt="">
-                            </nuxt-link>
-                            <nuxt-link to="https://t.me/jalyuzi" target="_blank" class="icon-link">
-                                <img src="@/assets/images/social/telegram.png" alt="">
-                            </nuxt-link>
-                            <nuxt-link to="https://twitter.com/Jalyuzi" target="_blank" class="icon-link">
-                                <img src="@/assets/images/social/twitter.png" alt="">
-                            </nuxt-link>
-                        
-                        </div>
-                    </section>
                 </div>
             </div>
        </div>
@@ -72,7 +142,22 @@
 </script>
 
 <style>
+    .footer {
+        display: flex;
+    }
+    .mobile-footer {
+        display: none;
+    }
 
+    @media screen and (max-width: 849px) {
+        .mobile-footer {
+            display: flex;
+        }
+        .footer {
+            display: none;
+        }
+
+    }
     #footer {
         padding-top: 40px;
         background: #F9F9F9;

@@ -72,7 +72,7 @@ import '@splidejs/vue-splide/css';
         padding-top: 160px;
     }
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 649px) {
         .slide-bg-img {
             padding-left: 60px !important;
 
@@ -86,6 +86,21 @@ import '@splidejs/vue-splide/css';
 
         .slide-subtitle {
             font-size: 18px;
+        }
+    }
+
+    @media screen and (min-device-width: 649px) and (max-device-width: 992px) {
+        .slide-bg-img {
+            padding-left: 70px !important;
+
+        }
+
+        .slide-title {
+            font-size: 30px !important;
+        }
+
+        .slide-subtitle {
+            font-size: 24px;
         }
     }
 

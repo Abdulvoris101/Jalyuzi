@@ -21,14 +21,14 @@
                             </h4>
 
                             <div class="card-item mb-3" v-for="product in cart_products" :key="product.id">
-                                <div class="row ">
+                                <div class="row gx-0 ">
                                     
-                                <div class="col-md-2">
-                                    <img :src="'http://localhost:8000' + product.image" width="115" alt="">
+                                <div class="col-md-2 col-2 ">
+                                    <img :src="'http://localhost:8000' + product.image" class="img-cart" width="115" alt="">
                                 </div>
 
 
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-3">
                                     <h3 class="cart-product-title"> {{ product.name }} - {{ product.weight }}</h3>
                                        
                                     <div v-if="caniEdit(product.id)">
@@ -47,17 +47,17 @@
 
 
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-3 ">
                                     <div class="input-group mb-3">
                                         <button class="input-group-text btn btn-light toggle-btn" @click="decreaseCount(product.id)" id="basic-addon1"><b-icon-dash class="dash-icon"></b-icon-dash></button>
                                         <input type="text" class="form-control inp-count" :value="product.current_count" aria-label="Username" aria-describedby="basic-addon1" readonly>
                                         <button class="input-group-text btn btn-light toggle-btn" @click="increaseCount(product.id)" id="basic-addon1"><b-icon-plus class="plus-icon"></b-icon-plus></button>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-2 ps-3">
                                     <h4 class="cart-item-price">{{ product.current_price }} сум</h4>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1 col-1">
                                     <button class="btn x-icon-btn pb-2" @click="deleteItem(product.id)"><b-icon-x class="x-icon" style="font-size: 20px"></b-icon-x></button>
                                 </div>
 
@@ -472,6 +472,27 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+
+@media (max-width: 992px) {
+    .img-cart {
+        width: 50px !important;
+    }
+    .cart-product-title {
+        font-size: 16px !important;
+    }
+    .cart-product-comp {
+        font-size: 15px !important;
+    }
+    .dash-icon {
+        font-size: 10px !important;
+    }
+    .plus-icon {
+        font-size: 10px !important;
+    }
+    .cart-item-price {
+        font-size: 17px !important;
+    }
+}
 .order-content {
     font-size: 17px;
     font-weight: light;

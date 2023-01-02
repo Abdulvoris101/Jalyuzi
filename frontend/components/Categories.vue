@@ -3,7 +3,7 @@
         <h3 class="title mb-3">Категории</h3>
 
         <div class="row gx-2">
-            <div class="col-lg-3 col-md-4 col-6" v-for="category in categories" :key="category.id">
+            <div class="col-lg-3 col-md-6 col-6 col-sm-6" v-for="category in categories" :key="category.id">
                 
                 <NuxtLink  :to='"category/" + category.id'>
                     <div class="grid">

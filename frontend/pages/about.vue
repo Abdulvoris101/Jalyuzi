@@ -11,14 +11,14 @@
             </div>
         </section>
 
-        <section class="about">
+        <section class="about ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <img src="@/assets/images/about-text.jpg" class=" about-img img-fluid" alt="">
                     </div>
                     <div class="col-md-6">
-                        <div class="about-text">
+                        <div class="about-text mt-4">
                             <h3 class="about-title">Жалюзи от компании «DIAMOND» - Jalyuzi.uz</h3>
                             <p class="about-desc">
                                 Компания «DIAMOND» - JALYUZI.UZ была основана в 2000 году. Наша организация основывалась как производственная фирма, занимающаяся дизайном окон Направления деятельности компании изготовление всех видов вертикальных и горизонтальных, Рулонные шторы "Деревянные жалюзи. С каждым годом мы стремимся увеличить объёмы продаж путем конкурентно способных цен, а также за счёт высококвалифицированного персонала работающего в офисе. в магазине и на производстве, который регулярно проходит дополнительное обучение для улучшения качества услуг. Клиенты, которые приобретают нашу продукцию- жалюзи, получают гарантию сроком на один год. Постоянные проверки ОТК производимого материала и комплектующих позволяют нам давать такую гарантию. Оборудование на производстве постоянно модернизируется, что положительно влияет на сроки изготовления продукции. Сейчас невозможно выделить приоритетные направления в работе нашей фирмы,-мы в равной степени уделяем внимание каждому направлению нашей деятельности. Для нашей компании самое важное соответствовать девизу-Технология и уюта сфера нашей деятельности. 
@@ -36,7 +36,7 @@
         <section class="fact">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-sm-4 ">
                         <div class="fact-card">
                             <div class="fact-text">
                                 <b-icon-people class="people-icon mt-2 fact-icon"></b-icon-people>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <div class="fact-card">
                             <div class="fact-text">
                                 <b-icon-emoji-smile class="emoji-smile-icon fact-icon mt-2"></b-icon-emoji-smile>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <div class="fact-card">
                             <div class="fact-text">
                                 <b-icon-box class="box-icon mt-2 fact-icon"></b-icon-box>
@@ -72,7 +72,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="about-text">
+                        <div class="about-text mb-2">
                             <h3 class="about-title">Клиент - это наше Всё !</h3>
                             <p class="about-desc">
                                 "Ничто не обходится нам так Дешево и не ценится так Дорого, как Вежливость"
@@ -113,6 +113,9 @@ let achivement = data
         background-blend-mode: multiply;
         background-image: url('@/assets/images/about-bg.png');
         background-color: rgba(51, 51, 51, 0.562);
+    }
+    .fact-card {
+        margin-top: 10px;
     }
     .intro-text {
         text-align: center;

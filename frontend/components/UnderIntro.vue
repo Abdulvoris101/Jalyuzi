@@ -1,7 +1,7 @@
 <template>
     <div id="underintro">
         <div class="row gx-2">
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="under-card card1">
                 
                     <div class="text">
@@ -14,7 +14,7 @@
                     </div>                    
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-6 col-sm-6">
 
                 <div class="under-card card2">
                 
@@ -31,7 +31,8 @@
                 </div>
 
             </div>
-            <div class="col-md-4">
+
+            <div class="col-lg-4 col-md-12 mt-0 col-sm-12">
 
                 <div class="under-card card3">
                 
@@ -52,7 +53,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .under-card {
         background-blend-mode: multiply;
         background-color: rgba(51, 51, 51, 0.753);
@@ -71,6 +72,16 @@
         }
         
     }
+
+    @media (min-device-width: 576px) and (max-device-width: 992px) {
+        .under-card {
+            margin-bottom: 15px !important;
+            margin-top: 0 !important;
+        }
+    }
+
+    
+    
     .under-card .text {
         color: #fff;
         display: flex;
