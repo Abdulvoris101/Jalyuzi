@@ -1,9 +1,9 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import get_object_or_404, render
 from requests import delete
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ChangePasswordSerializer
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, DestroyAPIView, UpdateAPIView
 from .models import CustomUser
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,7 +14,6 @@ from random import randint
 from twilio.rest import Client
 from django.contrib.auth import logout
 from rest_framework.authtoken.models import Token
-
 import os
 
 from django.contrib.auth.hashers import check_password
@@ -32,9 +31,49 @@ def send_code(body, phone_number):
         to=f'+998{phone_number}'
     )
 
-    print(message.sid)
 
 
+class ResetPasswordView(UpdateAPIView):
+        serializer_class = ChangePasswordSerializer
+        model = User
+
+        def get_object(self, queryset=None):
+            obj = self.request.user
+            return obj
+
+        def update(self, request, *args, **kwargs):
+            self.object = self.get_object()
+            serializer = self.get_serializer(data=request.data)
+
+            if serializer.is_valid():
+
+                phone_number = serializer.data.get("phone_number")
+                check_user = CustomUser.objects.filter(phone_number=phone_number).first()
+
+                if check_user is not None:
+                    return Response({"detail": 'phone_number is not correct'}, status=status.HTTP_400_BAD_REQUEST)
+                
+                user = CustomUser.objects.get(phone_number=phone_number)
+
+                user.confirm = randint(10000, 99999)
+                user.save()
+
+                send_code(f"{user.confirm} - Vash kod dlya sbrosa parola na sayte Jalyuzi.uz", str(user))
+
+
+
+                self.object.set_password(serializer.data.get("new_password"))
+                self.object.save()
+                response = {
+                    'status': 'success',
+                    'code': status.HTTP_200_OK,
+                    'message': 'Password updated successfully',
+                    'data': []
+                }
+
+                return Response(response)
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

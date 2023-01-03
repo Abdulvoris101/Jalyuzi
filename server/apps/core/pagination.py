@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 
 DEFAULT_PAGE = 1
-DEFAULT_PAGE_SIZE = 5
+DEFAULT_PAGE_SIZE = 12
 
 class ProductsPagination(PageNumberPagination):
     page = DEFAULT_PAGE

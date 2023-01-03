@@ -30,7 +30,7 @@
                         </div>
                         
                         <div>
-                            <div class="row gx-3" v-if="is_product">
+                            <div class="row gx-3" v-if="is_product" >
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in products" :key="product.id">
                                     <div class="card main-card">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
@@ -50,9 +50,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <Pagination :item="page_size" :total="total" @page-changed="loadProducts" />
+
                             </div>
 
-    
+                            
+
                             <div class="row gx-3" v-else>
                                 <div class="container">
                                     <h5 style="font-weight: normal"> {{ not_product }} :(</h5>
@@ -83,10 +87,11 @@ export default {
             width: '100',
             overall_price: '',
             showFilterStatus: false,
+            page: 1,
         }
     },
     computed: {
-        ...mapState(ProductStore, ['products', 'is_product']),
+        ...mapState(ProductStore, ['products', 'is_product', 'total', 'page_size']),
         ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
         ...mapStores(ProductStore, FilterStore),
     },
@@ -98,8 +103,12 @@ export default {
 
         closeFilter() {
             this.showFilterStatus = !this.showFilterStatus
-
         },  
+
+        loadProducts(pageNumber) {
+            let store = ProductStore()
+            store.fetchProducts(pageNumber)
+        },
 
 
         async getProduct(id) {

@@ -46,6 +46,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <Pagination :item="page_size_s" :total="total_s" @page-changed="loadProducts" />
                             
                         </div>
 
@@ -85,11 +87,11 @@ export default {
         },
 
         ...mapStores(ProductStore, FilterStore),
-        ...mapState(ProductStore, ['getData', 'is_data'])
+        ...mapState(ProductStore, ['getData', 'is_data', 'total_s', 'page_size_s'])
     },
 
     created() {
-        this.getSubCategoryProducts(this.getId)
+        this.getSubCategoryProducts(this.getId, 1)
         this.fetchCatalogs('subcategory')
     },
 
@@ -101,6 +103,11 @@ export default {
             this.showFilterStatus = !this.showFilterStatus
 
         },  
+
+        loadProducts(pageNumber) {
+            let store = ProductStore()
+            store.getSubCategoryProducts(this.getId, pageNumber)
+        },
 
 
         showFilter() {

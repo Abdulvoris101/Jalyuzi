@@ -212,7 +212,6 @@ export default {
 
                 }
 
-
                 this.createOrder(JSON.stringify(data))
 
             } else if (this.cart_products.length == 1) {

@@ -56,6 +56,7 @@
                         </div>
                         <div v-else>
                             <div class="row gx-3" v-if="is_data">
+
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in getData" :key="product.id">
                                     <div class="card main-card">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
@@ -73,6 +74,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <Pagination :item="page_size_c" :total="total_c" @page-changed="loadProducts" />
+
                                 
                             </div>
     
@@ -110,6 +115,7 @@ export default {
             
         }
     },
+
     computed: {
         getId() {
             const route = useRoute();
@@ -117,12 +123,12 @@ export default {
         },
 
         ...mapStores(ProductStore, FilterStore),
-        ...mapState(ProductStore, ['getData', 'is_data'])
+        ...mapState(ProductStore, ['getData', 'is_data', 'total_c', 'page_size_c'])
         
     },
 
     created() {
-        this.getCategoryProducts(this.getId)
+        this.getCategoryProducts(this.getId, 1)
         this.getSubcategories()
         this.getCategory()
     },
@@ -140,6 +146,7 @@ export default {
             this.showFilterStatus = !this.showFilterStatus
         },
 
+        
 
 
         ...mapActions(ProductStore, ['addToCart', 'increaseCart', 'inCategoryCart']),
@@ -153,6 +160,12 @@ export default {
 
             return data.value
         },
+
+        loadProducts(pageNumber) {
+            let store = ProductStore()
+            store.getCategoryProducts(this.getId, pageNumber)
+        },
+
         
 
         toBuy(id) {

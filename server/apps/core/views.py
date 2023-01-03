@@ -58,22 +58,28 @@ class ProductView(ListCreateAPIView):
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
         queryset = self.get_queryset()
-        
+        paginate = self.request.GET.get('paginate', True)
 
         page = self.paginate_queryset(queryset)
 
-        
-        if page is not None:
-            serializer = ProductSerializer(page, many=True)
-            result = self.get_paginated_response(serializer.data)
-            data = result.data # pagination data
+        if paginate == True:
+            if page is not None:
+                serializer = ProductSerializer(page, many=True)
+                result = self.get_paginated_response(serializer.data)
+                data = result.data # pagination data
 
-        else:
-            serializer = self.get_serializer(queryset, many=True)
-            data = serializer.data
+            else:
+                serializer = ProductSerializer(queryset, many=True)
+                data = serializer.data
+            
+            return Response(data)
+        
+
+        serializer = ProductSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
         
-        return Response(data)
 
 
 

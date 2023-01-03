@@ -13,21 +13,34 @@ export const ProductStore = defineStore('product', {
             current_subcategory: '',
             countOfCart: 0,
             lastId: '',
-            cart_products: []
+            cart_products: [],
+            total: 0,
+            page_size: 1,
+
+            total_c: 0,
+            page_size_c: 0,
+
+            all_products: [],
+            
+            page_size_s: 1,
+            total_s: 0,
         }
     },
     actions: {
-        async fetchProducts() {
-            let { data, pending, error } = await useAsyncData('products',  () => $fetch('http://localhost:8000/api/products/'), { initialCache : false })
-            data.value = data.value.results
+        async fetchProducts(number) {
+            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${number}`), { initialCache : false })
 
-            if (data.value.length >= 1) {
-                this.products = data.value
+            if (data.value.results.length >= 1) {
+                this.products = data.value.results
                 for (let i = 0; i < this.products.length; i++) {
                     let overall_price = this.products[i].price.toString()
                     overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
                     this.products[i].b_price = overall_price
                 }
+
+                this.total = data.value.total
+                this.page_size = data.value.page_size
+                this.inTheCart()
                 
                 this.is_product = true
             } else {
@@ -35,6 +48,16 @@ export const ProductStore = defineStore('product', {
                 this.is_product = false
             }
         },
+
+
+        async getAllProducts() {
+            let { data, pending, error } = await useFetch('http://localhost:8000/api/products/?paginate=false', { initialCache : false })
+
+            this.all_products = data.value
+
+        },
+
+
 
         setCategoryId(id, type) {
             if (type == 'category') {
@@ -45,16 +68,18 @@ export const ProductStore = defineStore('product', {
             
         },
 
-        async getCategoryProducts(category_id) {
-            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}`), { initialCache : false })
+        async getCategoryProducts(category_id, pageNumber) {
+            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}&page=${pageNumber}`), { initialCache : false })
             
-            data.value = data.value.results
 
+            if (data.value.results.length >= 1) {
+                this.category_products = data.value.results
 
+                this.total_c = data.value.total
+                this.page_size_c = data.value.page_size
 
-            if (data.value.length >= 1) {
-                this.category_products = data.value
                 this.inCategoryCart()
+                this.inTheCart()
 
                 this.is_data = true
             } else {
@@ -63,16 +88,20 @@ export const ProductStore = defineStore('product', {
             }
         },
 
-        async getSubCategoryProducts(id) {
-            let { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?subcategory=${id}`, { initialCache : false })
-            data.value = data.value.results
+        async getSubCategoryProducts(id, pageNumber) {
+            let { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?subcategory=${id}&page=${pageNumber}`, { initialCache : false })
+          
 
-            if (data.value.length >= 1) {
-                this.category_products = data.value
+            if (data.value.results.length >= 1) {
+                this.category_products = data.value.results
                 this.inCategoryCart()
+
+                this.total_s = data.value.total
+                this.page_size_s = data.value.page_size
 
 
                 this.is_data = true
+
             } else {
                 this.category_products = []
                 this.is_data = false
@@ -153,14 +182,16 @@ export const ProductStore = defineStore('product', {
 
         setCartItem() {
             if (localStorage.length > 1) {
-                this.countOfCart = parseInt(localStorage.length) - 1
+                this.countOfCart = parseInt(localStorage.length) - 2
             } else {
                 this.countOfCart = 0
             }
         },
         
 
-        getCartProducts() {
+
+        async getCartProducts() {
+            
 
             if (localStorage.getItem('lastID')) {
                 let len = parseInt(localStorage.getItem('lastID'))
@@ -168,11 +199,9 @@ export const ProductStore = defineStore('product', {
                 
                 for (let i = 1; i <= len; i++) {
                     let item = window.localStorage.getItem('product' + i)
-
-                    console.log(this.products);
                     
                     if (item != null) { 
-                        let obj = this.products.find(obj => obj.id == JSON.parse(item).id)
+                        let obj = this.all_products.find(obj => obj.id == JSON.parse(item).id)
 
                         obj.current_width = JSON.parse(item).width
                         obj.current_height = JSON.parse(item).height

@@ -26,14 +26,16 @@ export default {
         let prStore = ProductStore()
         let flStore = FilterStore()
         
-        prStore.fetchProducts()
+        prStore.fetchProducts(1)
         prStore.inTheCart()
         flStore.fetchCatalogs('catalog')
         flStore.fetchColors()
+        
         flStore.fetchProperties()
         flStore.fetchCategories()
         flStore.fetchSubCategories()
-
+        prStore.getAllProducts()
+        
         store.getMe()
         store.setCsrfToken()
         store.getAdresses()

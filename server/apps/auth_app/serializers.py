@@ -35,12 +35,12 @@ class UserSerializer(ModelSerializer):
 
         return user
 
-    
-        
 
-# {
-#         "first_name": "Akkkk",
-#         "last_name": "LLLLL",
-#         "phone_number": "998909174225",
-#         "password": "AErkinov101"
-#     }
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = CustomUser
+    phone_number = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    
+    

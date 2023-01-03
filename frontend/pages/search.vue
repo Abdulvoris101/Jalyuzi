@@ -21,7 +21,7 @@
                             <tr v-for="product in searchedProducts" :key="product.id">
                                 <th scope="row">{{ product.id }}</th>
                                 <td>
-                                    <img :src="'http://localhost:8000/' + product.image"  width="50" alt="">
+                                    <img :src="'http://localhost:8000' + product.image"  width="50" alt="">
                                 </td>
                                 <td>{{  product.model }}</td>
                                 <td>{{  product.weight }}</td>
