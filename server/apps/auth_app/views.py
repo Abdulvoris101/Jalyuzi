@@ -16,7 +16,7 @@ from django.contrib.auth import logout
 from rest_framework.authtoken.models import Token
 import os
 
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 
 
 def send_code(body, phone_number):
@@ -33,48 +33,37 @@ def send_code(body, phone_number):
 
 
 
-class ResetPasswordView(UpdateAPIView):
-        serializer_class = ChangePasswordSerializer
-        model = User
+class SendToResetPassword(APIView):
+    def post(self, request):
+        phone_number = request.data.get('phone_number')
+        user = CustomUser.objects.filter(username=phone_number).exists()
 
-        def get_object(self, queryset=None):
-            obj = self.request.user
-            return obj
+        if user:
+            user = CustomUser.objects.get(username=phone_number)
+            user.confirm = randint(10000, 99999)
+            user.save()
 
-        def update(self, request, *args, **kwargs):
-            self.object = self.get_object()
-            serializer = self.get_serializer(data=request.data)
+            send_code(f"{user.confirm} - Vash kod dlya sbrosa parola na sayte Jalyuzi.uz", phone_number)
 
-            if serializer.is_valid():
-
-                phone_number = serializer.data.get("phone_number")
-                check_user = CustomUser.objects.filter(phone_number=phone_number).first()
-
-                if check_user is not None:
-                    return Response({"detail": 'phone_number is not correct'}, status=status.HTTP_400_BAD_REQUEST)
-                
-                user = CustomUser.objects.get(phone_number=phone_number)
-
-                user.confirm = randint(10000, 99999)
-                user.save()
-
-                send_code(f"{user.confirm} - Vash kod dlya sbrosa parola na sayte Jalyuzi.uz", str(user))
+            return Response({'code': 'sent', 'ok': True, 'user': user.username}, status=status.HTTP_200_OK)
+        
+        return Response({'detail': 'User doesnt exists!', 'ok': False}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ResetPassword(APIView):
+    def post(self, request):
+        confirm_code = request.data.get('confirm_code')
+        username = request.data.get('phone_number')
 
-                self.object.set_password(serializer.data.get("new_password"))
-                self.object.save()
-                response = {
-                    'status': 'success',
-                    'code': status.HTTP_200_OK,
-                    'message': 'Password updated successfully',
-                    'data': []
-                }
+        user = CustomUser.objects.get(username=username)
+        
+        if int(confirm_code) == user.confirm:
+            user.password = make_password(str(user.confirm))
+            user.save()
 
-                return Response(response)
+            return Response({'detail': f'Success! Your password is {str(user.confirm)}', 'ok': True}, status=status.HTTP_200_OK)
 
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        return Response({'detail': 'Inccorect confirm code', 'ok': False}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserVerification(APIView):

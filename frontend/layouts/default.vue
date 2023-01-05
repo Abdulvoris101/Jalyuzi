@@ -11,6 +11,7 @@
             <Register />
             <Login />
             <Verification />
+            <ResetPassword />
         </main>
 
         <Footer />

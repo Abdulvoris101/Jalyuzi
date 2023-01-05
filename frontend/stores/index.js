@@ -331,6 +331,7 @@ export const AccountStore = defineStore('modal', {
         return { 
             regStatus: false,
             loginStatus: false,
+            resetStatus: false,
             verifStatus: false,
             phone_number: '',
             csrfToken: '',
@@ -340,7 +341,9 @@ export const AccountStore = defineStore('modal', {
             firstName: '',
             lastName: '',
             userToken: '',
-            addresses: []
+            addresses: [],
+            username_reset: '',
+            resetConfirmStatus: ''
         }
     },
     actions: {
@@ -353,6 +356,18 @@ export const AccountStore = defineStore('modal', {
         verifToggleModal() {
             this.verifStatus = !this.verifStatus
         },
+        resetToggleModal() {
+            this.resetStatus = !this.resetStatus
+        },
+
+        resetConfirmToggle() {
+            this.resetConfirmStatus = !this.resetConfirmStatus
+        },
+        
+        changeResetUsername(username) {
+            this.username_reset = username
+        },
+
 
         async getMe() {
             this.userToken = useCookie('user_token').value

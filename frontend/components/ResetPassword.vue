@@ -1,6 +1,9 @@
-<template>
-    <div id="login">
-        <section class="ftco-section modal-wrapper" id="login" v-show="getLoginStatus">
+<template >
+
+<div id="login">
+    
+        <section class="ftco-section modal-wrapper" v-show="resetStatus">
+
             <div class="container">
                 <div class="row justify-content-center ">
                     
@@ -10,131 +13,155 @@
                         <div class="login-wrap p-4 p-md-5">
                             
 
-                            <a @click="loginToggleModal" role="button" class="close" aria-label="close this modal">
+                            <a @click="resetToggleModal" role="button" class="close" aria-label="close this modal">
                                 <svg viewBox="0 0 24 24">
                                     <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
                                 </svg>
                             </a>
                         
                       
-                        <h3 class="text-center mb-4">Войти</h3>
+                        <h3 class="text-center mb-4">Send Confirmation Code</h3>
                         
-                        <form action="#" class="login-form" @submit.prevent="submitLogin()">
+                        <form action="#" class="login-form" @submit.prevent="submitSend()">
                             <div class="form-group d-flex">
                                 <input type="text" class="form-control rounded-left" placeholder="Тел Номер" v-model="phone_number" required>
                             </div>
                             <span style="color:#000; font-size:10px;" class="phoneError error" ref="phone_error"></span>
-                            <div class="form-group d-flex">
-                                <input type="password" class="form-control rounded-left" placeholder="Парол" v-model="password" autocomplete="on" required>
-                            </div>
-                            <h2 style="color:#000; font-size:10px;" class="passwordError error" ref="password_error"></h2>
-                            <div class="form-group">
-                                <button type="submit" class="form-control btn-custom btn btn-primary rounded submit px-3">Войти</button>
-                            </div>
-
-                            
-                        <div class="">
-                            
-                            <div class=" pt-2 text-md-right">
-                            <span class="reg-to-log">Нет аккаунта? </span>
-                                <a @click="LogToReg" href="#">Регистрация</a>
-                            </div>
-
-                            <div class="pt-2 text">
-                                <span class="reg-to-log">Забыли пароль? </span>
-
-                                <a @click="LogtoReset" style="cursor: pointer;" class="text-primary" >сброс пароля</a>
-                            </div>
-                            
-                            
-                        </div>
-
                         
-                  </form>
-                </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn-custom btn btn-primary rounded submit px-3">send</button>
+                            </div>
+                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+
+        <section class="ftco-section modal-wrapper" v-show="resetConfirmStatus">
+
+            <div class="container">
+                <div class="row justify-content-center ">
+                    
+                    <div class="col-md-7 col-lg-5">
+                        
+                        
+                        <div class="login-wrap p-4 p-md-5">
+                            
+
+                            <a @click="resetConfirmToggle" role="button" class="close" aria-label="close this modal">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
+                                </svg>
+                            </a>
+                        
+                    
+                        <h3 class="text-center mb-4">Reset Password</h3>
+                        
+                        <form action="#" class="login-form" @submit.prevent="submitReset()">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control rounded-left" placeholder="Confirmaton code" v-model="confirm_code" required>
+                            </div>
+                            <span style="color:#000; font-size:15px;" class="phoneError pt-2 pb-2 error" > {{ response.errors[0] }}</span>
+                            <span style="font-size:15px;" class="text-success pt-2 pb-2"> {{ response.data }}</span>
+                        
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn-custom btn btn-primary rounded submit px-3">Reset</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
        
     </div>
 </template>
 
 
 <script>
-import { AccountStore } from '@/stores/index'
-import { mapState, mapStores, mapActions } from 'pinia'
+import { mapActions, mapState, mapStores } from 'pinia';
+import { AccountStore } from '~~/stores';
 
 export default {
     data() {
         return {
-            modalStatus: false,
-            store: '',
             phone_number: '',
-            password: '',
             response: {
                 errors: [],
-                data: [],
+                data: '',
                 statusCode: ''
             },
+            confirm_code: ''
         }
     },
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['getLoginStatus', 'csrfToken', 'resetStatus']),
-        ...mapActions(AccountStore, ['loginToggleModal'])
+        ...mapState(AccountStore, ['resetStatus', 'resetConfirmStatus', 'username_reset']),
+        ...mapActions(AccountStore, ['resetToggleModal', 'resetConfirmToggle'])
     },
-
 
     created() {
         this.store = AccountStore()
     },
 
 
+
     methods: {
-        LogToReg() {
-            this.store.$patch({ loginStatus: false, regStatus: true})
+        ...mapActions(AccountStore, ['changeResetUsername']),
+
+        SendToReset() {
+            this.store.$patch({ resetStatus: false, resetConfirmStatus: true})
         },
 
-        closeLogin() {
-            this.store.$patch({ loginStatus: false})
-        },
+        submitReset() {
 
-        LogtoReset() {
-            this.store.$patch({ loginStatus: false, resetStatus: true})
-        },
+            let body = {
+                phone_number: this.username_reset,
+                confirm_code: this.confirm_code
+            }
 
-        formIsValid() {
-
-            let phone_number = this.phone_number.toString()
-
-            if (phone_number.length < 8 || phone_number.length > 11) {
-                this.$refs.phone_error.innerHTML = 'Пожалуйста, напишите правилную номер телефона'
-                return false
-
-            } 
-
-            this.$refs.password_error.innerHTML = ''
-
-            return true
-        },
-
-        submitLogin() {
-            const isValid = this.formIsValid()
-
-            if (isValid) {
-                let body = {
-                    phone_number: this.phone_number,
-                    password: this.password,
-                }
-
-                this.postLogin(body)
-            } 
-        },
-
-        postLogin(body) {
             let csrf_token = useCookie('csrftoken').value
-            fetch('http://localhost:8000/api/users/login/', {
+            
+            fetch('http://localhost:8000/api/users/reset_password/', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-csrftoken': csrf_token
+                },
+                body: JSON.stringify(body),
+            })
+            .then((response) => {
+                this.statusCode = response.status
+                return response.json()
+            })
+            .then((data) => {
+                if (this.statusCode == 400){
+                    this.response.errors.push(data.detail)
+                }
+                else if (this.statusCode == 200) {
+                    this.response.errors = []
+                    this.response.data = data.detail
+                    this.confirm_code = ''
+                } else {
+                    console.log(data);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            }); 
+        },
+
+        submitSend() {
+            let body = {
+                phone_number: this.phone_number,
+            }
+
+            let csrf_token = useCookie('csrftoken').value
+            
+            fetch('http://localhost:8000/api/users/send_to_reset/', {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -154,16 +181,11 @@ export default {
                 }
                 else if (this.statusCode == 200) {
                     this.response.errors = []
-                    
-                    let store = AccountStore()
 
-                    let user_token = useCookie('user_token')
-                    user_token.value = data.token
-                    
-                    store.getMe()
-                    store.getAdresses()
+                    this.changeResetUsername(data.user)
+                    this.SendToReset()
 
-                    this.closeLogin()
+                    console.log(data);
 
                 } else {
                     console.log(data);
@@ -173,16 +195,10 @@ export default {
                 console.log(error);
             }); 
 
+        },
 
-
-        }
-
+        
     }
-
-
-
-
-    
 }
 </script>
 
