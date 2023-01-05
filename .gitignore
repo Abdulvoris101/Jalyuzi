@@ -3,3 +3,6 @@ venv/
 venv
 node_modules
 node_modules/
+bot/
+bot
+/bot
