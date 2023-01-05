@@ -199,6 +199,8 @@ export default {
                 for (let i = 0; i < this.cart_products.length; i++) {
                     let product = this.cart_products[i]
                     let size = `${product.current_width}x${product.current_height}`
+                    let product_cart = localStorage.getItem('product' + this.cart_products[i].id)
+                    console.log(product_cart)
 
                     data.push({
                         'product': product.id,
@@ -207,7 +209,8 @@ export default {
                         'size': size,
                         'status': 'pending',
                         'address': this.addresses[0].id,
-                        'amount': product.current_count
+                        'amount': product.current_count,
+                        'type_id': JSON.parse(product_cart.type_id)
                     })
 
                 }
@@ -218,6 +221,9 @@ export default {
                 let product = this.cart_products[0]
                 let size = `${product.current_width}x${product.current_height}`
 
+                let product_cart = JSON.parse(localStorage.getItem('product' + this.cart_products[0].id))
+
+
                 data = [{
                     'product': product.id,
                     'product_price': product.price_sum,
@@ -225,7 +231,8 @@ export default {
                     'size': size,
                     'status': 'pending',
                     'address': this.addresses[0].id,
-                    'amount': product.current_count
+                    'amount': product.current_count,
+                    'type_id': product_cart.type_id
                 }]
                 
                 this.createOrder(JSON.stringify(data))

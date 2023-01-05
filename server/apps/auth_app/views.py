@@ -171,8 +171,9 @@ class UserRegisterView(APIView):
                         'username': user.username
                     })
                 
+
                 return Response({
-                    'error': 'Введите верную инфо'
+                    'Error': 'Введите верную инфо'
                 }, status=status.HTTP_400_BAD_REQUEST)
                     
 
@@ -207,7 +208,7 @@ class UserLoginView(APIView):
                 'user_id': user.id,
                 'first_name': user.first_name,
                 'phone_number': user.phone_number
-            })
+            },status=status.HTTP_200_OK)
 
             user_cookie = request.COOKIES.get('user_token') 
             
@@ -219,8 +220,8 @@ class UserLoginView(APIView):
 
         
         return Response({
-            'password': "Not correct"
-        })
+            'detail': "Password not correct"
+        },status=status.HTTP_400_BAD_REQUEST)
 
 class UserLogout(APIView):
     def get(self, request):

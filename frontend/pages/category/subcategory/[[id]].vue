@@ -29,9 +29,18 @@
                                             <span class="card-price">{{ product.price_sum }} сум</span>
                                         </NuxtLink>
                                         <div>
-                                            <div v-if="product.inCart" class="btn-dis" >Продукт в корзине</div>
-                                        
-                                            <button v-else class="btn btn-success w-100 btn-more" @click="toBuy(product.id)"><span>Покупать</span> <b-icon-basket3 class="basket3-icon pb-1"></b-icon-basket3></button>
+
+                                            <div v-if="product.type_id">
+                                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="btn-more w-100 btn btn-success">
+                                                        Перейти
+                                                    </NuxtLink>
+                                                </div>
+                                            <div v-else>
+
+                                                <div v-if="product.inCart" class="btn-dis" >Продукт в корзине</div>
+                                            
+                                                <button v-else class="btn btn-success w-100 btn-more" @click="toBuy(product.id)"><span>Покупать</span> <b-icon-basket3 class="basket3-icon pb-1"></b-icon-basket3></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

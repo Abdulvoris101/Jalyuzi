@@ -68,7 +68,7 @@ class Catalog(models.Model):
 class Product(models.Model):
     name = models.CharField('Название', max_length=255)
     model = models.CharField('Модел', max_length=255)
-    color_id = models.CharField('Цвет Продукта*', max_length=255, null=True, blank=True)
+    type_id = models.BooleanField('Есть ли Тип продукта*', default=False)
     weight = models.CharField('Ширина', max_length=255, null=True, blank=True)
     color = models.ManyToManyField(Color, verbose_name='Цветы', related_name='products', blank=True)
     blackout = models.CharField('Затемнение', max_length=255)

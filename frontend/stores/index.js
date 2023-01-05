@@ -208,6 +208,7 @@ export const ProductStore = defineStore('product', {
                         obj.current_width = JSON.parse(item).width
                         obj.current_height = JSON.parse(item).height
                         obj.current_price = JSON.parse(item).overall_price
+                        obj.current_type = JSON.parse(item).type_id
                         obj.current_count = 1
                         
 

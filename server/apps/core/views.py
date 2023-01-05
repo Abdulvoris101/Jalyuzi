@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .serializers import CategorySerializer, ValuteSerializer, AchievementSerializer, ContactSerializer, ProductSerializer, ColorSerializer, SubCategorySerializer, PropertySerializer, CatalogSerializer
-3
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from .models import Category, Product, Color, Property, Catalog , SubCategory, Contact, Achievement, ValuteExchange
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser

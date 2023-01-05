@@ -6,7 +6,10 @@
                 <div class="col-md-3 col-5">
                     <div class="card-left card">
                         <div class="card-img">
-                            <img :src="product.image" class=" img-product img-fluid"  alt="">
+                            <a :href="product.image" data-fancybox>
+                                <img :src="product.image" class=" img-product img-fluid"  alt="">
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -57,6 +60,17 @@
                                 </li>
                                 <li class="product-dt-item"><span>Высота *см</span> <input type="text" v-model="height" @change="changeSquary" class="form-control form-control-sm">
                                 </li>
+
+
+                                <li class="product-dt-item" v-if="product.type_id">
+                                    
+                                    <span>Цвето коррекция</span> 
+                                    <input type="text"  v-model="typeProduct" class="form-control form-control-sm">
+
+                                </li>
+                                <p class="text-danger " style="font-size: 12px;">{{  errorType }}</p>
+                                
+                                    
                                 <li class="product-dt-item"><span>Площадь: </span> <span style="font-size: 17px;">{{ square }}  кв.м.</span> 
                                 </li>
                                 
@@ -80,6 +94,7 @@
                 <div class="col-md-3 col-5">
                     <div class="card-left card">
                         <div class="card-img">
+
                             <img :src="product.image" class=" img-product img-fluid"  alt="">
                         </div>
                         <h4 class="product-title pt-4 ps-2" style="font-size: 18px;">{{ product.name }} {{ getMyCatalog.name }} {{ getMyColors.name }}</h4>
@@ -96,6 +111,13 @@
                                 </li>
                                 <li class="product-dt-item"><span>Высота</span> <input type="text" v-model="height" @change="changeSquary" class="form-control form-control-sm">
                                 </li>
+
+                                <li class="product-dt-item" v-if="product.type_id"><span>Цвето коррекция</span> <input type="text"  v-model="typeProduct" class="form-control form-control-sm" required>
+                                </li>
+
+                                <p class="text-danger " style="font-size: 12px;">{{  errorType }}</p>
+
+
                                 <li class="product-dt-item"><span>Площадь: </span> <span style="font-size: 17px;">{{ square }}  кв.м.</span> 
                                 </li>
                                 
@@ -165,6 +187,8 @@
 <script>
 import { mapActions, mapState, mapStores } from 'pinia'
 import { FilterStore, ProductStore } from '~~/stores'
+import "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox.css";
 
 
 export default {
@@ -178,6 +202,8 @@ export default {
             endSquare: '',
             showPrice: '',
             inCart: false,
+            errorType: '',
+            typeProduct: ''
         }
     },
     computed: {
@@ -256,19 +282,46 @@ export default {
         },
 
         toBuy(obj) {
-            let new_p = {
-                'id': obj.id,
-                'width': this.width / 100,
-                'height': this.height / 100,
-                'overall_price': this.overall_price
+
+            if (obj.type_id) {
+                if (this.typeProduct != '') {
+                    let new_p = {
+                        'id': obj.id,
+                        'width': this.width / 100,
+                        'height': this.height / 100,
+                        'overall_price': this.overall_price,
+                        'type_id': this.typeProduct
+                    }
+                    
+                    let json_obj = JSON.stringify(new_p)
+
+                    this.inCart = true
+                    this.increaseCart()
+                    this.addToCart(json_obj, obj.id)
+                } else {
+                    this.errorType = "*required field"
+                }
+
+            } else {
+                let new_p = {
+                    'id': obj.id,
+                    'width': this.width / 100,
+                    'height': this.height / 100,
+                    'overall_price': this.overall_price,
+                    'type_id': null
+                }
+
+                
+                let json_obj = JSON.stringify(new_p)
+
+                this.inCart = true
+                this.increaseCart()
+                this.addToCart(json_obj, obj.id)
+                this.errorType = ""
+
             }
-
             
-            let json_obj = JSON.stringify(new_p)
-
-            this.inCart = true
-            this.increaseCart()
-            this.addToCart(json_obj, obj.id)
+           
         },
 
         inTheCart() {

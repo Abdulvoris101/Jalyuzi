@@ -149,20 +149,21 @@ export default {
             })
             .then((data) => {
                 if (this.statusCode == 400){
-                    this.response.errors.push(data.Error)
-                    console.log('Error:', data.Error);
+                    this.$refs.password_error.innerHTML = data.detail
+
                 }
                 else if (this.statusCode == 200) {
-                    this.response.errors = []
                     
                     let store = AccountStore()
 
                     let user_token = useCookie('user_token')
                     user_token.value = data.token
+
+                    this.$refs.password_error.innerHTML = ''
+                    this.$refs.phone_error.innerHTML = ''
                     
                     store.getMe()
                     store.getAdresses()
-
                     this.closeLogin()
 
                 } else {

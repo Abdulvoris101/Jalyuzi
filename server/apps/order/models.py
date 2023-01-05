@@ -47,6 +47,7 @@ class Order(models.Model):
     product_price = models.CharField('Цена за продукта', max_length=255)
     overall_price = models.CharField('Обшая цена', max_length=255)
     size = models.CharField('Общ.кв', max_length=100)
+    type_id = models.CharField('Цвето коррекция', max_length=255)
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, verbose_name='Статус')
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='orders', verbose_name='Адресс')
     amount = models.BigIntegerField(verbose_name='Количество')
