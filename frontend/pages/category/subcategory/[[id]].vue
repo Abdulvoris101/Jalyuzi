@@ -15,17 +15,7 @@
                                     <h4 class="card-title">Категории - {{ category_name }}</h4>
     
                                 </div>
-                                <div class="d-flex" style="justify-content: flex-end">
-                                    <select name="" id="" class="form-select">
-                                        <option value="">Сортировка по новизне</option>
-                                        <option value="">Сортировка по цене: по возрастанию</option>
-                                        <option value="">Сортировка по цене: по возрастанию</option>
-                                    </select>
-                                    <div class="ms-4 me-2 mt-1 icon-filter">
-                                        <a @click="showFilter"><b-icon-funnel class=""></b-icon-funnel></a>
-    
-                                    </div>
-                                </div>
+                                
     
                             </div>
                         </div>
@@ -36,7 +26,7 @@
                                     <div class="card-body">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="nav-link">
                                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
-                                            <span class="card-price">{{ product.price }} сум</span>
+                                            <span class="card-price">{{ product.price_sum }} сум</span>
                                         </NuxtLink>
                                         <div>
                                             <div v-if="product.inCart" class="btn-dis" >Продукт в корзине</div>
@@ -129,7 +119,7 @@ export default {
             product.then((resp) => {
                 product_obj = resp
 
-                let price = product_obj.price
+                let price = parseInt(product_obj.price_sum)
 
                 let square = (this.width / 100) * (this.height / 100)
 

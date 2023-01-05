@@ -202,7 +202,7 @@ export default {
 
                     data.push({
                         'product': product.id,
-                        'product_price': product.price,
+                        'product_price': parseInt(product.price_sum),
                         'overall_price': product.current_price,
                         'size': size,
                         'status': 'pending',
@@ -220,7 +220,7 @@ export default {
 
                 data = [{
                     'product': product.id,
-                    'product_price': product.price,
+                    'product_price': product.price_sum,
                     'overall_price': product.current_price,
                     'size': size,
                     'status': 'pending',
@@ -349,6 +349,7 @@ export default {
             this.isEdit = true
             this.changedId = id
             this.caniEdit(id)
+            this.allPrice()
         },
 
         increaseCount(id) {
@@ -395,8 +396,7 @@ export default {
 
             if (product.current_count > 1) {
 
-                
-
+            
                 product.current_price = product.current_price - parseInt(product_s.overall_price)
 
                 product.current_count =  product.current_count - 1
@@ -421,7 +421,7 @@ export default {
             if (this.editWidth > 0 && this.editHeight > 0) {
 
 
-                let overall_price = product.price * (this.editWidth* this.editHeight)
+                let overall_price = parseInt(product.price_sum) * (this.editWidth* this.editHeight)
 
                 overall_price = overall_price * product.current_count
 

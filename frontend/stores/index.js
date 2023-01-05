@@ -31,9 +31,11 @@ export const ProductStore = defineStore('product', {
             let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${number}`), { initialCache : false })
 
             if (data.value.results.length >= 1) {
+                
                 this.products = data.value.results
+
                 for (let i = 0; i < this.products.length; i++) {
-                    let overall_price = this.products[i].price.toString()
+                    let overall_price = this.products[i].price_sum.toString()
                     overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
                     this.products[i].b_price = overall_price
                 }
@@ -80,8 +82,8 @@ export const ProductStore = defineStore('product', {
 
                 this.inCategoryCart()
                 this.inTheCart()
-
                 this.is_data = true
+                
             } else {
                 this.category_products = []
                 this.is_data = false

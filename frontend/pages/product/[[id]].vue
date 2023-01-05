@@ -201,8 +201,8 @@ export default {
             this.inTheCart()
             
 
-            let pri = this.product.price.toString()
-            this.showPrice = `${pri.slice(0, -3)},${pri.slice(3)}`
+            let pri = this.product.price_sum
+            this.showPrice = `${pri.slice(-9, -6)} ${pri.slice(-6, -3)} ${pri.slice(-3)}`
 
             this.overall_price = this.showPrice
             this.endSquare = `${this.width / 100}x${this.height / 100}`
@@ -225,15 +225,21 @@ export default {
             } else if (this.product.color.length > 1) {
                 this.getDetailColor(this.product.color[0])
             }
-            this.getDetailCatalog(this.product.catalog)
-            this.getDetailProperty(this.product.property)
+            
+            if (this.product.catalog) {
+                this.getDetailCatalog(this.product.catalog)
+            } 
+            if (this.product.property) {
+                this.getDetailProperty(this.product.property)
+
+            }
 
             
         },
         changeSquary() {
             let width = parseInt(this.width)
             let height = parseInt(this.height)
-            let price = parseInt(this.product.price)
+            let price = parseInt(this.product.price_sum)
 
             if (width < 100) {
                 this.width = '100'
@@ -256,6 +262,7 @@ export default {
                 'height': this.height / 100,
                 'overall_price': this.overall_price
             }
+
             
             let json_obj = JSON.stringify(new_p)
 

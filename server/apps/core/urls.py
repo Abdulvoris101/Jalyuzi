@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CategoryView, ContactView, AchievementView, ProductView, SubCategoryView, SubCategoryDetailView, ProductDetailView, CategoryDetailView, ColorView, CatalogView, PropertyView
+from .views import CategoryView, ContactView, AchievementView, ProductView, ValuteView, SubCategoryView, SubCategoryDetailView, ProductDetailView, CategoryDetailView, ColorView, CatalogView, PropertyView
 
 urlpatterns = [
     path('categories/', CategoryView.as_view()),
@@ -12,5 +12,6 @@ urlpatterns = [
     path('subcategory/', SubCategoryView.as_view()),
     path('subcategory/<int:pk>/', SubCategoryDetailView.as_view()),
     path('achivement/', AchievementView.as_view()),
-    path('contact/', ContactView.as_view())
+    path('contact/', ContactView.as_view()),
+    path('valute/', ValuteView.as_view())
 ]

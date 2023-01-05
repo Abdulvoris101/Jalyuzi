@@ -1,4 +1,5 @@
 from django.db import models
+import requests
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -67,8 +68,9 @@ class Catalog(models.Model):
 class Product(models.Model):
     name = models.CharField('Название', max_length=255)
     model = models.CharField('Модел', max_length=255)
+    color_id = models.CharField('Цвет Продукта*', max_length=255, null=True, blank=True)
     weight = models.CharField('Ширина', max_length=255, null=True, blank=True)
-    color = models.ManyToManyField(Color, verbose_name='Цветы', related_name='products')
+    color = models.ManyToManyField(Color, verbose_name='Цветы', related_name='products', blank=True)
     blackout = models.CharField('Затемнение', max_length=255)
     property = models.ForeignKey(Property, verbose_name='Свойствы', on_delete=models.CASCADE, related_name='products', null=True, blank=True)
     fabrictype = models.ForeignKey(FabricType, verbose_name='Тип ткании', on_delete=models.CASCADE, related_name='products', null=True, blank=True)
@@ -76,9 +78,27 @@ class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, verbose_name='Суб-Категория', on_delete=models.CASCADE, related_name='products', blank=True, null=True)
     catalog = models.ForeignKey(Catalog, verbose_name='Каталог', on_delete=models.CASCADE, related_name='products', blank=True, null=True)
     image = models.ImageField(upload_to='products', null=True)
-    price = models.BigIntegerField()
+    price = models.CharField('Сумма в $' , max_length=500)
     count = models.IntegerField()
     status = models.BooleanField('Публикация', default=False)
+    price_sum = models.CharField('Цена на сум', max_length=500, null=True, blank=True)
+
+
+
+    def save(self, *args, **kwargs):
+        price = self.price * 1
+
+        valute_obj = ValuteExchange.objects.filter(id=1).exists()
+
+        if valute_obj:
+            valute = ValuteExchange.objects.get(id=1).valute
+            self.price_sum = int(float(price) * int(valute))
+        else:
+            self.price_sum = int(float(price) * 11,294)
+
+        super(Product, self).save(*args, **kwargs)
+            
+
     
     def __str__(self):
         return self.name
@@ -98,6 +118,10 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Сообщеныя'
+        verbose_name_plural = 'Сообщеные'
 
 class Achievement(models.Model):
     clients = models.CharField('Клиенты', max_length=255)
@@ -107,3 +131,30 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.products
+
+    class Meta:
+        verbose_name = 'Достижения'
+        verbose_name_plural = 'Достижение'
+
+class ValuteExchange(models.Model):
+    valute = models.BigIntegerField('Введите Узбекскую сумму')
+
+    class Meta:
+        verbose_name = 'Курс Валюты'
+        verbose_name_plural = 'Курсы Валюты'
+
+    def __str__(self):
+        return f'Сумма - {self.valute}'
+
+
+    def save(self, *args, **kwargs):
+        valute = self.valute
+        products = Product.objects.all()
+        
+        for product in products:
+            product.price_sum = int(float(product.price) * float(valute))
+
+            product.save()
+
+
+        super(ValuteExchange, self).save(*args, **kwargs)

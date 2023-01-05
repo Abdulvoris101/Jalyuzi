@@ -3,6 +3,11 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
 
+class ValuteSerializer(ModelSerializer):
+    class Meta:
+        model = ValuteExchange
+        fields = ['valute']
+
 class CategorySerializer(ModelSerializer):
     products = serializers.StringRelatedField(many=True)
     subcategories = serializers.StringRelatedField(many=True)

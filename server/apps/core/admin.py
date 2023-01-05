@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, SubCategory, Product, Catalog, Property, Color, FabricType, Achievement, Contact
+from .models import Category, SubCategory, ValuteExchange, Product, Catalog, Property, Color, FabricType, Achievement, Contact
 from django.utils.safestring import mark_safe
 
 admin.site.register(Achievement)
@@ -8,11 +8,12 @@ admin.site.register(Property)
 admin.site.register(Color)
 admin.site.register(FabricType)
 admin.site.register(Contact)
+admin.site.register(ValuteExchange)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('get_image', 'name', 'category', 'subcategory', 'weight', 'count', 'status', 'price')
-    list_display_links = ('get_image', 'name', 'weight', 'count', 'price')
+    list_display_links = ('get_image', 'name', 'weight', 'count')
     prepopulated_fields = {'model': ('name',),}
     search_fields = ('name', 'count')
     list_filter = ('category', 'subcategory', 'catalog')

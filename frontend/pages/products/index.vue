@@ -14,17 +14,7 @@
                                     <h4 class="card-title">Все продукты</h4>
 
                                 </div>
-                                <div class="d-flex" style="justify-content: flex-end">
-                                    <select name="" id="" class="form-select">
-                                        <option value="">Сортировка по новизне</option>
-                                        <option value="">Сортировка по цене: по возрастанию</option>
-                                        <option value="">Сортировка по цене: по возрастанию</option>
-                                    </select>
-                                    <div class="ms-4 me-2 mt-1 icon-filter">
-                                        <a @click="showFilter"><b-icon-funnel class=""></b-icon-funnel></a>
-
-                                    </div>
-                                </div>
+                                    
 
                             </div>
                         </div>
@@ -131,7 +121,7 @@ export default {
             product.then((resp) => {
                 product_obj = resp
 
-                let price = product_obj.price
+                let price = parseInt(product_obj.price_sum)
 
                 let square = (this.width / 100) * (this.height / 100)
 

@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <div style="position:relative;overflow:hidden;"><a href="https://yandex.com/maps/10335/tashkent/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ташкент</a><a href="https://yandex.com/maps/10335/tashkent/?ll=69.189688%2C41.341867&mode=whatshere&utm_medium=mapframe&utm_source=maps&whatshere%5Bpoint%5D=69.189549%2C41.341726&whatshere%5Bzoom%5D=17&z=20.6" style="color:#eee;font-size:12px;position:absolute;top:14px;">41.341726,69.189549 — Яндекс Карты</a><iframe src="https://yandex.com/map-widget/v1/-/CCUZZLe0PD" width="560" height="370" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                        <div style="position:relative;overflow:hidden;"><a href="https://yandex.com/maps/10335/tashkent/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ташкент</a><a href="https://yandex.com/maps/10335/tashkent/house/YkAYdw5iT0YBQFprfX91cHVkYQ==/?ll=69.191146%2C41.341967&utm_medium=mapframe&utm_source=maps&z=18.06" style="color:#eee;font-size:12px;position:absolute;top:14px;">3-й проезд Эшона Бобохонова, 23 — Яндекс Карты</a><iframe src="https://yandex.com/map-widget/v1/-/CCUvAVfUCA" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
                     </div>
                     <div class="col-md-6">
                         <div class="contact-card">

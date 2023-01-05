@@ -277,7 +277,12 @@ JAZZMIN_SETTINGS = {
         "core.fabrictype": "fas fa-sliders-h",
         "auth_app.customuser": "fas fa-user-friends",
         "order.order": "fas fa-shopping-cart",
-        # fab fa-opencart
+        "core.ValuteExchange": "fas fa-money-bill",
+        "core.Color": "fas fa-paint-roller",
+        "order.Address": "fas fa-location-arrow",
+        "core.Contact": "fas fa-envelope",
+        "core.Achievement": "fas fa-star",
+        # <i class="fa-solid fa-envelope"></i>
     },
     # <i class="<i class="fa-thin fa-chart-simple"></i>"></i>
     # Icons that are used when one is not manually specified
