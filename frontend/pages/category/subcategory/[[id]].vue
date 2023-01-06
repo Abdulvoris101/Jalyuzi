@@ -2,7 +2,7 @@
     <div id="subcategory">
         <div class="row gx-0">
             <div class="col-lg-3">
-                <ProductFilter :showFilter="showFilterStatus" @closeFilter="closeFilter" />
+                <ProductFilter :showFilter="showFilterStatus" :is_sub="true" @closeFilter="closeFilter" />
             </div>
 
             <div class="col-lg-9">
@@ -29,7 +29,7 @@
                         <div class="row gx-3" v-if="is_data">
                             <div class="col-md-3 col-6 col-sm-4 mt-3"  v-for="product in getData" :key="product.id">
                                 <div class="card main-card"  v-if="product.status">
-                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
+                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
                                     <div class="card-body">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
@@ -93,7 +93,7 @@ export default {
         },
 
         ...mapStores(ProductStore, FilterStore),
-        ...mapState(ProductStore, ['getData', 'is_data', 'total_s', 'page_size_s'])
+        ...mapState(ProductStore, ['getData', 'is_data', 'total_s', 'page_size_s', 'baseUrl'])
     },
 
     created() {
@@ -113,6 +113,8 @@ export default {
         loadProducts(pageNumber) {
             let store = ProductStore()
             store.getSubCategoryProducts(this.getId, pageNumber)
+            
+            this.$router.push({path: '', query: {page: pageNumber}});
         },
 
 
@@ -121,7 +123,7 @@ export default {
         },
 
         async getProduct(id) {
-            const { data } = await useFetch(`http://localhost:8000/api/product/${id}`, { initialCache: false})
+            const { data } = await useFetch(`${this.baseUrl}/api/product/${id}`, { initialCache: false})
             data.value.inCart = true
             this.getSubCategoryProducts()
 

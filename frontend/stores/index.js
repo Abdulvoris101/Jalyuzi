@@ -11,6 +11,7 @@ export const ProductStore = defineStore('product', {
             subcategories: [],
             current_category: '',
             current_subcategory: '',
+            baseUrl: 'http://localhost:8000',
             countOfCart: 0,
             lastId: '',
             cart_products: [],
@@ -29,7 +30,7 @@ export const ProductStore = defineStore('product', {
     actions: {
 
         async fetchProducts(number) {
-            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${number}`),)
+            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`${this.baseUrl}/api/products/?page=${number}`),)
 
             if (data.value.results.length >= 1) {   
                 
@@ -55,7 +56,7 @@ export const ProductStore = defineStore('product', {
 
 
         async getAllProducts() {
-            let { data, pending, error } = await useFetch('http://localhost:8000/api/products/?paginate=false', { initialCache : false })
+            let { data, pending, error } = await useFetch(`${this.baseUrl}/api/products/?paginate=false`, { initialCache : false })
 
             this.all_products = data.value
 
@@ -73,7 +74,7 @@ export const ProductStore = defineStore('product', {
         },
 
         async getCategoryProducts(category_id, pageNumber) {
-            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}&page=${pageNumber}`), { initialCache : false })
+            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`${this.baseUrl}/api/products/?category=${category_id}&page=${pageNumber}`), { initialCache : false })
             
 
             if (data.value.results.length >= 1) {
@@ -93,7 +94,7 @@ export const ProductStore = defineStore('product', {
         },
 
         async getSubCategoryProducts(id, pageNumber) {
-            let { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?subcategory=${id}&page=${pageNumber}`, { initialCache : false })
+            let { data, pending, error } = await useFetch(`${this.baseUrl}/api/products/?subcategory=${id}&page=${pageNumber}`, { initialCache : false })
           
 
             if (data.value.results.length >= 1) {
@@ -255,35 +256,36 @@ export const FilterStore = defineStore('filter', {
             subcategories: [],
             my_subcategory: [],
             properties: [],
+            baseUrl: 'http://localhost:8000',
             my_property: []
         }
     },
     actions: {
         async fetchColors() {
-            const { data } = await useAsyncData('colors', () => $fetch('http://localhost:8000/api/filter/colors/'))
+            const { data } = await useAsyncData('colors', () => $fetch(`${this.baseUrl}/api/filter/colors/`))
             this.colors = data.value
         },
 
         async fetchCatalogs(type) {
-            const { data } = await useAsyncData('catalog', () => $fetch(`http://localhost:8000/api/filter/catalog/?${type}=true`))
+            const { data } = await useAsyncData('catalog', () => $fetch(`${this.baseUrl}/api/filter/catalog/?${type}=true`))
             this.catalogs = data.value
             
         },
         async fetchSubCatalogs() {
-            const { data } = await useAsyncData('catalog', () => $fetch(`http://localhost:8000/api/filter/catalog/?subcategory=true`))
+            const { data } = await useAsyncData('catalog', () => $fetch(`${this.baseUrl}/api/filter/catalog/?subcategory=true`))
             this.catalogs = data.value
         },
 
         async fetchProperties() {
-            const { data } = await useAsyncData('property', () => $fetch('http://localhost:8000/api/filter/property/'))
+            const { data } = await useAsyncData('property', () => $fetch(`${this.baseUrl}/api/filter/property/`))
             this.properties = data.value
         },
         async fetchCategories() {
-            const { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/categories/`), { initialCache : false })
+            const { data, pending, error } = await useAsyncData('cat', () => $fetch(`${this.baseUrl}/api/categories/`), { initialCache : false })
             this.categories = data.value
         },
         async fetchSubCategories() {
-            const { data, pending, error } = await useAsyncData('sub', () => $fetch('http://localhost:8000/api/subcategory/'), { initialCache : false })
+            const { data, pending, error } = await useAsyncData('sub', () => $fetch(`${this.baseUrl}/api/subcategory/`), { initialCache : false })
             this.subcategories = data.value
 
         },
@@ -347,7 +349,8 @@ export const AccountStore = defineStore('modal', {
             userToken: '',
             addresses: [],
             username_reset: '',
-            resetConfirmStatus: ''
+            resetConfirmStatus: '',
+            baseUrl: 'http://localhost:8000'
         }
     },
     actions: {
@@ -378,8 +381,7 @@ export const AccountStore = defineStore('modal', {
             let csrfToken = useCookie('csrftoken').value
 
 
-
-            let {data, error} = await useFetch('http://localhost:8000/api/users/me/', {
+            let {data, error} = await useFetch(`${this.baseUrl}/api/users/me/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + this.userToken,
@@ -425,7 +427,7 @@ export const AccountStore = defineStore('modal', {
             let user_token = useCookie('user_token').value
             let csrfToken = useCookie('csrftoken').value
 
-            const { data, error } = await useFetch('http://localhost:8000/api/orders/address/', {
+            const { data, error } = await useFetch(`${this.baseUrl}/api/orders/address/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + user_token,

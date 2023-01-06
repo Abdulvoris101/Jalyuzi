@@ -203,12 +203,13 @@ export default {
             showPrice: '',
             inCart: false,
             errorType: '',
-            typeProduct: ''
+            typeProduct: '',
         }
     },
     computed: {
-        ...mapStores(FilterStore),
+        ...mapStores(FilterStore, ProductStore),
         ...mapState(FilterStore, ['getMyCatalog', 'getMyColors', 'getMyCategory', 'getMyProperty']),
+        ...mapState(ProductStore, ['baseUrl']),
 
         getId() {
             const route = useRoute()
@@ -223,7 +224,7 @@ export default {
         ...mapActions(ProductStore, ['setCategoryId', 'addToCart', 'increaseCart']),
 
         async getProduct() {
-            const { data } = await useFetch(`http://localhost:8000/api/product/${this.getId}`, { initialCache: false})
+            const { data } = await useFetch(`${this.baseUrl}api/product/${this.getId}`, { initialCache: false})
             this.product = data.value
             this.inTheCart()
             

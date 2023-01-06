@@ -12,7 +12,7 @@
                             
                             <figcaption>
                                 <div>
-                                    <h2>{{ category.name }}                                </h2>
+                                    <h2>{{ category.name }}</h2>
                                 </div>
                                 <p>Click to detail</p>
                                 
@@ -35,6 +35,8 @@
 
 
 <script>
+import { mapState, mapStores } from 'pinia'
+import { ProductStore } from '../stores'
 
 export default {
     data () {
@@ -44,8 +46,12 @@ export default {
     },
 
     async created() {
-        const { data } = await useFetch('http://localhost:8000/api/categories/')
+        const { data } = await useFetch(`${this.baseUrl}/api/categories/`)
         this.categories = data.value
+    },
+    computed: {
+        ...mapStores(ProductStore),
+        ...mapState(ProductStore, ['baseUrl'])
     }
 }
 </script>

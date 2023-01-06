@@ -93,12 +93,11 @@ import { mapActions, mapState, mapStores } from 'pinia'
 import { FilterStore, ProductStore } from '~~/stores'
 
 export default {
-    props: ['showFilter'],
+    props: ['showFilter', 'is_sub'],
 
     data() {
         return {
             category_status: false,
-            is_sub: false,
             catalogs: [],
             filter: {
                 catalogs: [],
@@ -129,14 +128,14 @@ export default {
         },
         
 
-        ...mapState(FilterStore, ['getColors', 'getProperties', 'getCatalogs']),
+        ...mapState(FilterStore, ['getColors', 'getProperties', 'getCatalogs', 'baseUrl']),
         
         ...mapStores(FilterStore),
 
         
     },  
     methods: {
-        ...mapActions(ProductStore, ['changeProducts', 'fetchProducts']),
+        ...mapActions(ProductStore, ['changeProducts', 'fetchProducts', 'getSubCategoryProducts']),
 
         closeFilter() {
             this.$emit('closeFilter')
@@ -194,22 +193,41 @@ export default {
                 }
                 
             }
+
+
+            let route = useRoute();
+            let id = route.params.id
+
             if (query.length >= 1) {
-                this.getFilterPosts(query)
+                
+                if (query == `&category=${id}`) {
+                    this.$emit('getCategoryProductsOn', id, 1)
+                } 
+
+                else if (query == `&subcategory=${id}`) {
+                    this.getSubCategoryProducts(id, 1)
+                }   
+                
+                else {
+                    this.getFilterPosts(query)
+                }
+
             } else {
-                this.$emit('getProducts', this.getId(), 1)
-                console.log('Avaiba');
+                this.$emit('getProducts', 1)
+
             }
-            
+
         },
 
         async getFilterPosts(query) {
-            
-            const { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?${query}&paginate=false`, { initialCache : false })
+            console.log(query);
+            const { data, pending, error } = await useFetch(`${this.baseUrl}/api/products/?${query}&paginate=false`, { initialCache : false })
             
 
             this.changeProducts(data)
             this.$emit('changeMyProducts', data)
+
+
         },
 
         changeCatalog(event) {

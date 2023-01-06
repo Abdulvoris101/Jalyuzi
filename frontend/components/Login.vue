@@ -81,7 +81,7 @@ export default {
     },
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['getLoginStatus', 'csrfToken', 'resetStatus']),
+        ...mapState(AccountStore, ['getLoginStatus', 'csrfToken', 'resetStatus', 'baseUrl']),
         ...mapActions(AccountStore, ['loginToggleModal'])
     },
 
@@ -134,7 +134,7 @@ export default {
 
         postLogin(body) {
             let csrf_token = useCookie('csrftoken').value
-            fetch('http://localhost:8000/api/users/login/', {
+            fetch(`${this.baseUrl}/api/users/login/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

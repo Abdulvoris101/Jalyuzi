@@ -70,7 +70,6 @@
 import { AccountStore } from '@/stores/index'
 import { mapState, mapActions, mapStores } from 'pinia'
 
-const url = 'http://localhost:8000/api/users/'
 
 
 
@@ -82,7 +81,6 @@ export default {
             lastName: '',
             phone_number: '',
             password: '',
-            url: 'http://localhost:8000/api/users/',
             firstConfirm: false,
             response: {
                 errors: [],
@@ -97,7 +95,7 @@ export default {
 
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['getRegStatus', 'loginStatus', 'regStatus', 'csrfToken']),
+        ...mapState(AccountStore, ['getRegStatus', 'loginStatus', 'regStatus', 'csrfToken', 'baseUrl']),
         ...mapActions(AccountStore, ['regToggleModal', 'loginToggleModal']),
     },
 
@@ -164,7 +162,7 @@ export default {
         },
 
         postRegister(body) {
-            fetch('http://localhost:8000/api/users/', {
+            fetch(`${this.baseUrl}/api/users/`, {
                 method: 'POST', // or 'PUT'
                 credentials: 'include',
                 headers: {

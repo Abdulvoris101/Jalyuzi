@@ -96,8 +96,12 @@
 </template>
 
 <script setup>
+import { ProductStore } from "../stores"
 
-const { data } = await useFetch('http://localhost:8000/api/achivement/')
+let store = ProductStore()
+
+const { data } = await useFetch(`${store.baseUrl}/api/achivement/`)
+
 let achivement = data
 
 </script>

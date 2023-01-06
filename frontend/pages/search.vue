@@ -21,7 +21,7 @@
                             <tr v-for="product in searchedProducts" :key="product.id">
                                 <th scope="row">{{ product.id }}</th>
                                 <td>
-                                    <img :src="'http://localhost:8000' + product.image"  width="50" alt="">
+                                    <img :src="baseUrl + product.image"  width="50" alt="">
                                 </td>
                                 <td>{{  product.model }}</td>
                                 <td>{{  product.weight }}</td>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapState } from 'pinia';
+import { mapState, mapStores } from 'pinia';
 import { ProductStore } from '~~/stores';
 
 export default {
@@ -53,7 +53,8 @@ export default {
         }
     },
     computed: {
-        ...mapState(ProductStore, [ 'products'] ),
+        ...mapStores(ProductStore),
+        ...mapState(ProductStore, [ 'products', 'baseUrl'] ),
     },
     methods: {
         queryFilter() {

@@ -98,7 +98,7 @@ export default {
     },
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['resetStatus', 'resetConfirmStatus', 'username_reset']),
+        ...mapState(AccountStore, ['resetStatus', 'resetConfirmStatus', 'username_reset', 'baseUrl']),
         ...mapActions(AccountStore, ['resetToggleModal', 'resetConfirmToggle'])
     },
 
@@ -124,7 +124,7 @@ export default {
 
             let csrf_token = useCookie('csrftoken').value
             
-            fetch('http://localhost:8000/api/users/reset_password/', {
+            fetch(`${this.baseUrl}/api/users/reset_password/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -161,7 +161,7 @@ export default {
 
             let csrf_token = useCookie('csrftoken').value
             
-            fetch('http://localhost:8000/api/users/send_to_reset/', {
+            fetch(`${this.baseUrl}/api/users/send_to_reset/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

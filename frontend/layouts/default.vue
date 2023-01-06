@@ -23,8 +23,6 @@ import { AccountStore, ProductStore, FilterStore } from '../stores/index';
 
 export default {
 
-    
-
     created() {
         let store = AccountStore()
         let prStore = ProductStore()
