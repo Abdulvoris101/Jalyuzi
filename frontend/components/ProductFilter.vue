@@ -198,7 +198,6 @@ export default {
                 this.getFilterPosts(query)
             } else {
                 this.$emit('getProducts', this.getId(), 1)
-                console.log('Avaiba');
             }
             
         },

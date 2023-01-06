@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{  showPagination }}
+
                                 <Pagination  v-if="showPagination" :item="page_size_c" :total="total_c" @page-changed="loadProducts" />
 
                                 
@@ -179,7 +179,6 @@ export default {
             
 
             this.showPagination = true
-            console.log(this.showPagination);
 
             if (data.value.results.length >= 1) {
                 this.is_data = true

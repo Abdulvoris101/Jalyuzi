@@ -289,11 +289,6 @@ export default {
                 
 
             })
-
-            .catch((err) => {
-                console.log(err);
-            })
-
         },  
 
         fetchAddress() {
@@ -324,10 +319,6 @@ export default {
                 resp.json()
                 this.addAdress = false
                 this.addresses.push(body)
-            })
-
-            .catch((err) => {
-                console.log(err);
             })
 
 
