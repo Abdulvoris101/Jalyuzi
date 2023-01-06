@@ -1,5 +1,6 @@
 from django.db import models
 import requests
+from random import randint
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -82,11 +83,13 @@ class Product(models.Model):
     count = models.IntegerField()
     status = models.BooleanField('Публикация', default=False)
     price_sum = models.CharField('Цена на сум', max_length=500, null=True, blank=True)
-
+    slug = models.SlugField(max_length=300, unique=True)
 
 
     def save(self, *args, **kwargs):
         price = self.price * 1
+
+        self.slug = f'product-{self.name}{self.count}'
 
         valute_obj = ValuteExchange.objects.filter(id=1).exists()
 
@@ -152,9 +155,10 @@ class ValuteExchange(models.Model):
         products = Product.objects.all()
         
         for product in products:
-            product.price_sum = int(float(product.price) * float(valute))
+            product_item = Product.objects.get(id=product.id)
+            product_item.price_sum = int(float(product_item.price) * float(valute))
 
-            product.save()
+            product_item.save()
 
 
         super(ValuteExchange, self).save(*args, **kwargs)

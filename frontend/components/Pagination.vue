@@ -34,7 +34,6 @@ export default {
     },
     computed: {
         totalPages() {
-            console.log(this.total);
             return Math.ceil(this.total / this.item)
         }
     },

@@ -48,7 +48,7 @@
                     <div>
                         <ul class="filter-catalog mt-1">
                             <li ><span  class="catalog-title filter-link">Каталог</span></li>
-                            <li class="filter-catalog-item" v-for="catalog in getCatalogs" :key="catalog.id"><input @change="changeCatalog(catalog.id)"  type="checkbox" class="form-check-input" :id="'catalog' + catalog.id"> <label class="filter-link" :for="'catalog' + catalog.id">{{ catalog.name }}</label></li>
+                            <li class="filter-catalog-item" v-for="catalog in getCatalogs" :key="catalog.id"><input @change="changeCatalog(catalog.id)"  type="checkbox" class="form-check-input" :id="'catalog' + catalog.id"> <label class="filter-link" >{{ catalog.name }}</label></li>
                         </ul>
                     </div>
         
@@ -58,7 +58,7 @@
                     <div>
                         <ul class="filter-catalog mt-3">
                             <li ><span  class="catalog-title filter-link">Цветы</span></li>
-                            <li class="filter-catalog-item" v-for="color in getColors" :key="color.id"><input type="checkbox" class="form-check-input" @change="changeColor(color.id)" :id="'color' + color.id"> <label  :for="'color' + color.id"  class="filter-link">{{ color.name }}</label></li>
+                            <li class="filter-catalog-item" v-for="color in getColors" :key="color.id"><input type="checkbox" class="form-check-input" @change="changeColor(color.id)" :id="'color' + color.id"> <label   class="filter-link">{{ color.name }}</label></li>
                             
                         </ul>
                     </div>
@@ -67,7 +67,7 @@
                     <div>
                         <ul class="filter-catalog mt-3">
                             <li ><span  class="catalog-title filter-link">Свойства</span></li>
-                            <li class="filter-catalog-item" v-for="property in getProperties" :key="property.id"><input type="checkbox" :id="'property' + property.id" @change="changeProperties(property.id)" class="form-check-input"> <label   class="filter-link" :for="'property' + property.id">{{ property.name }}</label></li>
+                            <li class="filter-catalog-item" v-for="property in getProperties" :key="property.id"><input type="checkbox" :id="'property' + property.id" @change="changeProperties(property.id)" class="form-check-input"> <label   class="filter-link" >{{ property.name }}</label></li>
                         </ul>
                     </div>
                 </div>
@@ -81,11 +81,6 @@
 
             </div>
             
-
-            
-
-            
-
         
         </section>
 
@@ -112,10 +107,10 @@ export default {
             }
         }
     },
+
     watch: {
         showFilter() {
             let side = this.$el.querySelector('.side-left-mb')
-            console.log(this.showFilter);
 
             if (this.showFilter) {
                 side.style.display = "block";
@@ -202,18 +197,19 @@ export default {
             if (query.length >= 1) {
                 this.getFilterPosts(query)
             } else {
-                this.fetchProducts()
+                this.$emit('getProducts', this.getId(), 1)
+                console.log('Avaiba');
             }
             
-
         },
 
         async getFilterPosts(query) {
             
-            const { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?${query}`, { initialCache : false })
+            const { data, pending, error } = await useFetch(`http://localhost:8000/api/products/?${query}&paginate=false`, { initialCache : false })
             
+
             this.changeProducts(data)
-            
+            this.$emit('changeMyProducts', data)
         },
 
         changeCatalog(event) {

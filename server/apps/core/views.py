@@ -139,6 +139,7 @@ class ProductDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminUserOrReadOnly]
+    lookup_field = 'slug'
     authentication_classes = [TokenAuthentication, SessionAuthentication]
 
 class CategoryDetailView(RetrieveUpdateDestroyAPIView):

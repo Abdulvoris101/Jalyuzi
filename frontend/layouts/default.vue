@@ -22,15 +22,19 @@
 import { AccountStore, ProductStore, FilterStore } from '../stores/index';
 
 export default {
+
+    
+
     created() {
         let store = AccountStore()
         let prStore = ProductStore()
         let flStore = FilterStore()
         
-        prStore.fetchProducts(1)
+        
         prStore.inTheCart()
         flStore.fetchCatalogs('catalog')
         flStore.fetchColors()
+        prStore.fetchProducts(1)
         
         flStore.fetchProperties()
         flStore.fetchCategories()
@@ -42,6 +46,7 @@ export default {
         store.getAdresses()
 
     },
+   
 
 }
 </script>

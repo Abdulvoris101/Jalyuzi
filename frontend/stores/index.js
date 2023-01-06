@@ -27,10 +27,11 @@ export const ProductStore = defineStore('product', {
         }
     },
     actions: {
-        async fetchProducts(number) {
-            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${number}`), { initialCache : false })
 
-            if (data.value.results.length >= 1) {
+        async fetchProducts(number) {
+            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${number}`),)
+
+            if (data.value.results.length >= 1) {   
                 
                 this.products = data.value.results
 
@@ -46,6 +47,7 @@ export const ProductStore = defineStore('product', {
                 
                 this.is_product = true
             } else {
+
                 this.products = []
                 this.is_product = false
             }
@@ -174,7 +176,6 @@ export const ProductStore = defineStore('product', {
                 } else {
                     this.products[i].inCart = true
                 }
-
             }
         },
 

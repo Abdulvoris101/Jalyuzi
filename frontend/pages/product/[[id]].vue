@@ -207,8 +207,8 @@ export default {
         }
     },
     computed: {
-        ...mapState(FilterStore, ['getMyCatalog', 'getMyColors', 'getMyCategory', 'getMyProperty']),
         ...mapStores(FilterStore),
+        ...mapState(FilterStore, ['getMyCatalog', 'getMyColors', 'getMyCategory', 'getMyProperty']),
 
         getId() {
             const route = useRoute()
@@ -218,6 +218,7 @@ export default {
         
     },
     methods: {
+        
         ...mapActions(FilterStore, ['getDetailCatalog', 'getDetailColor', 'getDetailCategory', 'getDetailSubCategory', 'getDetailProperty']),
         ...mapActions(ProductStore, ['setCategoryId', 'addToCart', 'increaseCart']),
 
@@ -283,7 +284,7 @@ export default {
 
         toBuy(obj) {
 
-            if (obj.type_id) {
+            if (obj.type_id == true) {
                 if (this.typeProduct != '') {
                     let new_p = {
                         'id': obj.id,
@@ -308,7 +309,7 @@ export default {
                     'width': this.width / 100,
                     'height': this.height / 100,
                     'overall_price': this.overall_price,
-                    'type_id': null
+                    'type_id': 'None'
                 }
 
                 

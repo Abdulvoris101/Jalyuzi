@@ -13,7 +13,14 @@
                             <div class="card-body d-flex " style="justify-content:space-between">
                                 <div style="width:100%">
                                     <h4 class="card-title">Категории - {{ category_name }}</h4>
-    
+                                    <div class="d-flex" style="justify-content: flex-end">
+                                    
+                                        <div class=" icon-filter ">
+                                            <a @click="showFilter"><b-icon-funnel class=""></b-icon-funnel></a>
+                                        </div>
+                                    
+                                
+                                    </div>
                                 </div>
                                 
     
@@ -21,17 +28,17 @@
                         </div>
                         <div class="row gx-3" v-if="is_data">
                             <div class="col-md-3 col-6 col-sm-4 mt-3"  v-for="product in getData" :key="product.id">
-                                <div class="card main-card">
-                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
+                                <div class="card main-card"  v-if="product.status">
+                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
                                     <div class="card-body">
-                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="nav-link">
+                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
                                             <span class="card-price">{{ product.price_sum }} сум</span>
                                         </NuxtLink>
                                         <div>
 
                                             <div v-if="product.type_id">
-                                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="btn-more w-100 btn btn-success">
+                                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="btn-more w-100 btn btn-success">
                                                         Перейти
                                                     </NuxtLink>
                                                 </div>
@@ -39,7 +46,7 @@
 
                                                 <div v-if="product.inCart" class="btn-dis" >Продукт в корзине</div>
                                             
-                                                <button v-else class="btn btn-success w-100 btn-more" @click="toBuy(product.id)"><span>Покупать</span> <b-icon-basket3 class="basket3-icon pb-1"></b-icon-basket3></button>
+                                                <button v-else class="btn btn-success w-100 btn-more" @click="toBuy(product.slug)"><span>Покупать</span> <b-icon-basket3 class="basket3-icon pb-1"></b-icon-basket3></button>
                                             </div>
                                         </div>
                                     </div>
@@ -132,18 +139,37 @@ export default {
 
                 let square = (this.width / 100) * (this.height / 100)
 
-                this.overall_price = price * square
+                this.overall_price = parseInt(price * square)
 
-                let new_p = {
-                    'id': product_obj.id,
-                    'width': this.width / 100,
-                    'height': this.height / 100,
-                    'overall_price': this.overall_price
+
+                if (product_obj.type_id == true) {
+
+                    let new_p = {
+                        'id': product_obj.id,
+                        'width': this.width / 100,
+                        'height': this.height / 100,
+                        'overall_price': this.overall_price,
+                        'type_id': product_obj.type_id
+                    }
+
+                    let json_obj = JSON.stringify(new_p)
+                    this.increaseCart()
+                    this.addToCart(json_obj, product_obj.id)
+
+                } else {
+
+                    let new_p = {
+                        'id': product_obj.id,
+                        'width': this.width / 100,
+                        'height': this.height / 100,
+                        'overall_price': this.overall_price,
+                        'type_id': 'None'
+                    }
+
+                    let json_obj = JSON.stringify(new_p)
+                    this.increaseCart()
+                    this.addToCart(json_obj, product_obj.id)
                 }
-
-                let json_obj = JSON.stringify(new_p)
-                this.increaseCart()
-                this.addToCart(json_obj, product_obj.id)
 
             })
         },

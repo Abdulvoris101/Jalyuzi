@@ -199,9 +199,7 @@ export default {
                 for (let i = 0; i < this.cart_products.length; i++) {
                     let product = this.cart_products[i]
                     let size = `${product.current_width}x${product.current_height}`
-                    let product_cart = localStorage.getItem('product' + this.cart_products[i].id)
-                    console.log(product_cart)
-
+                    
                     data.push({
                         'product': product.id,
                         'product_price': parseInt(product.price_sum),
@@ -210,8 +208,9 @@ export default {
                         'status': 'pending',
                         'address': this.addresses[0].id,
                         'amount': product.current_count,
-                        'type_id': JSON.parse(product_cart.type_id)
+                        'type_id': product.type_id
                     })
+
 
                 }
 
