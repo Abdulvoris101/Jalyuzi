@@ -2,7 +2,7 @@
     <div id="products">
         <div class="row gx-0">
             <div class="col-lg-3">
-               <ProductFilter :showFilter="showFilterStatus" @getProducts="getCategoryProductsOn" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
+               <ProductFilter :showFilter="showFilterStatus" :is_sub="false" @getCategoryProductsOn="getCategoryProductsOn" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
             </div>
             <div class="col-lg-9">
                 <section class="main">
@@ -51,7 +51,7 @@
                             <div class="row gx-3" v-if="is_data">
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in category_products" :key="product.id">
                                     <div class="card main-card" v-if="product.status">
-                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
+                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
                                         <div class="card-body">
                                             <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                                 <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
@@ -114,8 +114,8 @@ export default {
             not_product: 'Продукты нет ):',
             is_data: false,
             category_products: [],
-            showPagination: true
-            
+            showPagination: true,
+            type: 'category'
         }
     },
 
@@ -126,7 +126,7 @@ export default {
         },
 
         ...mapStores(ProductStore, FilterStore),
-        ...mapState(ProductStore, ['total_c', 'page_size_c'])
+        ...mapState(ProductStore, ['total_c', 'page_size_c', 'baseUrl'])
         
     },
 
@@ -153,7 +153,7 @@ export default {
             } else {
                 this.category_products = []
                 this.is_data = false
-                
+                this.showPagination = true
             }
         },
 
@@ -173,11 +173,8 @@ export default {
         },
 
         async getCategoryProductsOn(category_id, pageNumber) {
-            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`http://localhost:8000/api/products/?category=${category_id}&page=${pageNumber}`), { initialCache : false })
+            let { data, pending, error } = await useAsyncData('cat', () => $fetch(`${this.baseUrl}/api/products/?category=${category_id}&page=${pageNumber}`), { initialCache : false })
             
-            
-            
-
             this.showPagination = true
 
             if (data.value.results.length >= 1) {
@@ -209,7 +206,7 @@ export default {
         ...mapActions(ProductStore, ['addToCart', 'increaseCart', 'inCategoryCart']),
 
         async getProduct(id) {
-            const { data } = await useFetch(`http://localhost:8000/api/product/${id}`, { initialCache: false})
+            const { data } = await useFetch(`${this.baseUrl}/api/product/${id}`, { initialCache: false})
             data.value.inCart = true
             
 
@@ -218,7 +215,7 @@ export default {
 
         loadProducts(pageNumber) {
             this.getCategoryProductsOn(this.getId, pageNumber)
-            this.$router.push({path: '', query: {q: pageNumber}});
+            this.$router.push({path: '', query: {page: pageNumber}});
 
         },
 
@@ -274,12 +271,12 @@ export default {
 
 
         async getSubcategories() {
-            const { data } = await useAsyncData('subcategory', () => $fetch('http://localhost:8000/api/subcategory/'))
+            const { data } = await useAsyncData('subcategory', () => $fetch(`${this.baseUrl}/api/subcategory/`))
             this.subcategories = data.value
         },
         
         async getCategory() {
-            const { data, error } = await useAsyncData('category', () => $fetch(`http://localhost:8000/api/category/${this.getId}/`, {
+            const { data, error } = await useAsyncData('category', () => $fetch(`${this.baseUrl}/api/category/${this.getId}/`, {
                 headers: useRequestHeaders(['cookie'])
             }), { initialCache : false })
 

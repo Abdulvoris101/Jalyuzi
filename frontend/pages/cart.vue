@@ -24,7 +24,7 @@
                                 <div class="row gx-0 ">
                                     
                                 <div class="col-md-2 col-2 ">
-                                    <img :src="'http://localhost:8000' + product.image" class="img-cart" width="115" alt="">
+                                    <img :src="baseUrl + product.image" class="img-cart" width="115" alt="">
                                 </div>
 
 
@@ -182,7 +182,7 @@ export default {
     },
 
     computed: {
-        ...mapState(ProductStore, ['countOfCart', 'products', 'lastId', 'cart_products'] ),
+        ...mapState(ProductStore, ['countOfCart', 'products', 'lastId', 'cart_products', 'baseUrl'] ),
         ...mapStores(ProductStore),
         ...mapState(AccountStore, ['isLogined', 'addresses'])
         
@@ -242,7 +242,7 @@ export default {
         createOrder(data) {
 
             let userToken = useCookie('user_token')
-            let url = 'http://localhost:8000/api/orders/'
+            let url = `${this.baseUrl}/api/orders/`
             let csrfToken = useCookie('csrftoken')
 
             this.inTheCart()
@@ -299,7 +299,7 @@ export default {
             }
             
             let userToken = useCookie('user_token')
-            let url = 'http://localhost:8000/api/orders/address/'
+            let url = `${this.baseUrl}/api/orders/address/`
             let csrfToken = useCookie('csrftoken')
 
             fetch(url, {

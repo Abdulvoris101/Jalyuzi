@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import { mapState, mapStores } from 'pinia'
+import { ProductStore } from '../stores'
 
 export default {
     data() {
@@ -80,7 +82,13 @@ export default {
             errors: []
         }
     },
-    
+    computed: {
+        ...mapStores(ProductStore),
+        ...mapState(ProductStore, ['baseUrl'])
+
+    },
+
+
     methods: {
         sendMessage() {
             let userToken = useCookie('user_token')
@@ -89,7 +97,7 @@ export default {
 
             if (this.name != '' && this.email != '' && this.phone_number != '' && this.message != '') {
 
-                let url = 'http://localhost:8000/api/contact/'
+                let url = `${this.baseUrl}/api/contact/`
 
                 let data = JSON.stringify({
                     'name': this.name,

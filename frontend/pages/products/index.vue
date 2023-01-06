@@ -2,7 +2,7 @@
     <div id="products">
         <div class="row gx-0">
             <div class="col-lg-3">
-               <ProductFilter :showFilter="showFilterStatus" @getProducts="getProducts" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
+               <ProductFilter :showFilter="showFilterStatus" :is_sub="false" @getProducts="getProducts" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
             </div>
             <div class="col-lg-9">
                 <section class="main">
@@ -26,7 +26,7 @@
                             <div class="row gx-3" v-if="is_product">
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in products" :key="product.id">
                                     <div class="card main-card" v-if="product.status">
-                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
+                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
                                         <div class="card-body">
                                             <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                                 
@@ -98,13 +98,15 @@ export default {
             page: 1,
             products: [],
             is_product: false,
-            showPagination: true
+            showPagination: true,
         }
     },
     computed: {
-        ...mapState(ProductStore, ['total', 'page_size']),
-        ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
         ...mapStores(ProductStore, FilterStore),
+
+        ...mapState(ProductStore, ['total', 'page_size', 'baseUrl']),
+        ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
+
     },
 
 
@@ -152,7 +154,8 @@ export default {
 
 
         async getProducts(page, id) {
-            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`http://localhost:8000/api/products/?page=${page}`), {initialCache: false})
+            
+            let { data, pending, error } = await useAsyncData('products',  () => $fetch(`${this.baseUrl}/api/products/?page=${page}`), {initialCache: false})
 
             if (data.value.results.length >= 1) {
 
@@ -184,7 +187,7 @@ export default {
         loadProducts(pageNumber) {
             let store = ProductStore()
 
-            this.$router.push({path: '', query: {q: pageNumber}});
+            this.$router.push({path: '', query: {page: pageNumber}});
 
 
             store.fetchProducts(pageNumber)
@@ -193,7 +196,7 @@ export default {
 
 
         async getProduct(id) {
-            const { data } = await useFetch(`http://localhost:8000/api/product/${id}`, { initialCache: false})
+            const { data } = await useFetch(`${this.baseUrl}/api/product/${id}`, { initialCache: false})
             data.value.inCart = true
 
             return data.value

@@ -3,7 +3,7 @@
         <Splide :options="{ gap: 15, autoplay: true, perPage : 5, pagination: false, autoheight: true  }"  v-if="is_product" aria-label="My Favorite Images">
             <SplideSlide v-for="product in getData" :key="product.id">
                 <div class="card main-card">
-                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="'http://localhost:8000' + product.image" class="card-img" alt="..."></NuxtLink>
+                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
                     <div class="card-body">
                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="nav-link">
                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
@@ -38,9 +38,9 @@ export default {
         }
     },
     computed: {
-        ...mapState(ProductStore, ['is_product', 'getData']),
-        ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
         ...mapStores(ProductStore, FilterStore),
+        ...mapState(ProductStore, ['is_product', 'getData', 'baseUrl']),
+        ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
     },
 }
 

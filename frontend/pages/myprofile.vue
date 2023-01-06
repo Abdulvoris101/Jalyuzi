@@ -83,7 +83,7 @@ export default {
     },
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['firstName', 'lastName', 'phone_number'])
+        ...mapState(AccountStore, ['firstName', 'lastName', 'phone_number', 'baseUrl'])
     },
     methods: {
         myclass() {
@@ -109,7 +109,7 @@ export default {
         },
 
         user_logout() {
-            fetch('http://localhost:8000/api/users/logout/', {
+            fetch(`${this.baseUrl}/api/users/logout/`, {
                 method: 'GET',
                 credentials: 'include',
             })

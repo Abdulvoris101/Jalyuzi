@@ -58,7 +58,6 @@ export default {
 
     data() {
         return {
-            url: 'http://localhost:8000/api/users/verification/',
             confirmCode: '',
             phoneNumber: '',
             response: {
@@ -73,7 +72,7 @@ export default {
 
     computed: {
         ...mapStores(AccountStore),
-        ...mapState(AccountStore, ['getPhoneNumber', 'getVerifStatus', 'getCsrfToken', 'firstConfirm', 'phone_number', 'password']),
+        ...mapState(AccountStore, ['getPhoneNumber', 'getVerifStatus', 'getCsrfToken', 'firstConfirm', 'phone_number', 'password', 'baseUrl']),
         ...mapActions(AccountStore, ['verifToggleModal'])
         
     },
@@ -84,7 +83,7 @@ export default {
         CancelRegister() {
             if (this.firstConfirm == false) {
 
-                fetch(`http://localhost:8000/api/users/?delete=${this.phone_number}`,
+                fetch(`${this.baseUrl}/api/users/?delete=${this.phone_number}`,
                     {
                         method: 'GET'
                     }
@@ -129,7 +128,7 @@ export default {
         },
 
         postRegister(body) {
-            fetch('http://localhost:8000/api/users/verification/', {
+            fetch(`${this.baseUrl}/api/users/verification/`, {
                 method: 'POST', // or 'PUT'
                 credentials: 'include',
                 headers: {
