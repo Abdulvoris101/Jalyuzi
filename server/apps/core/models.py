@@ -84,6 +84,7 @@ class Product(models.Model):
     status = models.BooleanField('Публикация', default=False)
     price_sum = models.CharField('Цена на сум', max_length=500, null=True, blank=True)
     slug = models.SlugField(max_length=300, unique=True)
+    image_url = models.CharField(max_length=800)
 
 
     def save(self, *args, **kwargs):
