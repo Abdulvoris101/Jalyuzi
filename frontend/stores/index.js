@@ -392,7 +392,6 @@ export const AccountStore = defineStore('modal', {
 
 
             if (data.value == null) {
-                console.log('You did\'nt login');
                 this.isLogined = false
 
             } else {

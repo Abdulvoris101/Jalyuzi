@@ -145,13 +145,8 @@ export default {
                     this.response.errors = []
                     this.response.data = data.detail
                     this.confirm_code = ''
-                } else {
-                    console.log(data);
-                }
+                } 
             })
-            .catch((error) => {
-                console.log(error);
-            }); 
         },
 
         submitSend() {
@@ -177,7 +172,6 @@ export default {
             .then((data) => {
                 if (this.statusCode == 400){
                     this.response.errors.push(data.Error)
-                    console.log('Error:', data.Error);
                 }
                 else if (this.statusCode == 200) {
                     this.response.errors = []
@@ -185,16 +179,9 @@ export default {
                     this.changeResetUsername(data.user)
                     this.SendToReset()
 
-                    console.log(data);
 
-                } else {
-                    console.log(data);
-                }
+                } 
             })
-            .catch((error) => {
-                console.log(error);
-            }); 
-
         },
 
         

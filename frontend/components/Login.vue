@@ -166,15 +166,8 @@ export default {
                     store.getAdresses()
                     this.closeLogin()
 
-                } else {
-                    console.log(data);
                 }
             })
-            .catch((error) => {
-                console.log(error);
-            }); 
-
-
 
         }
 

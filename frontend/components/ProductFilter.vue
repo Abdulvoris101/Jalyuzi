@@ -213,8 +213,7 @@ export default {
                 }
 
             } else {
-                this.$emit('getProducts', 1)
-
+                this.$emit('getProducts', this.getId(), 1)
             }
 
         },

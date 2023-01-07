@@ -179,7 +179,6 @@ export default {
             .then((data) => {
                 if (this.statusCode == 400){
                     this.response.errors.push(data.Error)
-                    console.log('Error:', data.Error);
                 }
                 else {
                     this.response.errors = []
@@ -194,9 +193,6 @@ export default {
                     
                 }
             })
-            .catch((error) => {
-                console.log(error);
-            }); 
 
         }
 
