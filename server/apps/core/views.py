@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .serializers import CategorySerializer, ValuteSerializer, AchievementSerializer, ContactSerializer, ProductSerializer, ColorSerializer, SubCategorySerializer, PropertySerializer, CatalogSerializer
+from .serializers import CategorySerializer, ValuteSerializer, FabricTypeSerializer, AchievementSerializer, ContactSerializer, ProductSerializer, ColorSerializer, SubCategorySerializer, PropertySerializer, CatalogSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from .models import Category, Product, Color, Property, Catalog , SubCategory, Contact, Achievement, ValuteExchange
+from .models import Category, Product, Color, Property, Catalog , SubCategory, Contact, FabricType, Achievement, ValuteExchange
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.authentication import TokenAuthentication, BasicAuthentication, SessionAuthentication
 from django_filters.rest_framework import DjangoFilterBackend
@@ -10,6 +10,10 @@ from django.db.models import Q
 from .permissions import IsAdminUserOrReadOnly
 from .pagination import ProductsPagination
 
+
+class FabricTypeView(ListCreateAPIView):
+    queryset = FabricType.objects.all()
+    serializer_class = FabricTypeSerializer
 
 class ValuteView(ListAPIView):
     queryset = ValuteExchange.objects.filter(id=1)

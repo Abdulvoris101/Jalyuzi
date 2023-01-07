@@ -51,3 +51,8 @@ class ContactSerializer(ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
+
+class FabricTypeSerializer(ModelSerializer):
+    class Meta:
+        model = FabricType
+        fields = '__all__'
