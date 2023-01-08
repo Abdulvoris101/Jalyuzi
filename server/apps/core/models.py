@@ -1,6 +1,13 @@
 from django.db import models
 import requests
 from random import randint
+from django.core.files import File
+import os
+from urllib import request
+from tempfile import NamedTemporaryFile
+from uuid import uuid4
+
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -83,14 +90,29 @@ class Product(models.Model):
     count = models.IntegerField()
     status = models.BooleanField('Публикация', default=False)
     price_sum = models.CharField('Цена на сум', max_length=500, null=True, blank=True)
-    slug = models.SlugField(max_length=300, unique=True)
-    image_url = models.CharField(max_length=800)
+    slug = models.SlugField(null=True, unique=True, blank=True)
+    image_url = models.URLField(null=True, blank=True)
+        
+
+    def get_remote_image(self):
+        if self.image_url and not self.image:
+            r = requests.get(self.image_url)
+
+            img_temp = NamedTemporaryFile(delete=True)
+            img_temp.write(r.content)
+            img_temp.flush()
+
+            self.image.save(f"image{self.name}.jpg", File(img_temp))
+
 
 
     def save(self, *args, **kwargs):
+
+
         price = self.price * 1
 
-        self.slug = f'product-{self.name}{self.count}'
+        
+        self.slug = f'product-{self.name}{self.count}{str(uuid4())[:2]}'
 
         valute_obj = ValuteExchange.objects.filter(id=1).exists()
 
@@ -100,7 +122,12 @@ class Product(models.Model):
         else:
             self.price_sum = int(float(price) * 11,294)
 
+        
+
         super(Product, self).save(*args, **kwargs)
+
+        self.get_remote_image()
+
             
 
     

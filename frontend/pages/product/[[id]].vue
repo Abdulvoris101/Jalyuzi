@@ -94,7 +94,7 @@
                 <div class="col-md-3 col-5">
                     <div class="card-left card">
                         <div class="card-img">
-
+                            {{ product  }}
                             <img :src="product.image" class=" img-product img-fluid"  alt="">
                         </div>
                         <h4 class="product-title pt-4 ps-2" style="font-size: 18px;">{{ product.name }} {{ getMyCatalog.name }} {{ getMyColors.name }}</h4>
@@ -224,8 +224,10 @@ export default {
         ...mapActions(ProductStore, ['setCategoryId', 'addToCart', 'increaseCart']),
 
         async getProduct() {
-            const { data } = await useFetch(`${this.baseUrl}api/product/${this.getId}`, { initialCache: false})
+            const { data } = await useFetch(`${this.baseUrl}/api/product/${this.getId}`, { initialCache: false})
             this.product = data.value
+            
+
             this.inTheCart()
             
 

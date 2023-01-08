@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from django.db.models import Q
 from .permissions import IsAdminUserOrReadOnly
 from .pagination import ProductsPagination
-
+from rest_framework import status
 
 class FabricTypeView(ListCreateAPIView):
     queryset = FabricType.objects.all()
@@ -64,6 +64,18 @@ class ProductView(ListCreateAPIView):
     authentication_classes = [BasicAuthentication, TokenAuthentication, SessionAuthentication]
     # filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     pagination_class = ProductsPagination
+
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        
+        serializer = ProductSerializer(data=data, many=True)
+
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
