@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="ltr" lang="ru" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="ltr" lang="ru" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="ltr" lang="ru">
+<!--<![endif]-->
+<head>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WBQ4ZS');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Global site tag (gtag.js) - Google Ads: 10992527365 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10992527365"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10992527365');
+</script>
+
+<!-- Event snippet for Потенциальный клиент, привлеченный по телефону conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-10992527365/Dt6LCNnB5eADEIXQ0vko'});
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(71759551, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/71759551" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46987231-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-46987231-1');
+</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Jalyuzi.uz - Запрашиваемая страница не найдена!</title>
+<base href="http://www.jalyuzi.uz/" />
+<meta name="google-site-verification" content="2cMib_7mTag_HefYOsZsoBguwDn5iXfbMTGWzmnRrco" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="http://www.jalyuzi.uz/image/catalog/favicon.png" rel="icon" />
+<link href="catalog/view/theme/jalyuzi/stylesheet/main.css" rel="stylesheet">
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.css" rel="stylesheet">
+<script src="catalog/view/javascript/vendor/modernizr.js"></script>
+
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script src="//code.jivosite.com/widget/0qJyzOEBAK" async></script>
+</head>
+<body class="error-not_found">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WBQ4ZS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+	<!--[if lt IE 10]>
+	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+	<div class="container-fluid">
+		<div class="header">
+			<div class="row">
+				<div class="col-md-3 col-xs-6">
+					<div class="brand">
+											<a href="http://www.jalyuzi.uz/index.php?route=common/home"><img src="http://www.jalyuzi.uz/image/catalog/logo.png" title="Jalyuzi.uz" alt="Jalyuzi.uz" class="img-responsive" /></a>
+							        	</div>
+		        </div>	
+		        <div class="col-md-3 col-xs-6">
+					<div class="header-links">
+						<i class="fa fa-phone"></i>
+					  <span class="phonNo">&nbsp&nbspНаши контакты:</span>
+                      <ul> 
+ <ul class="nomer list-unstyled"><li><a href="tel:+998 90-994-00-00"><h5>+998 90-994-00-00</h5></a></li>
+                      <li><a href="tel:+998 91-994-00-00"><h5>+998 91-994-00-00</h5></a></li>
+                      <li><a href="tel:+998 94-994-00-00"><h5>+998 94-994-00-00</h5></a></li> 
+				      </ul>
+					</div>
+				</div>
+				<div class="col-md-3 hidden-xs hidden-sm">
+					<div class="header-links">
+						<i class="fa fa-map-marker"></i>
+						<span class="phonNo">&nbsp&nbspНаш адрес:</span><br />
+						<span class="adNo">Beruniy, Huvaydo m.<br />
+100169 Tashkent, Uzbekistan</span>
+					</div>
+				</div>
+				<div class="col-md-3 hidden-xs hidden-sm">
+					<div class="header-linksw">
+						
+<div class="module header-module">
+	<div class="shopping-cart-widget">
+		<a id="cart-link" href="http://www.jalyuzi.uz/index.php?route=checkout/cart">
+			<i class="fa fa-shopping-cart fa-3"></i> Корзина <span class="num-items">0</span>
+		</a>
+		<div id="header-cart" class="shopping-cart-content highlight-section">
+			<ul class="cart-list list-unstyled">
+									<li class="empty">Ваша корзина пуста!</li>
+							</ul>
+
+			
+							<p class="total hidden"><strong>Итого:</strong> <span class="amount">0 сум</span></p>
+			
+			<div class="cart-btn-group hidden">
+				<a href="http://www.jalyuzi.uz/index.php?route=checkout/cart" class="btn btn-primary btn-sm">Перейти в корзину</a>
+				<a href="http://www.jalyuzi.uz/index.php?route=checkout/checkout" class="btn btn-primary btn-sm">Оформить заказ</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript"><!--
+
+$('#header-cart').on('click', '.btn-remove', function() {
+	// Remove from cart
+	var key = $(this).data('key');
+	cart.remove(key);
+});
+
+$('#cart-link, #header-cart').hover(function() {
+	$('#header-cart').show();
+}, function() {
+	$('#header-cart').hide();
+});
+
+<!--</script>					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li ><a href="http://www.jalyuzi.uz/index.php?route=common/home">Главная<span class="sr-only">(current)</span></a></li>
+									          		<li ><a href="http://www.jalyuzi.uz/about_us">О Нас</a></li>
+			          				          		<li ><a href="http://www.jalyuzi.uz/portfilio">Портфолио</a></li>
+			          							<li ><a href="http://www.jalyuzi.uz/index.php?route=information/contact">Обратная связь</a></li>
+					</ul>
+					<form class="navbar-form navbar-right" role="search">
+						<div id="search" class="form-group">
+	<input type="text" class="form-control" name="search" value="" placeholder="Поиск">
+	<button type="button" class="btn btn-default sr-only">Поиск</button>
+</div>					</form>
+				</div><!-- /.navbar-collapse -->
+				<span class="shadow shadow-left"></span>
+				<span class="shadow shadow-right"></span>
+			</nav>
+		</div>
+       
+<ul class="breadcrumb">
+			<li >
+			<a href="http://www.jalyuzi.uz/index.php?route=common/home">				Главная			</a>		</li>
+			<li class="active">
+							Запрашиваемая страница не найдена!					</li>
+	</ul>
+
+
+<div id="content">
+	<div class="list-group">
+    <a href="http://www.jalyuzi.uz/index.php?route=account/login" class="list-group-item">Вход</a> <a href="http://www.jalyuzi.uz/index.php?route=account/register" class="list-group-item">Регистрация</a> <a href="http://www.jalyuzi.uz/index.php?route=account/forgotten" class="list-group-item">Забыли пароль?</a>
+    <a href="http://www.jalyuzi.uz/index.php?route=account/account" class="list-group-item">Моя информация</a>
+    <a href="http://www.jalyuzi.uz/index.php?route=account/address" class="list-group-item">Адресная книга</a> <a href="http://www.jalyuzi.uz/index.php?route=account/wishlist" class="list-group-item">Закладки</a> <a href="http://www.jalyuzi.uz/index.php?route=account/order" class="list-group-item">История заказов</a> <a href="http://www.jalyuzi.uz/index.php?route=account/download" class="list-group-item">Файлы для скачивания</a><a href="http://www.jalyuzi.uz/index.php?route=account/recurring" class="list-group-item">Регулярные платежи</a> <a href="http://www.jalyuzi.uz/index.php?route=account/reward" class="list-group-item">Бонусные баллы</a> <a href="http://www.jalyuzi.uz/index.php?route=account/return" class="list-group-item">Возвраты</a> <a href="http://www.jalyuzi.uz/index.php?route=account/transaction" class="list-group-item">История транзакций</a> <a href="http://www.jalyuzi.uz/index.php?route=account/newsletter" class="list-group-item">E-Mail рассылка</a>
+  </div>
+<div class="list-group">
+    <a href="http://www.jalyuzi.uz/index.php?route=account/login" class="list-group-item">Вход</a> <a href="http://www.jalyuzi.uz/index.php?route=account/register" class="list-group-item">Регистрация</a> <a href="http://www.jalyuzi.uz/index.php?route=account/forgotten" class="list-group-item">Забыли пароль?</a>
+    <a href="http://www.jalyuzi.uz/index.php?route=account/account" class="list-group-item">Моя информация</a>
+    <a href="http://www.jalyuzi.uz/index.php?route=account/address" class="list-group-item">Адресная книга</a> <a href="http://www.jalyuzi.uz/index.php?route=account/wishlist" class="list-group-item">Закладки</a> <a href="http://www.jalyuzi.uz/index.php?route=account/order" class="list-group-item">История заказов</a> <a href="http://www.jalyuzi.uz/index.php?route=account/download" class="list-group-item">Файлы для скачивания</a><a href="http://www.jalyuzi.uz/index.php?route=account/recurring" class="list-group-item">Регулярные платежи</a> <a href="http://www.jalyuzi.uz/index.php?route=account/reward" class="list-group-item">Бонусные баллы</a> <a href="http://www.jalyuzi.uz/index.php?route=account/return" class="list-group-item">Возвраты</a> <a href="http://www.jalyuzi.uz/index.php?route=account/transaction" class="list-group-item">История транзакций</a> <a href="http://www.jalyuzi.uz/index.php?route=account/newsletter" class="list-group-item">E-Mail рассылка</a>
+  </div>
+
+	<div class="row">
+		
+		<div class="col-sm-12">
+			<div class="row">
+				<div class="col-sm-8">
+					<h2 class="page-title">
+						<span>Запрашиваемая страница не найдена!</span>
+					</h2>
+
+					<p>К сожалению, запрашиваемая Вами страница не найдена. Вероятно, Вы указали несуществующий адрес, страница была удалена, перемещена или сейчас она временно недоступна!</p>
+
+					<div class="buttons">
+						<a href="http://www.jalyuzi.uz/index.php?route=common/home" class="btn btn-primary">Продолжить</a>
+					</div>
+				</div>
+
+				<div class="col-sm-4">
+					
+									</div>
+			</div>
+		</div>
+	</div>
+
+	</div> 
+
+<div class="footer row">
+		<div class="clearfix">
+			<div class="col-sm-3">
+				<div class="widget">
+				 	<div class="brand">
+													<a href="http://www.jalyuzi.uz/index.php?route=common/home"><img src="image/logofoot.png" title="Jalyuzi.uz" alt="Jalyuzi.uz" class="img-responsive" /></a>
+								        	</div>
+				</div>
+			</div>
+			<div class="col-sm-3 col-xs-6">
+				<div class="widget">
+										<h3 class="text-center">Информация</h3>
+					<ul class="menu-bottom list-unstyled">
+									          		<li><a href="http://www.jalyuzi.uz/about_us">О Нас</a></li>
+			          				          		<li><a href="http://www.jalyuzi.uz/portfilio">Портфолио</a></li>
+			          				          	<li><a href="http://www.jalyuzi.uz/index.php?route=information/contact">Обратная связь</a></li>
+					</ul>
+									</div>
+			</div>
+			<div class="col-sm-3 hidden-xs">
+				<div class="widget">
+					<h3 class="text-center">Последние твиты</h3>
+					<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Jalyuzi" data-widget-id="617251537295773696" height="100" data-chrome="noheader nofooter noborders transparent noscrollbar">Tweets by @Jalyuzi</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+			</div>
+			<div class="col-sm-3 text-center">
+				<div class="widget">
+					<h3>Связаться</h3>
+
+					<address>
+						Beruniy, Huvaydo m.<br />
+100169 Tashkent, Uzbekistan<br/><span>Email - jalyuzi@mail.com</span><br/>
+			        <span>
+                    Телефон: <p align="center">+998 90-994-00-00</p> 
+                             <p align="center">+998 91-994-00-00</p> 
+                             <p align="center">+998 94-994-00-00</p>
+                    </span>
+					</address>
+
+					<ul class="list-unstyled social-icons list-inline">
+						<li class="facebook">
+							<a href="http://www.facebook.com/jalyuzi" target="_blank"><img src="catalog/view/theme/jalyuzi/image/social-icon.png"></a>
+						</li>
+						<li class="instagram">
+							<a href="http://www.instagram.com/jalyuzi" target="_blank"><img src="catalog/view/theme/jalyuzi/image/social-icon.png"></a>
+						</li>
+						<li class="odnoklassniki">
+							<a href="http://www.odnoklassniki.ru/jalyuzi" target="_blank"><img src="catalog/view/theme/jalyuzi/image/social-icon.png"></a>
+						</li>
+						<li class="twitter">
+							<a href="http://www.twitter.com/jalyuzi" target="_blank"><img src="catalog/view/theme/jalyuzi/image/social-icon.png"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="copyright">
+			<p>Diamond Exlusive &copy; Copyright 2015, All Rights Reserved. Site Developer by <a target="_blank" href="http://www.ejucompany.uz">EJU COMPANY</a></p>
+		</div>
+	</div>
+
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.js"></script>
+<script src="catalog/view/javascript/common.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-46987231-1">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-46987231-1');
+</script>
