@@ -1,5 +1,9 @@
 <template>
     <main id="about">
+        <Title>О нас</Title>
+        <Meta name="description" content="Жалюзи в Ташкенте" />
+        <Meta name="keywords" content="Жалюзи в Ташкенте" />
+
         <section class="intro">
             <div class="container">
                 <div class="intro-inner">
@@ -15,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="@/assets/images/about-text.jpg" class=" about-img img-fluid" alt="">
+                        <img src="@/assets/images/about-text.jpg" alt="Jalyuzi-about" class=" about-img img-fluid" >
                     </div>
                     <div class="col-md-6">
                         <div class="about-text mt-4">
@@ -86,7 +90,7 @@
                         
                     </div>
                     <div class="col-md-6">
-                        <img src="@/assets/images/about-text.jpg" class=" about-img img-fluid" alt="">
+                        <img src="@/assets/images/about-text.jpg" alt="about-jalyuzi-image" class=" about-img img-fluid">
                     </div>
                 </div>
             </div>

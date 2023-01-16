@@ -1,5 +1,19 @@
 <template>
     <div id="products">
+        <Title>Jalyuzi.uz - {{ category_name }} жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
+        
+        <Meta name="description"  :content=" category_name + 'жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса Jalyuzi'" />
+        <Meta name="keywords" :content=" category_name + 'жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса \
+            жалюзи комбо \
+            жалюзи в ташкенте цена  \
+            жалюзи цена узбекистан \
+            жалюзи на окна ташкент \
+            жалюзи в г.ташкенте цены и адреса \
+            жалюзи в узбекистане \
+            жалюзи уз \
+            купить жалюзи в ташкенте'
+            " />
+
         <div class="row gx-0">
             <div class="col-lg-3">
                <ProductFilter :showFilter="showFilterStatus" :is_sub="false" @getCategoryProductsOn="getCategoryProductsOn" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
@@ -31,7 +45,7 @@
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="subcategory in subcategories" :key="subcategory.id">
                                     <div class="card main-card">
                                         <NuxtLink :to='"subcategory/" + subcategory.id' class="me-auto ms-auto nav-link">
-                                            <img :src="subcategory.image" class="card-img" alt="...">
+                                            <img :alt="subcategory.name" :src="subcategory.image" class="card-img">
                                             
                                         </NuxtLink>
                                         <div class="card-body">
@@ -51,7 +65,7 @@
                             <div class="row gx-3" v-if="is_data">
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in category_products" :key="product.id">
                                     <div class="card main-card" v-if="product.status">
-                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
+                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" :alt="product.name"></NuxtLink>
                                         <div class="card-body">
                                             <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                                 <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
@@ -115,7 +129,7 @@ export default {
             is_data: false,
             category_products: [],
             showPagination: true,
-            type: 'category'
+            type: 'category',
         }
     },
 

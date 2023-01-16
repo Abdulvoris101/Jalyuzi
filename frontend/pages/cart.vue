@@ -1,5 +1,8 @@
 <template> 
     <div id="cart-page">
+        <Title>Jalyuzi - Корзинка </Title>
+        <Meta name="description" content="цены на жалюзи в ташкенте" />
+        
         <div class="container">
             <div class="product-ordered" v-if="product_ordered">
                 <h3 class="order-title">Ваш заказ принят!</h3>   
@@ -24,7 +27,7 @@
                                 <div class="row gx-0 ">
                                     
                                 <div class="col-md-2 col-2 ">
-                                    <img :src="baseUrl + product.image" class="img-cart" width="115" alt="">
+                                    <img :src="baseUrl + product.image" class="img-cart" width="115" :alt="product.name">
                                 </div>
 
 

@@ -22,6 +22,7 @@ class CustomUserAdmin(UserAdmin):
                     'first_name',
                     'last_name',
                     'phone_number',
+                    'telegram_id'
                     
                 )
             }
@@ -37,7 +38,8 @@ class CustomUserAdmin(UserAdmin):
                 'fields': (
                     'phone_number',
                     'confirm',
-                    'first_confirm'
+                    'first_confirm',
+                    'telegram_id'
                     
                 )
             }

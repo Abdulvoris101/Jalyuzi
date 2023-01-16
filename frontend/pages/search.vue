@@ -21,12 +21,13 @@
                             <tr v-for="product in searchedProducts" :key="product.id">
                                 <th scope="row">{{ product.id }}</th>
                                 <td>
-                                    <img :src="baseUrl + product.image"  width="50" alt="">
+                                    <img :src="baseUrl + product.image"  width="50" :alt="product.name">
                                 </td>
                                 <td>{{  product.model }}</td>
                                 <td>{{  product.weight }}</td>
                                 <td>{{  product.price }}</td>
-                                <td><nuxt-link class="text-dark" :to="{ name: 'product-id', params: { id: product.id } }">
+
+                                <td><nuxt-link class="text-dark" :to="{ name: 'product-id', params: { id: product.slug } }">
                                     Перейти
                                     </nuxt-link></td>
                         

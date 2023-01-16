@@ -10,8 +10,8 @@
                         <article class="card insta-card" style="box-shadow: none !important;">
                 
                         <div class="card-image ">
-                          <img :src="post.mediaUrl" v-if="post.mediaType == 'IMAGE'" class="img-fluid img">
-                          <img :src="post.thumbnailUrl" v-else class="img-fluid img">
+                          <img :src="post.mediaUrl" v-if="post.mediaType == 'IMAGE'" class="img-fluid img" :alt="post.caption">
+                          <img :src="post.thumbnailUrl" v-else class="img-fluid img" :alt="post.caption">
                         </div> <!-- card-image end//-->
                         
                         

@@ -59,6 +59,6 @@ class Order(models.Model):
 
 
     def save(self, *args, **kwargs):
-        send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909174227')
+        # send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909174227')
         
         super(Order, self).save(*args, **kwargs)

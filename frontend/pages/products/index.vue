@@ -1,5 +1,22 @@
 <template>
     <div id="products">
+        <Title>Jalyuzi - Все продукты  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
+        <Meta name="keywords" content="Жалюзи в ташкенте \
+                    купить жалюзи в ташкенте  \
+                    жалюзи в узбекистане \
+                    жалюзи уз \
+                    Производство и установка жалюзей в Ташкенте \
+                    фото жалюзи в ташкенте \
+                    жалюзи на пластиковые окна в ташкенте\
+                    жалюзи комбо \
+                    жалюзи в ташкенте цена \
+                    жалюзи цена узбекистан \
+                    жалюзи на окна ташкент \
+                    купить жалюзи в ташкенте \
+        " />
+        <Meta name="description" content="цены на жалюзи в ташкенте" />
+
+        
         <div class="row gx-0">
             <div class="col-lg-3">
                <ProductFilter :showFilter="showFilterStatus" :is_sub="false" @getProducts="getProducts" @closeFilter="closeFilter" @changeMyProducts="changeMyProducts" />
@@ -26,7 +43,7 @@
                             <div class="row gx-3" v-if="is_product">
                                 <div class="col-md-3 col-6 col-sm-4"  v-for="product in products" :key="product.id">
                                     <div class="card main-card" v-if="product.status">
-                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
+                                        <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" :alt="product.name" class="card-img" alt="..."></NuxtLink>
                                         <div class="card-body">
                                             <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                                 

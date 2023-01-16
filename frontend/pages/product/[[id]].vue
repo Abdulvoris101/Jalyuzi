@@ -1,5 +1,10 @@
 <template>
     <div id="detail-product">
+        <Title>Jalyuzi - {{ product.name }}</Title>
+
+        <Meta name="keywords" content="цены на жалюзи в ташкенте" />
+        <Meta name="description" content="цены на жалюзи в ташкенте" />
+
         <div class="container">
 
             <div class="row desk">
@@ -7,12 +12,13 @@
                     <div class="card-left card">
                         <div class="card-img">
                             <a :href="product.image" data-fancybox>
-                                <img :src="product.image" class=" img-product img-fluid"  alt="">
+                                <img :src="product.image" :alt="product.name" class=" img-product img-fluid"  alt="">
                             </a>
 
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-5 col-7">
                     <div class="product-detail">
                         <h4 class="product-title">{{ product.name }} {{ getMyCatalog.name }} {{ getMyColors.name }}</h4>
@@ -95,7 +101,7 @@
                     <div class="card-left card">
                         <div class="card-img">
                             {{ product  }}
-                            <img :src="product.image" class=" img-product img-fluid"  alt="">
+                            <img :src="product.image" :alt="product.name" class=" img-product img-fluid"  alt="">
                         </div>
                         <h4 class="product-title pt-4 ps-2" style="font-size: 18px;">{{ product.name }} {{ getMyCatalog.name }} {{ getMyColors.name }}</h4>
 

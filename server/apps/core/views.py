@@ -169,7 +169,16 @@ class ColorView(ListCreateAPIView):
     queryset = Color.objects.all()
     serializer_class = ColorSerializer
 
+class ColorDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Color.objects.all()
+    serializer_class = ColorSerializer
+
 class PropertyView(ListCreateAPIView):
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+
+
+class PropertyDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
 
@@ -195,3 +204,8 @@ class CatalogView(ListCreateAPIView):
         serializer = CatalogSerializer(objs, many=True)
         return Response(serializer.data)
 
+
+
+class CatalogDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Catalog.objects.all()
+    serializer_class = CatalogSerializer

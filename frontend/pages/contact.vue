@@ -1,5 +1,9 @@
 <template>
     <div id="contact">
+
+        <Title>Jalyuzi - Контакт </Title>
+        <Meta name="description" content="цены на жалюзи в ташкенте" />
+
         <section class="intro">
             <div class="container">
                 <div class="intro-inner">
@@ -20,7 +24,7 @@
                     <div class="col-md-6">
                         <div class="contact-card">
                             <h4 class="contact-card-title">
-                                <img src="@/assets/images/contact-icons/phone.png" width="32" alt=""> Phone
+                                <img src="@/assets/images/contact-icons/phone.png" width="32" alt="phone_icon"> Phone
                             </h4>
                             <ul>
                                 <li>+998 90-994-00-00</li>
@@ -29,7 +33,7 @@
                         </div>
                         <div class="contact-card">
                             <h4 class="contact-card-title">
-                                <img src="@/assets/images/contact-icons/email.png" width="32" alt=""> Email
+                                <img src="@/assets/images/contact-icons/email.png" width="32" alt="email_icon"> Email
                             </h4>
                             <ul>
                                 <li>jalyuzi@mail.com</li>
@@ -37,7 +41,7 @@
                         </div>
                         <div class="contact-card">
                             <h4 class="contact-card-title">
-                                <img src="@/assets/images/contact-icons/address.png" width="32" alt=""> Address
+                                <img src="@/assets/images/contact-icons/address.png" width="32" alt="address_icon"> Address
                             </h4>
                             <ul>
                                 <li class="address-info">Beruniy, Huvaydo m.

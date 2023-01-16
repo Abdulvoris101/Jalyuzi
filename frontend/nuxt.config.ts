@@ -26,10 +26,20 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-16',
             viewport: 'width=500, initial-scale=1', 
-            title: 'Jalyuzi',
+
+            title: 'Jalyuzi.uz - Вертикальные тканевые жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса',
+            
             meta: [
-                { name: 'description', content: 'Jalyuzi' },
+                { name: 'description', content: 'Jalyuzi.uz - Вертикальные тканевые жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса' },
+                { name: "keywords", content: "жалюзи цена ташкентe жалюзи цена ташкентe  Жалюзи в ташкенте купить жалюзи в ташкенте жалюзи в узбекистане  жалюзи Производство и установка жалюзей в Ташкенте фото жалюзи в ташкенте жалюзи на пластиковые окна в ташкенте жалюзи комбо  жалюзи в ташкенте цена жалюзи цена узбекистан жалюзи на окна ташкент купить жалюзи в ташкенте jalyuzi Jaluz Jalyuzilar jalyuzi.uz jalyuzi v tashkente " }
             ],
+
+            link: [
+                {
+                  rel: 'icon',
+                  href: 'http://www.jalyuzi.uz/image/catalog/favicon.png'
+                },
+            ]
             
         }
     }

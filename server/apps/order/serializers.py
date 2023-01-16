@@ -5,6 +5,7 @@ from rest_framework.serializers import ModelSerializer
 
 class OrderSerializer(ModelSerializer):
     client = serializers.CharField(source="client.username", read_only=True)
+
     # product = serializers.HyperlinkedIdentityField(view_name='product_detail', format='html')
 
     class Meta:

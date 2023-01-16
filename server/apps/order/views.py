@@ -23,7 +23,7 @@ class OrderView(ListCreateAPIView):
         serializer = OrderSerializer(data=data, many=True)
         serializer.is_valid(raise_exception=True)
         serializer.save(client=self.request.user)
-
+        
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

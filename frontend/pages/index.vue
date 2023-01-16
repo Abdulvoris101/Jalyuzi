@@ -17,6 +17,22 @@ export default {
 
 <template>
     <div id="index">
+        <Title>Jalyuzi -  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
+        <Meta name="keywords" content="Жалюзи в ташкенте \
+купить жалюзи в ташкенте  \
+жалюзи в узбекистане \
+жалюзи уз \
+Производство и установка жалюзей в Ташкенте \
+фото жалюзи в ташкенте \
+жалюзи на пластиковые окна в ташкенте\
+жалюзи комбо \
+жалюзи в ташкенте цена \
+жалюзи цена узбекистан \
+жалюзи на окна ташкент \
+купить жалюзи в ташкенте \
+        " />
+        <Meta name="description" content="цены на жалюзи в ташкенте" />
+
         <Slide />
 
 
@@ -33,7 +49,7 @@ export default {
             <div class="container-fluid">
                 <div class="row gx-4">
                     <div class="col-md-6 mb-3">
-                        <img src="@/assets/images/bg-home-sec.webp" class="img-fluid" alt="">
+                        <img src="@/assets/images/bg-home-sec.webp" class="img-fluid" alt="jalyuzi-cards">
                     </div>
                     <div class="col-md-6 text-col pb-4 pt-3">
                         <div class="getsample_text">

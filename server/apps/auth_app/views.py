@@ -15,6 +15,8 @@ from twilio.rest import Client
 from django.contrib.auth import logout
 from rest_framework.authtoken.models import Token
 import os
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 from django.contrib.auth.hashers import check_password, make_password
 
@@ -76,34 +78,36 @@ class UserVerification(APIView):
 
         if user_s:
             user = CustomUser.objects.get(username=phone_number)
+            if str(confirm).isdigit():
+                if user.confirm == int(confirm):
 
-            if user.confirm == int(confirm):
+                    token, created = Token.objects.get_or_create(user=user)
+                    
+                    user.confirm = randint(10000, 99999)
+                    user.first_confirm = True
+                    user.save()
 
-                token, created = Token.objects.get_or_create(user=user)
-                
-                user.confirm = randint(10000, 99999)
-                user.first_confirm = True
-                user.save()
+                    user = authenticate(request, username=phone_number, password=password)
 
-                user = authenticate(request, username=phone_number, password=password)
+                    login(request, user)
 
-                login(request, user)
+                    response =  Response({
+                        'token': token.key,
+                        'user_id': user.id,
+                        'firstConfirm': user.first_confirm,
+                        'ok': True
+                    })
 
-                response =  Response({
-                    'token': token.key,
-                    'user_id': user.id,
-                    'firstConfirm': user.first_confirm
-                })
+                    user_cookie = request.COOKIES.get('user_token') 
 
-                user_cookie = request.COOKIES.get('user_token') 
+                    if user_cookie == token.key:
+                        return response
+                    
+                    response.set_cookie('user_token', token.key)
 
-                if user_cookie == token.key:
                     return response
-                
-                response.set_cookie('user_token', token.key)
 
-                return response
-                
+                return Response({"Error": "Введено код не является числом!"})
 
             else:
                 return Response({'Error': 'Неверный код!'}, status=status.HTTP_400_BAD_REQUEST)
@@ -132,14 +136,26 @@ class UserRegisterView(APIView):
 
     def get(self, request, format=None):
         deleted = self.get_queryset(request)
-
-        if deleted:
-            return Response({'Deleted': True})
+        admin = CustomUser.objects.get(username="admin")
+        telegram_id = request.query_params.get('telegram_id')
         
-        users = CustomUser.objects.all()
-        serializer = UserSerializer(users, many=True)
+        if telegram_id:
+            user = get_object_or_404(CustomUser, telegram_id=telegram_id)
+            serializer = UserSerializer(user)
 
-        return Response(serializer.data)
+            return Response(serializer.data)
+            
+        if admin == request.user:    
+            if deleted:
+                return Response({'Deleted': True})
+            
+            users = CustomUser.objects.all()
+            serializer = UserSerializer(users, many=True)
+
+            return Response(serializer.data)
+        
+ 
+        return Response({"detail": "You do'nt have permissons"})
 
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
@@ -163,13 +179,14 @@ class UserRegisterView(APIView):
                     user.confirm = randint(10000, 99999)
                     user.save()
 
-                    send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz", username)
+                    send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz ili na bote @jalyuziuzbot", username)
 
                     return Response({
                         'Send Verification': 'Waiting...',
                         'firstConfirm': user.first_confirm,
-                        'username': user.username
-                    })
+                        'username': user.username,
+                        'ok': True
+                    }, status=status.HTTP_200_OK)
                 
 
                 return Response({
@@ -181,6 +198,7 @@ class UserRegisterView(APIView):
             return Response({'Error': 'User Allready exist', 'Error_Code': 5}, status=status.HTTP_400_BAD_REQUEST)
             
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class UserLoginView(APIView):
@@ -207,7 +225,8 @@ class UserLoginView(APIView):
                 'token': token.key,
                 'user_id': user.id,
                 'first_name': user.first_name,
-                'phone_number': user.phone_number
+                'phone_number': user.phone_number,
+                'ok': True
             },status=status.HTTP_200_OK)
 
             user_cookie = request.COOKIES.get('user_token') 
@@ -232,28 +251,29 @@ class UserLogout(APIView):
         
 
 class UserMe(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+
     def get(self, request):
-        token = request.headers.get('Authorization')
+        user = get_object_or_404(CustomUser, username=request.user.username)
 
-        if token is not None:
-            token = token.split('Token ')[1]
-            user_id = Token.objects.get(key=token).user
-            user = CustomUser.objects.get(username=user_id)
-
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+        serializer = UserSerializer(user)
         
-        elif str(request.user) != 'AnonymousUser':
-            user = CustomUser.objects.get(username=request.user.username)
-            serializer = UserSerializer(user)
-            
-            return Response(serializer.data)
-    
-        else:
-            return Response({'error': 'You didn\'t login'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-    
+    def put(self, request):
+        first_name = request.data.get("first_name")
+        last_name = request.data.get("last_name")
+
+        user = get_object_or_404(CustomUser, username=request.user.username)
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+
+        return Response({"ok": True}, status=status.HTTP_200_OK)
+
 
     def delete(self, request):
         user = request.user
@@ -266,5 +286,21 @@ class UserMe(APIView):
     
 
         
-    
+class SendVerificationView(APIView):
+    def post(self, request):
+        telegram_id = request.data.get("telegram_id")
+
+        user = get_object_or_404(CustomUser, telegram_id=telegram_id)
+
+        user.confirm = randint(10000, 99999)
+        user.save()
+
+        send_code(f"1 - Vash kod dlya registratsii na sayte Jalyuzi.uz ili na bote @jalyuziuzbot", user.username)
+
+        return Response({
+            'Verification': 'Waiting....',
+            'ok': True
+        }, status=status.HTTP_200_OK)
+        
+
 

@@ -29,7 +29,7 @@
                         <div class="row gx-3" v-if="is_data">
                             <div class="col-md-3 col-6 col-sm-4 mt-3"  v-for="product in getData" :key="product.id">
                                 <div class="card main-card"  v-if="product.status">
-                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
+                                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" :alt="product.name"></NuxtLink>
                                     <div class="card-body">
                                         <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
