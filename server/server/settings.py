@@ -317,6 +317,10 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
 }
 
+
+TIME_ZONE = 'Asia/Tashkent'
+
+
 JAZZMIN_SETTINGS["show_ui_builder"] = True
 
 JAZZMIN_UI_TWEAKS = {

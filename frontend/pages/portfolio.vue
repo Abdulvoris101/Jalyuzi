@@ -36,7 +36,7 @@
 
 <script setup>
 
-const { data } = await useFetch('https://feeds.behold.so/jj1hPcwZbF3OhgqgYRzq')
+const { data } = await useFetch('https://feeds.behold.so/ran2jUY85ACMmkU6mxiA')
 let posts = data
 
 </script>

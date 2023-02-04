@@ -41,7 +41,7 @@
                             <div class="logo">
                                 
                                 <nuxt-link :to="{name: 'index'}" class="nav-link">      
-                                    <img src="@/assets/images/logo.png" width="170" alt="">
+                                    <img src="@/assets/images/logo.jpg" width="150" alt="">
                                 </nuxt-link>
     
                             </div>
