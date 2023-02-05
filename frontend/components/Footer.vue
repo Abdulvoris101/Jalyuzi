@@ -5,7 +5,7 @@
             <div class="row mobile-footer" style="justify-content:space-between">
                 <div class="col-6">
                     <div class="logo">
-                        <img src="@/assets/images/logo.png" alt="">
+                        <img src="@/assets/images/logo.png" width="100" alt="">
                     </div> 
                 </div>
                 <div class="col-6" style="text-align:right;">
@@ -32,7 +32,7 @@
                 <div class="col-md-3">
                     <section class="">
                         <div class="logo">
-                            <img src="@/assets/images/logo.png" alt="">
+                            <img src="@/assets/images/logo.png" width="200  "  alt="">
                         </div> 
                         
                     </section>
