@@ -32,7 +32,7 @@
                 <div class="col-md-3">
                     <section class="">
                         <div class="logo">
-                            <img src="@/assets/images/logo.png" width="200  "  alt="">
+                            <img src="@/assets/images/logo.png" width="200"  alt="">
                         </div> 
                         
                     </section>

@@ -16,16 +16,15 @@ services:
       - main
 
   frontend:
-    container_name: "frontend"
+    container_name: frontend
     build: ./frontend
-    
-    stdin_open: true
     command: sh 'start_dev.sh'
-    tty: true
     ports:
       - "3000:3000"
     networks:
       - main
+    volumes:
+      - assets_volume:/app/assets/
     depends_on:
       - server
 
@@ -51,6 +50,7 @@ services:
 volumes:
   static_volume:
   media_volume:
+  assets_volume:
 
 
 networks:

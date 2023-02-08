@@ -1,5 +1,4 @@
 FROM nginx:1.21-alpine
-frontend  | > eval $(grep '^NUXT_HOST' .env) $(grep '^NUXT_PORT' .env) node .output/server/index.mjs
 
 COPY nginx/nginx.conf /etc/nginx/conf.d
 

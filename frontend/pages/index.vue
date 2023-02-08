@@ -1,20 +1,4 @@
 
-
-<script>
-
-
-export default {
-    
-    setup() {
-        
-    },
-
-    
-
-    
-}
-</script>
-
 <template>
     <div id="index">
         <Title>Jalyuzi -  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
@@ -70,6 +54,24 @@ export default {
          
     </div>
 </template>
+
+
+
+<script>
+
+
+export default {
+    
+    setup() {
+        
+    },
+
+    
+
+    
+}
+</script>
+
 
 
 <style>

@@ -2,7 +2,13 @@
 
 
 export default defineNuxtConfig({
-    
+
+    routeRules: {    
+        '/': { static: true },    
+        '/product/**': { static: true }, 
+        '/category/**': { swr: true }, 
+        '/contact': { static: true },    
+    },
     
     modules: [ [
         '@pinia/nuxt',
