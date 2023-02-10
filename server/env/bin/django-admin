@@ -1,4 +1,4 @@
-#!/home/abdulvoris/Documents/Jalyuzi/server/env/bin/python3
+#!/home/abdulvoris/Documents/Jalyuzi/server/env/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

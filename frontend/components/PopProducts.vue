@@ -1,9 +1,9 @@
 <template>
     <div id="pop-products">
-        <Splide :options="{ gap: 15, autoplay: true, perPage : 5, pagination: false, autoheight: true  }"  v-if="is_product" aria-label="My Favorite Images">
+        <Splide :options="{ gap: 5, autoplay: true, perPage : 4, pagination: false, autoheight: true  }"  v-if="is_product" aria-label="My Favorite Images">
             <SplideSlide v-for="product in getData" :key="product.id">
                 <div class="card main-card">
-                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" class="card-img" alt="..."></NuxtLink>
+                    <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" style="margin-top: 20px; padding: 0;" class="img-fluid" :alt="product.name" ></NuxtLink>
                     <div class="card-body">
                         <NuxtLink :to="{ name: 'product-id', params: { id: product.id } }" class="nav-link">
                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>

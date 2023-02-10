@@ -11,7 +11,7 @@ export const ProductStore = defineStore('product', {
             subcategories: [],
             current_category: '',
             current_subcategory: '',
-            baseUrl: 'http://0.0.0.0:8000',
+            baseUrl: 'http://0.0.0.0:8001',
             countOfCart: 0,
             lastId: '',
             cart_products: [],
@@ -258,7 +258,7 @@ export const FilterStore = defineStore('filter', {
             subcategories: [],
             my_subcategory: [],
             properties: [],
-            baseUrl: 'http://0.0.0.0:8000',
+            baseUrl: 'http://0.0.0.0:8001',
             my_property: []
         }
     },
@@ -352,7 +352,7 @@ export const AccountStore = defineStore('modal', {
             addresses: [],
             username_reset: '',
             resetConfirmStatus: '',
-            baseUrl: 'http://0.0.0.0:8000'
+            baseUrl: 'http://0.0.0.0:8001'
         }
     },
     actions: {

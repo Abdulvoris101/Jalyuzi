@@ -4,10 +4,14 @@
 export default defineNuxtConfig({
 
     routeRules: {    
-        '/': { static: true },    
-        '/product/**': { static: true }, 
+        '/': { swr: true },    
+        '/product/**': { swr: true }, 
         '/category/**': { swr: true }, 
+        '/subcategory/**': { swr: true }, 
         '/contact': { static: true },    
+        '/about': { static: true }, 
+        '/products': { swr: true },   
+        '/search': { static: true },   
     },
     
     modules: [ [

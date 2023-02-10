@@ -100,7 +100,6 @@
                 <div class="col-md-3 col-5">
                     <div class="card-left card">
                         <div class="card-img">
-                            {{ product  }}
                             <img :src="product.image" :alt="product.name" class=" img-product img-fluid"  alt="">
                         </div>
                         <h4 class="product-title pt-4 ps-2" style="font-size: 18px;">{{ product.name }} {{ getMyCatalog.name }} {{ getMyColors.name }}</h4>
