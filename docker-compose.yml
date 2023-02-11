@@ -27,27 +27,7 @@ services:
     depends_on:
       - server
 
-  nginx:
-    container_name: nginx
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
-    ports:
-      - "80:80"
-    depends_on:
-      - server
-      - frontend
-
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - static_volume:/app/static
-      - media_volume:/app/media
     
-    networks:
-      - main
-
-    
-
 volumes:
   static_volume:
   media_volume:
