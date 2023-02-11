@@ -1,5 +1,3 @@
-env/
-env
-/env
-/env/
+static/
+static
 .env/
