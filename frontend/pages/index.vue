@@ -61,7 +61,9 @@
 
 
 export default {
-    
+    created() {
+        console.log(this.$config.baseUrl);
+    }
 }
 </script>
 
