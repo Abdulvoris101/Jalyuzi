@@ -162,8 +162,7 @@ export default {
         },
 
         postRegister(body) {
-            console.log(this.baseUrl);
-            fetch(`${this.baseUrl}/api/users/`, {
+            fetch(`${this.$config.baseUrl}/api/users/`, {
                 method: 'POST', // or 'PUT'
                 credentials: 'include',
                 headers: {

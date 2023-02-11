@@ -134,7 +134,7 @@ export default {
 
         postLogin(body) {
             let csrf_token = useCookie('csrftoken').value
-            fetch(`${this.baseUrl}/api/users/login/`, {
+            fetch(`${this.$config.baseUrl}/api/users/login/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

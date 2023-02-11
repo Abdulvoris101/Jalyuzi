@@ -7,9 +7,8 @@ services:
     build: ./server
     command: sh 'start_prod.sh'
     volumes:
-      - static_volume:/app/static/
-      - media_volume:/app/media/
-      
+      - static_volume:/app/static
+      - media_volume:/app/media
     ports:
       - "8000:8000"
     networks:
@@ -24,7 +23,7 @@ services:
     networks:
       - main
     volumes:
-      - assets_volume:/app/assets/
+      - assets_volume:/app/assets
     depends_on:
       - server
 
@@ -40,8 +39,9 @@ services:
       - frontend
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - static_volume:/app/static/
-      - media_volume:/app/media/
+      - static_volume:/app/static
+      - media_volume:/app/media
+    
     networks:
       - main
 

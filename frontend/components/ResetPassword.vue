@@ -124,7 +124,7 @@ export default {
 
             let csrf_token = useCookie('csrftoken').value
             
-            fetch(`${this.baseUrl}/api/users/reset_password/`, {
+            fetch(`${this.$config.baseUrl}/api/users/reset_password/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -156,7 +156,7 @@ export default {
 
             let csrf_token = useCookie('csrftoken').value
             
-            fetch(`${this.baseUrl}/api/users/send_to_reset/`, {
+            fetch(`${this.$config.baseUrl}/api/users/send_to_reset/`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

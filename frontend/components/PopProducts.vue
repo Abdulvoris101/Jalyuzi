@@ -34,12 +34,16 @@ export default {
     },
     data() {
         return {
-            not_product: 'Нету продуктов ):',
+            not_product: 'Нету продуктов ):'
         }
     },
+    created() {
+        this.baseUrl = this.$config.baseUrl
+    },
+
     computed: {
         ...mapStores(ProductStore, FilterStore),
-        ...mapState(ProductStore, ['is_product', 'getData', 'baseUrl']),
+        ...mapState(ProductStore, ['is_product', 'getData']),
         ...mapState(FilterStore, ['getColors', 'getCatalogs', 'getProperties']),
     },
 }

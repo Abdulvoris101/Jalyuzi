@@ -11,7 +11,7 @@ export const ProductStore = defineStore('product', {
             subcategories: [],
             current_category: '',
             current_subcategory: '',
-            baseUrl: 'http://0.0.0.0:8001',
+            baseUrl: "http://server",
             countOfCart: 0,
             lastId: '',
             cart_products: [],
@@ -32,25 +32,27 @@ export const ProductStore = defineStore('product', {
         async fetchProducts(number) {
             let { data, pending, error } = await useAsyncData('products',  () => $fetch(`${this.baseUrl}/api/products/?page=${number}`),)
 
-            if (data.value.results.length >= 1) {   
+            if (data.value) {
+                if (data.value.results.length >= 1) {   
                 
-                this.products = data.value.results
-
-                for (let i = 0; i < this.products.length; i++) {
-                    let overall_price = this.products[i].price_sum.toString()
-                    overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
-                    this.products[i].b_price = overall_price
+                    this.products = data.value.results
+    
+                    for (let i = 0; i < this.products.length; i++) {
+                        let overall_price = this.products[i].price_sum.toString()
+                        overall_price =  `${overall_price.slice(-9, -6)} ${overall_price.slice(-6, -3)} ${overall_price.slice(-3)}`
+                        this.products[i].b_price = overall_price
+                    }
+    
+                    this.total = data.value.total
+                    this.page_size = data.value.page_size
+                    this.inTheCart()
+                    
+                    this.is_product = true
+                } else {
+    
+                    this.products = []
+                    this.is_product = false
                 }
-
-                this.total = data.value.total
-                this.page_size = data.value.page_size
-                this.inTheCart()
-                
-                this.is_product = true
-            } else {
-
-                this.products = []
-                this.is_product = false
             }
         },
 
@@ -258,7 +260,7 @@ export const FilterStore = defineStore('filter', {
             subcategories: [],
             my_subcategory: [],
             properties: [],
-            baseUrl: 'http://0.0.0.0:8001',
+            baseUrl: "http://server",
             my_property: []
         }
     },
@@ -352,7 +354,7 @@ export const AccountStore = defineStore('modal', {
             addresses: [],
             username_reset: '',
             resetConfirmStatus: '',
-            baseUrl: 'http://0.0.0.0:8001'
+            baseUrl: "http://server"
         }
     },
     actions: {

@@ -55,7 +55,10 @@ export default {
     },
     computed: {
         ...mapStores(ProductStore),
-        ...mapState(ProductStore, [ 'products', 'baseUrl'] ),
+        ...mapState(ProductStore, [ 'products'] ),
+    },
+    created() {
+        this.baseUrl = this.$config.baseUrl
     },
     methods: {
         queryFilter() {

@@ -220,7 +220,7 @@ export default {
 
         async getFilterPosts(query) {
             console.log(query);
-            const { data, pending, error } = await useFetch(`${this.baseUrl}/api/products/?${query}&paginate=false`, { initialCache : false })
+            const { data, pending, error } = await useFetch(`${this.$config.baseUrl}/api/products/?${query}&paginate=false`, { initialCache : false })
             
 
             this.changeProducts(data)

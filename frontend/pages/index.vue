@@ -62,13 +62,6 @@
 
 export default {
     
-    setup() {
-        
-    },
-
-    
-
-    
 }
 </script>
 

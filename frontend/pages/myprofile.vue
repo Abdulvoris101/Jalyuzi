@@ -109,7 +109,7 @@ export default {
         },
 
         user_logout() {
-            fetch(`${this.baseUrl}/api/users/logout/`, {
+            fetch(`${this.$config.baseUrl}/api/users/logout/`, {
                 method: 'GET',
                 credentials: 'include',
             })

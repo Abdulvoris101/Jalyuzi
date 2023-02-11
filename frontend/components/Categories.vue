@@ -46,8 +46,9 @@ export default {
     },
 
     async created() {
-        const { data } = await useFetch(`${this.baseUrl}/api/categories/`)
+        const { data } = await useFetch(`${this.$config.baseUrl}/api/categories/`)
         this.categories = data.value
+
     },
     computed: {
         ...mapStores(ProductStore),

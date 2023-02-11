@@ -83,7 +83,7 @@ export default {
         CancelRegister() {
             if (this.firstConfirm == false) {
 
-                fetch(`${this.baseUrl}/api/users/?delete=${this.phone_number}`,
+                fetch(`${this.$config.baseUrl}/api/users/?delete=${this.phone_number}`,
                     {
                         method: 'GET'
                     }
@@ -128,7 +128,7 @@ export default {
         },
 
         postRegister(body) {
-            fetch(`${this.baseUrl}/api/users/verification/`, {
+            fetch(`${this.$config.baseUrl}/api/users/verification/`, {
                 method: 'POST', // or 'PUT'
                 credentials: 'include',
                 headers: {

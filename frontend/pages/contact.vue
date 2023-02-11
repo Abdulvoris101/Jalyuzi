@@ -101,7 +101,7 @@ export default {
 
             if (this.name != '' && this.email != '' && this.phone_number != '' && this.message != '') {
 
-                let url = `${this.baseUrl}/api/contact/`
+                let url = `${this.$config.baseUrl}/api/contact/`
 
                 let data = JSON.stringify({
                     'name': this.name,
