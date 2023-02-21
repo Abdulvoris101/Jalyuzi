@@ -11,7 +11,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from random import randint
-from twilio.rest import Client
+import requests
 from django.contrib.auth import logout
 from rest_framework.authtoken.models import Token
 import os
@@ -22,16 +22,23 @@ from django.contrib.auth.hashers import check_password, make_password
 
 
 def send_code(body, phone_number):
-    account_sid = 'AC4bd96c3befa553a87e6c089ff79c643f'
-    auth_token = 'd29a6a9dfbc44861775fbc2489066636'
+    auth_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NDAsInJvbGUiOiIiLCJkYXRhIjp7ImlkIjoyNTQwLCJuYW1lIjoiXHUwNDIxXHUwNDFmIEJyaWxsaWFudCBFeGNsdXNpdmUgQ29tcGFueSIsImVtYWlsIjoiSmF2ZG90QG1haWwucnUiLCJyb2xlIjoiIiwiYXBpX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnpkV0lpT2pJMU5EQXNJbkp2YkdVaU9pSjFjMlZ5SWl3aVpHRjBZU0k2ZXlKcFpDSTZNalUwTUN3aWJtRnRaU0k2SWx4MU1EUXlNVngxTURReFppQkNjbWxzYkdsaGJuUWdSWGhqYkhWemFYWmxJRU52YlhCaGJua2lMQ0psYldGcGJDSTZJa3BoZG1SdmRFQnRZV2xzTG5KMUlpd2ljbTlzWlNJNkluVnpaWElpTENKaGNHbGZkRzlyWlc0aU9pSmxlVW93WlZoQmFVOXBTa3RXTVZGcFRFIiwic3RhdHVzIjoiYWN0aXZlIiwic21zX2FwaV9sb2dpbiI6ImVza2l6MiIsInNtc19hcGlfcGFzc3dvcmQiOiJlJCRrIXoiLCJ1el9wcmljZSI6NTAsInVjZWxsX3ByaWNlIjoxMTUsInRlc3RfdWNlbGxfcHJpY2UiOjAsImJhbGFuY2UiOjI5OTk1MCwiaXNfdmlwIjowLCJob3N0Ijoic2VydmVyMSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTIxVDA2OjA5OjQyLjAwMDAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMi0yMVQxODozNTowMy4wMDAwMDBaIn0sImlhdCI6MTY3NzAwNDc5NiwiZXhwIjoxNjc5NTk2Nzk2fQ.5bezU7Ztu5iKcEOyLdhbSoM4QFhoVi-MPQCoUP1HfgM'
 
-    client = Client(account_sid, auth_token)
+    url = "http://notify.eskiz.uz/api/message/sms/send"
+    print("S")
+    payload={
+        'mobile_phone': f'998{phone_number}',
+        'message': f'{body}',
+        'from': '4546'
+    }
 
-    message = client.messages.create(
-        body=body,
-        from_='+14256005103',
-        to=f'+998{phone_number}'
-    )
+    headers = {
+        'Authorization': f'Bearer {auth_token}'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    print(response.text)
 
 
 
@@ -69,6 +76,7 @@ class ResetPassword(APIView):
 
 
 class UserVerification(APIView):
+
     def post(self, request):
         confirm = request.data['confirm']
         phone_number = request.data['phone_number']
@@ -83,13 +91,9 @@ class UserVerification(APIView):
 
                     token, created = Token.objects.get_or_create(user=user)
                     
-                    user.confirm = randint(10000, 99999)
                     user.first_confirm = True
                     user.save()
 
-                    user = authenticate(request, username=phone_number, password=password)
-
-                    login(request, user)
 
                     response =  Response({
                         'token': token.key,
@@ -105,12 +109,12 @@ class UserVerification(APIView):
                     
                     response.set_cookie('user_token', token.key)
 
-                    return response
+                    return response 
 
-                return Response({"Error": "Введено код не является числом!"})
+                return Response({"Error": "Неверный код!"})
 
             else:
-                return Response({'Error': 'Неверный код!'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'Error': 'Введено код не является числом! '}, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'Wrong': True})
                 
@@ -168,8 +172,6 @@ class UserRegisterView(APIView):
             if findUser == False:
 
                 serializer.save()
-
-                user = CustomUser.objects.get(username=username)
                 
 
                 user = authenticate(username = username, password = serializer.validated_data['password'])
@@ -178,8 +180,8 @@ class UserRegisterView(APIView):
                 if user is not None:
                     user.confirm = randint(10000, 99999)
                     user.save()
-
-                    send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz ili na bote @jalyuziuzbot", username)
+                    
+                    send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz", username)
 
                     return Response({
                         'Send Verification': 'Waiting...',
@@ -295,7 +297,7 @@ class SendVerificationView(APIView):
         user.confirm = randint(10000, 99999)
         user.save()
 
-        send_code(f"1 - Vash kod dlya registratsii na sayte Jalyuzi.uz ili na bote @jalyuziuzbot", user.username)
+        send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz", user.username)
 
         return Response({
             'Verification': 'Waiting....',
