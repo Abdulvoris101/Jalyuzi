@@ -1,6 +1,6 @@
 <template>
     <div id="detail-product">
-        <Title>Jalyuzi - {{ product.name }}</Title>
+        <Title>Jalyuzi - {{ product.name }} </Title>
 
         <Meta name="keywords" content="цены на жалюзи в ташкенте" />
         <Meta name="description" content="цены на жалюзи в ташкенте" />
