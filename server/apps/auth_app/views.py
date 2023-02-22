@@ -14,7 +14,6 @@ from random import randint
 import requests
 from django.contrib.auth import logout
 from rest_framework.authtoken.models import Token
-import os
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
@@ -25,7 +24,7 @@ def send_code(body, phone_number):
     auth_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NDAsInJvbGUiOiIiLCJkYXRhIjp7ImlkIjoyNTQwLCJuYW1lIjoiXHUwNDIxXHUwNDFmIEJyaWxsaWFudCBFeGNsdXNpdmUgQ29tcGFueSIsImVtYWlsIjoiSmF2ZG90QG1haWwucnUiLCJyb2xlIjoiIiwiYXBpX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnpkV0lpT2pJMU5EQXNJbkp2YkdVaU9pSjFjMlZ5SWl3aVpHRjBZU0k2ZXlKcFpDSTZNalUwTUN3aWJtRnRaU0k2SWx4MU1EUXlNVngxTURReFppQkNjbWxzYkdsaGJuUWdSWGhqYkhWemFYWmxJRU52YlhCaGJua2lMQ0psYldGcGJDSTZJa3BoZG1SdmRFQnRZV2xzTG5KMUlpd2ljbTlzWlNJNkluVnpaWElpTENKaGNHbGZkRzlyWlc0aU9pSmxlVW93WlZoQmFVOXBTa3RXTVZGcFRFIiwic3RhdHVzIjoiYWN0aXZlIiwic21zX2FwaV9sb2dpbiI6ImVza2l6MiIsInNtc19hcGlfcGFzc3dvcmQiOiJlJCRrIXoiLCJ1el9wcmljZSI6NTAsInVjZWxsX3ByaWNlIjoxMTUsInRlc3RfdWNlbGxfcHJpY2UiOjAsImJhbGFuY2UiOjI5OTk1MCwiaXNfdmlwIjowLCJob3N0Ijoic2VydmVyMSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTIxVDA2OjA5OjQyLjAwMDAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMi0yMVQxODozNTowMy4wMDAwMDBaIn0sImlhdCI6MTY3NzAwNDc5NiwiZXhwIjoxNjc5NTk2Nzk2fQ.5bezU7Ztu5iKcEOyLdhbSoM4QFhoVi-MPQCoUP1HfgM'
 
     url = "http://notify.eskiz.uz/api/message/sms/send"
-    print("S")
+
     payload={
         'mobile_phone': f'998{phone_number}',
         'message': f'{body}',
@@ -38,7 +37,6 @@ def send_code(body, phone_number):
 
     response = requests.request("POST", url, headers=headers, data=payload)
 
-    print(response.text)
 
 
 
@@ -79,51 +77,48 @@ class UserVerification(APIView):
 
     def post(self, request):
         confirm = request.data['confirm']
-        phone_number = request.data['phone_number']
-        password = request.data['password']
-
-        user_s = CustomUser.objects.filter(username=phone_number).exists()
-
-        if user_s:
-            user = CustomUser.objects.get(username=phone_number)
-            if str(confirm).isdigit():
-                if user.confirm == int(confirm):
-
-                    token, created = Token.objects.get_or_create(user=user)
-                    
-                    user.first_confirm = True
-                    user.save()
-
-
-                    response =  Response({
-                        'token': token.key,
-                        'user_id': user.id,
-                        'firstConfirm': user.first_confirm,
-                        'ok': True
-                    })
-
-                    user_cookie = request.COOKIES.get('user_token') 
-
-                    if user_cookie == token.key:
-                        return response
-                    
-                    response.set_cookie('user_token', token.key)
-
-                    return response 
-
-                return Response({"Error": "Неверный код!"})
-
-            else:
-                return Response({'Error': 'Введено код не является числом! '}, status=status.HTTP_400_BAD_REQUEST)
+        phone_number = request.data.get("phone_number")
+        telegramId = request.data.get("telegramId")
+        
+        
+        if phone_number is not None:
+            user = get_object_or_404(CustomUser, username=phone_number)
+        elif telegramId is not None:
+            user = get_object_or_404(CustomUser, telegram_id=telegramId)
         else:
-            return Response({'Wrong': True})
+            return Response({"User not found"})
+        
+        if str(confirm).isdigit():
+            if user.confirm == int(confirm):
+
+                token, created = Token.objects.get_or_create(user=user)
                 
-
-         
-
-
+                user.first_confirm = True
+                user.save()
 
 
+                response =  Response({
+                    'token': token.key,
+                    'user_id': user.id,
+                    'firstConfirm': user.first_confirm,
+                    'ok': True
+                })
+
+                user_cookie = request.COOKIES.get('user_token') 
+
+                if user_cookie == token.key:
+                    return response
+                
+                response.set_cookie('user_token', token.key)
+
+                return response 
+
+            return Response({"Error": "Неверный код!"})
+
+        else:
+            return Response({'Error': 'Введено код не является числом! '}, status=status.HTTP_400_BAD_REQUEST)
+    
+                
 
 class UserRegisterView(APIView):
 

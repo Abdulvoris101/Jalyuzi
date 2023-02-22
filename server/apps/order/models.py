@@ -3,21 +3,7 @@ from tabnanny import verbose
 from django.db import models
 from apps.core.models import Product
 from apps.auth_app.models import CustomUser
-from twilio.rest import Client
-
-
-
-def send_code(body, phone_number):
-    account_sid = 'AC4bd96c3befa553a87e6c089ff79c643f'
-    auth_token = 'd29a6a9dfbc44861775fbc2489066636'
-
-    client = Client(account_sid, auth_token)
-
-    message = client.messages.create(
-        body=body,
-        from_='+14256005103',
-        to=f'+998{phone_number}'
-    )
+from ..auth_app.views import send_code
 
 
 STATUS_CHOICES = (
@@ -59,6 +45,6 @@ class Order(models.Model):
 
 
     def save(self, *args, **kwargs):
-        # send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909174227')
+        send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909174227')
         
         super(Order, self).save(*args, **kwargs)
