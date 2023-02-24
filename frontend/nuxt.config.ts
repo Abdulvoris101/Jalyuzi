@@ -5,6 +5,7 @@ dotenv.config()
 
 export default defineNuxtConfig({
 
+
     publicRuntimeConfig: {
         baseUrl: process.env.baseUrl,
     },
@@ -34,6 +35,11 @@ export default defineNuxtConfig({
         },
     ], 
     ],
+    
+
+    
+
+    
 
     css: ["bootstrap/dist/css/bootstrap.min.css"],
     

@@ -105,13 +105,13 @@ import '@splidejs/vue-splide/css';
     }
 
     .slide-1 {
-        background-image: url('@/assets/images/1.png');
+        background-image: url('@/assets/images/1.webp');
     }
     .slide-2 {
         background-image: url('@/assets/images/2.png');
     }
     .slide-3 {
-        background-image: url('@/assets/images/4.jpg');
+        background-image: url('@/assets/images/4.webp');
     }
     .slide-title {
         font-size: 37px;

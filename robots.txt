@@ -1,0 +1,31 @@
+User-agent: Yandex
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /subcategory/*
+Disallow: /search/
+Disallow: /static/
+Disallow: /media/products/
+Disallow: /myprofile/
+Host: https://jalyuzi.com/
+
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /search/
+Disallow: /static/
+Disallow: /media/products/
+Disallow: /myprofile/
+Disallow: /subcategory/*
+
+
+Sitemap: https://jalyuzi.com/sitemap.xml
+
+User-agent: Googlebot-Image
+Allow: /media/category_images/
+Allow: /media/subcategory_images/
+User-agent: YandexImages
+Allow: /media/category_images/
+Allow: /media/subcategory_images/
+
