@@ -49,7 +49,7 @@ export default defineNuxtConfig({
         
         head: {
             charset: 'utf-16',
-            viewport: 'width=500, initial-scale=1', 
+            viewport: 'width=device-width, initial-scale=1', 
 
             title: 'Jalyuzi.uz - Вертикальные тканевые жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса',
             
