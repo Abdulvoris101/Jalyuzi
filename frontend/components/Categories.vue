@@ -92,7 +92,7 @@ export default {
         }
 
         .grid figure {
-            min-width: 220px;
+            min-width: 165px;
 
         }
         
