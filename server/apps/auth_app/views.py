@@ -159,6 +159,7 @@ class UserRegisterView(APIView):
     def post(self, request, format=None):
         serializer = UserSerializer(data=request.data)
         username = request.data['phone_number']
+        isTelegramBot = request.data.get('isTelegramBot')
 
         findUser = CustomUser.objects.filter(username=username).exists()
 
@@ -175,7 +176,21 @@ class UserRegisterView(APIView):
                 if user is not None:
                     user.confirm = randint(10000, 99999)
                     user.save()
+
+                    if isTelegramBot == True:
+                        token, created = Token.objects.get_or_create(user=user)
+                        
+                        user.first_confirm = True
+                        user.save()
+
+                        return Response({
+                            'firstConfirm': user.first_confirm,
+                            'username': user.username,
+                            'token': token.key,
+                            'ok': True
+                        }, status=status.HTTP_200_OK)
                     
+
                     send_code(f"{user.confirm} - Vash kod dlya registratsii na sayte Jalyuzi.uz", username)
 
                     return Response({
