@@ -5,7 +5,7 @@
             <div class="row mobile-footer" style="justify-content:space-between">
                 <div class="col-6">
                     <div class="logo">
-                        <img src="@/assets/images/logo.png" width="100" alt="">
+                        <img src="@/assets/images/logo.jpg" width="100" alt="">
                     </div> 
                 </div>
                 <div class="col-6" style="text-align:right;">
@@ -32,7 +32,7 @@
                 <div class="col-md-3">
                     <section class="">
                         <div class="logo">
-                            <img src="@/assets/images/logo.png" width="200"  alt="">
+                            <img src="@/assets/images/logo.jpg" width="200"  alt="">
                         </div> 
                         
                     </section>
@@ -90,12 +90,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4 ps-2 mobile-footer" >
+            <div class="row mt-4 ps-1 gx-0 mobile-footer" >
                 <div class="col-4">
                     <section class="">
                         <div class="footer_info">
                             <h4>Contact</h4>
-                            <p>Beruniy, Huvaydo m.
+                            <p style="font-size: 14px;">Beruniy, Huvaydo m.
                                 100169 Tashkent, 
                                 Uzbekistan
                             </p>
@@ -107,9 +107,9 @@
                     <div class="footer_info">
                         <h4>Phone</h4>
                         <ul>
-                            <li><nuxt-link to="tel:90-994-00-00" class="footer_link">+998 90-994-00-00</nuxt-link></li>
-                            <li><nuxt-link to="tel:91-994-00-00"  class="footer_link">+998 91-994-00-00</nuxt-link></li>
-                            <li><nuxt-link to="tel:94-994-00-00"  class="footer_link">+998 94-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:90-994-00-00" class="footer_link" style="font-size: 14px;">+998 90-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:91-994-00-00"  class="footer_link" style="font-size: 14px;">+998 91-994-00-00</nuxt-link></li>
+                            <li><nuxt-link to="tel:94-994-00-00"  class="footer_link" style="font-size: 14px;">+998 94-994-00-00</nuxt-link></li>
                         </ul>
                     </div>
                     
@@ -122,10 +122,10 @@
                         <div class="footer_info me-4">
                             <h4>Information</h4>
                             <ul>
-                                <li><nuxt-link :to="{ name: 'index' }" class="footer_link">Home</nuxt-link></li>
-                                <li><nuxt-link :to="{ name: 'contact' }"  class="footer_link">Contact</nuxt-link></li>
-                                <li><nuxt-link :to="{ name: 'about' }" class="footer_link">About</nuxt-link></li>
-                                <li><nuxt-link :to="{ name: 'contact' }" class="footer_link">Portfolio</nuxt-link></li>
+                                <li><nuxt-link :to="{ name: 'index' }" style="font-size: 14px;" class="footer_link">Home</nuxt-link></li>
+                                <li><nuxt-link :to="{ name: 'contact' }"  style="font-size: 14px;" class="footer_link">Contact</nuxt-link></li>
+                                <li><nuxt-link :to="{ name: 'about' }" style="font-size: 14px;" class="footer_link">About</nuxt-link></li>
+                                <li><nuxt-link :to="{ name: 'contact' }" style="font-size: 14px;" class="footer_link">Portfolio</nuxt-link></li>
                             </ul>
                         </div>
                     </section>
