@@ -151,6 +151,7 @@ export default {
                     last_name: this.lastName,
                     phone_number: this.phone_number,
                     password: this.password,
+                    isTelegramBot: false,
 
                 }
                 
