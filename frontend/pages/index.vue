@@ -1,9 +1,19 @@
 
 <template>
     <div id="index">
-        <Title>Jalyuzi -  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
-        <Meta name="keywords" content="Жалюзи в ташкенте, купить жалюзи в ташкенте, жалюзи в узбекистане, жалюзи уз, Производство и установка жалюзей в Ташкенте, фото жалюзи в ташкенте, jalyuzi, jalyuzi uz, jalyuzi pardalar" />
-        <Meta name="description" content="цены на жалюзи в ташкенте" />
+        <Head>
+            <Title>Jalyuzi -  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
+
+            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-YJ22K55C06" ></Script>
+            <Script src="../assets/js/google.js"></Script>
+            <Script src="../assets/js/ya.js"></Script>
+            <Meta name="keywords" content="Жалюзи в ташкенте, купить жалюзи в ташкенте, жалюзи в узбекистане, жалюзи уз, Производство и установка жалюзей в Ташкенте, фото жалюзи в ташкенте, jalyuzi, jalyuzi uz, jalyuzi pardalar" />
+            <Meta name="description" content="цены на жалюзи в ташкенте" />
+
+        </Head>
+        
+        <NoScript><div><img src="https://mc.yandex.ru/watch/92601372" style="position:absolute; left:-9999px;" alt="" /></div></NoScript>
+        
 
         <Slide />
 
