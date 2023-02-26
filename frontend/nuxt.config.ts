@@ -63,7 +63,7 @@ export default defineNuxtConfig({
                   rel: 'icon',
                   href: 'http://www.jalyuzi.uz/image/catalog/favicon.png'
                 },
-            ]
+            ],
             
         }
     }
