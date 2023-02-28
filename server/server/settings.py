@@ -163,6 +163,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://0.0.0.0",
     "http://0.0.0.0:3000",
     "http://localhost:3000",
+    "https://jalyuzi.com",
     "http://jalyuzi.com",
 ]
 
