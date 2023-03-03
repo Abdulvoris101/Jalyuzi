@@ -25,6 +25,8 @@ export default defineNuxtConfig({
     
     modules: [ [
         '@pinia/nuxt',
+        '@nuxt/content',
+        '@nuxtjs/sitemap', 
         {
             autoImports: [
                 // automatically imports `usePinia()`
