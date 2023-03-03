@@ -153,7 +153,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://0.0.0.0:3000",
     "http://localhost:3000",
     "https://jalyuzi.com",
-    "http://jalyuzi.com"
+    "http://jalyuzi.com",
 ]
 
 

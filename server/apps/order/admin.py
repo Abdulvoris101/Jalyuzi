@@ -3,9 +3,9 @@ from .models import Order, Address
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('client', 'product', 'status', 'amount', 'overall_price', 'created_at')
-    list_display_links = ('client', 'product', 'status', )
-    list_filter = ('status', 'client', 'product'  )
+    list_display = ('id', 'client', 'product', 'status', 'amount', 'overall_price', 'created_at')
+    list_display_links = ('id', 'client', 'product', 'status', )
+    list_filter = ('id', 'status', 'client', 'product'  )
 
 
 @admin.register(Address)

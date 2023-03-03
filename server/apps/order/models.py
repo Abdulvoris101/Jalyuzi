@@ -23,7 +23,7 @@ class Address(models.Model):
         verbose_name_plural = 'Аддресы'
 
     def __str__(self):
-        return self.city
+        return f"{self.user}-{self.city}"
 
 
 
@@ -45,7 +45,7 @@ class Order(models.Model):
 
 
     def save(self, *args, **kwargs):
-        send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909174227')
-        send_code(f'У вас новые заказы от {self.client.username}, Общ сумма заказа {self.overall_price} сум', '909940000')
+        send_code(f'У вас новые заказы от {self.client.username}, Ордер Id: {self.product.id}, Общ сумма заказа {self.overall_price} сум', '909174227')
+        send_code(f'У вас новые заказы от {self.client.username}, Ордер Id: {self.product.id}, Общ сумма заказа {self.overall_price} сум', '909940000')
         
         super(Order, self).save(*args, **kwargs)
