@@ -1,6 +1,6 @@
 <template>
     <div id="products">
-        <Title>Jalyuzi.uz - {{ category_name }} жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
+        <Title>Jalyuzi - {{ category_name }} жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
         
         <Meta name="description"  :content=" category_name + 'жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса Jalyuzi'" />
         <Meta name="keywords" content="Жалюзи в ташкенте, купить жалюзи в ташкенте, жалюзи в узбекистане, жалюзи уз, Производство и установка жалюзей в Ташкенте, фото жалюзи в ташкенте, jalyuzi, jalyuzi uz, jalyuzi pardalar" />

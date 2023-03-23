@@ -29,6 +29,17 @@
             </div> <!-- top -nav end // -->
     
             <div class="main-nav">
+                <div class="mb-nav" style="font-size: 13px; text-align: center;">
+                    <nuxt-link to="tel:99894-994-00-00" class="phone_numb top-link">
+                    <b-icon-telephone class="top-icon" />
+                        
+                        +998 94-994-00-00
+                    </nuxt-link>
+                    <nuxt-link to="mailto:jalyuzi@mail.com"   class="email top-link">
+                        <b-icon-envelope class="top-icon" />
+                        jalyuzi@mail.com
+                    </nuxt-link>
+                </div>
     
                 <div class="container">
     
@@ -187,6 +198,9 @@ export default {
         display: none
     }
 
+    .mb-nav {
+        display: none;
+    }
 
 
     
@@ -199,6 +213,16 @@ export default {
 
         }
 
+        .mb-nav {
+            padding-top: 2px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+            font-size: 13px;
+            justify-content: space-around;
+            text-align: center;
+            display: flex;
+        }
+        
         .bag-icon-m {
             font-size: 20px;
             display: block;
@@ -244,6 +268,11 @@ export default {
 
     
 
+    @media  (max-device-width: 576px) {
+        .main-nav {
+            padding-top: 5px !important;
+        }
+    }
 
     @media (min-device-width: 576px) and (max-device-width: 768px) {
         .main-nav .container, .container-sm {
@@ -252,11 +281,26 @@ export default {
         .top-nav .container {
             max-width: 91% !important;
         }
+        .main-nav {
+            padding-top: 5px !important;
+        }
+        .mb-nav {
+            padding-top: 2px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+            font-size: 13px;
+            justify-content: space-around;
+            text-align: center;
+            display: flex;
+        }
     }
 
     @media (min-device-width: 619px) and (max-device-width: 758px) {
         .container {
             max-width: 90% !important;
+        }
+        .main-nav {
+            padding-top: 5px !important;
         }
     }
     
@@ -266,6 +310,9 @@ export default {
     @media screen and (min-device-width: 761px) and (max-device-width: 992px) {
         .main-nav .container, .container-sm {
             max-width: 90%;
+        }
+        .main-nav {
+            padding-top: 5px !important;
         }
         .logo {
             margin-left: -30px !important;
