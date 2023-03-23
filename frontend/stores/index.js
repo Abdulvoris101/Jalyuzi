@@ -187,11 +187,19 @@ export const ProductStore = defineStore('product', {
         },
 
         setCartItem() {
-            if (localStorage.length > 1) {
-                this.countOfCart = parseInt(localStorage.length) - 2
-            } else {
+            let cart_products = window.localStorage.getItem('cart_products')
+            if (cart_products != null) {
+                let len_cart = JSON.parse(cart_products).length
+                if (len_cart > 1) {
+                    this.countOfCart = len_cart
+                } else {
+                    this.countOfCart = 0
+                }
+            }
+            else {
                 this.countOfCart = 0
             }
+            
         },
         
 
