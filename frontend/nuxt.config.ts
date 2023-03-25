@@ -50,6 +50,10 @@ export default defineNuxtConfig({
 
         
         head: {
+            htmlAttrs: {
+                lang: 'uz',
+            },
+            
             charset: 'utf-16',
             viewport: 'width=device-width, initial-scale=1', 
 
@@ -64,7 +68,7 @@ export default defineNuxtConfig({
                 {
                   rel: 'icon',
                   href: 'http://www.jalyuzi.uz/image/catalog/favicon.png'
-                },
+                }
             ],
             
         }
