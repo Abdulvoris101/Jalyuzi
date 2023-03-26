@@ -3,3 +3,4 @@ node_modules/
 bot/
 static/
 env/
+.db.sqlite3
