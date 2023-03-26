@@ -11,7 +11,7 @@ export const ProductStore = defineStore('product', {
             subcategories: [],
             current_category: '',
             current_subcategory: '',
-            baseUrl: "http://localhost:8000",
+            baseUrl: "https://jalyuzi.com",
             countOfCart: 0,
             lastId: '',
             cart_products: [],
@@ -268,7 +268,7 @@ export const FilterStore = defineStore('filter', {
             subcategories: [],
             my_subcategory: [],
             properties: [],
-            baseUrl: "http://localhost:8000",
+            baseUrl: "https://jalyuzi.com",
             my_property: []
         }
     },
@@ -362,7 +362,7 @@ export const AccountStore = defineStore('modal', {
             addresses: [],
             username_reset: '',
             resetConfirmStatus: '',
-            baseUrl: "http://localhost:8000"
+            baseUrl: "https://jalyuzi.com"
         }
     },
     actions: {
