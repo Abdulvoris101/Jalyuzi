@@ -8,7 +8,8 @@ services:
     command: sh 'start_prod.sh'
     volumes:
       - static_volume:/app/static
-      - media_volume:/app/media
+      - /home/Jalyuzi/server/media/:/app/media
+      - db:/app/.db.sqlite3
     ports:
       - "8000:8000"
     networks:
