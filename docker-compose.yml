@@ -9,7 +9,7 @@ services:
     volumes:
       - static_volume:/app/static
       - /home/Jalyuzi/server/media:/app/media
-      - db_volume: /app/db
+      - db_volume:/app/db
     ports:
       - "8000:8000"
     networks:
