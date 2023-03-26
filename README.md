@@ -14,6 +14,6 @@ Jalyuzi.uz - created for salling products in internet, and this web app have man
 - Bootstrap Icons
 - Jazzmin Admin panel
 
-**Demo** -  https://jalyuzi.com
+**Web** -  https://jalyuzi.com
 
     
