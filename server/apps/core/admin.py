@@ -28,7 +28,7 @@ class AchievementAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('get_image', 'name', 'category', 'subcategory', 'weight', 'status', 'price')
+    list_display = ('get_image', 'name', 'category', 'subcategory', 'weight', 'count', 'status', 'price')
     list_display_links = ('get_image', 'name', 'weight', 'count')
     prepopulated_fields = {'model': ('name',),}
     search_fields = ('name', 'count')
