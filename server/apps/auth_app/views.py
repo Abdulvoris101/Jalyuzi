@@ -19,9 +19,22 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 
 from django.contrib.auth.hashers import check_password, make_password
 
+def get_code():
+    url = "http://notify.eskiz.uz/api/auth/login"
+
+    payload={'email': 'Javdot@mail.ru',
+    'password': 'JV0BbKBPK0093qdd4JFXw5TxyE3d4xXO6bFvAMxQ'}
+    files=[
+
+    ]
+    headers = {}
+
+    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+    return response.json().get("data").get("token")
 
 def send_code(body, phone_number):
-    auth_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NDAsInJvbGUiOiIiLCJkYXRhIjp7ImlkIjoyNTQwLCJuYW1lIjoiXHUwNDIxXHUwNDFmIEJyaWxsaWFudCBFeGNsdXNpdmUgQ29tcGFueSIsImVtYWlsIjoiSmF2ZG90QG1haWwucnUiLCJyb2xlIjoiIiwiYXBpX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKSVV6STFOaUo5LmV5SnpkV0lpT2pJMU5EQXNJbkp2YkdVaU9pSjFjMlZ5SWl3aVpHRjBZU0k2ZXlKcFpDSTZNalUwTUN3aWJtRnRaU0k2SWx4MU1EUXlNVngxTURReFppQkNjbWxzYkdsaGJuUWdSWGhqYkhWemFYWmxJRU52YlhCaGJua2lMQ0psYldGcGJDSTZJa3BoZG1SdmRFQnRZV2xzTG5KMUlpd2ljbTlzWlNJNkluVnpaWElpTENKaGNHbGZkRzlyWlc0aU9pSmxlVW93WlZoQmFVOXBTa3RXTVZGcFRFIiwic3RhdHVzIjoiYWN0aXZlIiwic21zX2FwaV9sb2dpbiI6ImVza2l6MiIsInNtc19hcGlfcGFzc3dvcmQiOiJlJCRrIXoiLCJ1el9wcmljZSI6NTAsInVjZWxsX3ByaWNlIjoxMTUsInRlc3RfdWNlbGxfcHJpY2UiOjAsImJhbGFuY2UiOjI5OTk1MCwiaXNfdmlwIjowLCJob3N0Ijoic2VydmVyMSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTIxVDA2OjA5OjQyLjAwMDAwMFoiLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMi0yMVQxODozNTowMy4wMDAwMDBaIn0sImlhdCI6MTY3NzAwNDc5NiwiZXhwIjoxNjc5NTk2Nzk2fQ.5bezU7Ztu5iKcEOyLdhbSoM4QFhoVi-MPQCoUP1HfgM'
+    auth_token = get_code()
 
     url = "http://notify.eskiz.uz/api/message/sms/send"
 
@@ -36,6 +49,7 @@ def send_code(body, phone_number):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+
 
 
 
