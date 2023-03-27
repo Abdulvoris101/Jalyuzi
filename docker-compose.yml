@@ -7,9 +7,9 @@ services:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-      - ./sql/init.sql:/docker-entrypoint-initdb.d/
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_DB=jalyuzi
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     networks:
       - main
@@ -22,7 +22,7 @@ services:
       - db:db
     volumes:
       - static_volume:/app/static
-      - /home/Documents/Jalyuzi/server/media:/app/media
+      - /home/abdulvoris/Documents/Jalyuzi/server/media:/app/media
     ports:
       - "8000:8000"
     networks:
