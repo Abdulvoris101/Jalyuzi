@@ -9,11 +9,19 @@ services:
     volumes:
       - static_volume:/app/static
       - /home/Jalyuzi/server/media:/app/media
-      - db_volume:/app/db
     ports:
       - "8000:8000"
     networks:
       - main
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
 
   frontend:
     container_name: frontend
@@ -33,7 +41,8 @@ volumes:
   static_volume:
   media_volume:
   assets_volume:
-  db_volume:
+  postgres_data:
+
 
 
 networks:
