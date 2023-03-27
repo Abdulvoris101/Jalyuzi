@@ -1,14 +1,28 @@
 version: '3'
 
 services:
+
+  db:
+    container_name: postgres_db
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - main
     
   server:
     container_name: server
     build: ./server
     command: sh 'start_prod.sh'
+    links:
+      - db:db
     volumes:
       - static_volume:/app/static
-      - /home/Jalyuzi/server/media:/app/media
+      - /home/Documents/Jalyuzi/server/media:/app/media
     ports:
       - "8000:8000"
     networks:
@@ -16,13 +30,7 @@ services:
     depends_on:
       - db
   
-  db:
-    container_name: db
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+  
 
   frontend:
     container_name: frontend

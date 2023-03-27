@@ -1,0 +1,3 @@
+CREATE USER docker;
+CREATE DATABASE jalyuzi;
+GRANT ALL PRIVILEGES ON DATABASE jalyuzi TO docker;
