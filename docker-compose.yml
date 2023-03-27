@@ -22,7 +22,7 @@ services:
       - db:db
     volumes:
       - static_volume:/app/static
-      - /home/abdulvoris/Documents/Jalyuzi/server/media:/app/media
+      - /home/Jalyuzi/server/media:/app/media
     ports:
       - "8000:8000"
     networks:
