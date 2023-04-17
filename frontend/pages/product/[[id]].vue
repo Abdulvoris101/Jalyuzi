@@ -258,7 +258,9 @@ export default {
                 this.getDetailColor(this.product.color)
 
             } else if (this.product.color.length > 1) {
-                this.getDetailColor(this.product.color[0])
+                for (let i = 0; i < this.product.color.length; i++) {
+                    this.getDetailColor(this.product.color[i])
+                }
             }
             
             if (this.product.catalog) {

@@ -315,7 +315,7 @@ export const FilterStore = defineStore('filter', {
         getDetailColor(id) {
             let colors = this.colors
             let color = colors.find(el => el.id == id)
-            this.my_colors = color
+            this.my_colors += color
         },
 
         getDetailCategory(id) {

@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
-                            <span class="card-price">{{ product.price }} сум</span>
+                            <span class="card-price">{{ product.price_sum }} сум</span>
                         </NuxtLink>
                         <div>
                             <nuxt-link :to="{ name: 'product-id', params: { id: product.slug } }" class="btn btn-success mt-2 btn-sm"><span>Перейти</span></nuxt-link>

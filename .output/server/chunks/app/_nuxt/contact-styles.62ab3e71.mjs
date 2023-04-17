@@ -1,6 +1,0 @@
-const contact_vue_vue_type_style_index_0_lang = "#contact{margin-bottom:30px}.intro{background-blend-mode:multiply;background-color:rgba(51,51,51,.562);background-image:url(" + globalThis.__buildAssetsURL("contact-bg.110007f9.png") + ");height:240px;width:100%}.intro-text{color:#fff;text-align:center}.intro-inner{align-items:center;display:flex;height:240px;justify-content:center}.intro-title{font-size:32px}.intro-path{font-size:18px;font-weight:400;padding-top:10px}.contact-info{padding-top:40px}.contact-card{border:1px solid #02a551;border-radius:5px;margin-top:20px;padding-left:14px;padding-top:14px}.contact-card:first-of-type{margin-top:0}.contact-card-title{align-items:center;display:flex;font-size:20px;font-weight:400;padding-left:10px}.contact-card-title img{font-size:18px;padding-right:5px;padding-top:2px}.contact-card ul{list-style:none}.address-info{width:300px}.contact-form{padding-top:22px}.contact-form-title{font-size:24px}.contact-form-inner{display:flex;padding-top:14px}.contact-form-inner input{margin-right:15px}.contact-form-inner input:last-of-type{margin-right:0}";
-
-const contactStyles_62ab3e71 = [contact_vue_vue_type_style_index_0_lang];
-
-export { contactStyles_62ab3e71 as default };
-//# sourceMappingURL=contact-styles.62ab3e71.mjs.map
