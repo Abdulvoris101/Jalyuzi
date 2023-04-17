@@ -11,7 +11,6 @@ Django==4.1.2
 django-admin-volt==0.0.6
 django-cors-headers==3.13.0
 django-filter==22.1
--e git+https://github.com/django-import-export/django-import-export.git@cccf7884566b77da9c89da597a078c8a9a67a778#egg=django_import_export
 django-jazzmin==2.5.0
 django-templated-mail==1.1.1
 djangorestframework==3.14.0
