@@ -238,34 +238,40 @@ class UserLoginView(APIView):
             raise AuthenticationError
         
         user = CustomUser.objects.get(username=phone_number)
+        
+        if user.first_confirm:
+            check = check_password(password, user.password)
 
-        check = check_password(password, user.password)
+            if check:
+                token, created = Token.objects.get_or_create(user=user)
 
-        if check:
-            token, created = Token.objects.get_or_create(user=user)
+                user = authenticate(username = phone_number, password = password)
+                login(request, user)
 
-            user = authenticate(username = phone_number, password = password)
-            login(request, user)
+                response =  Response({
+                    'token': token.key,
+                    'user_id': user.id,
+                    'first_name': user.first_name,
+                    'phone_number': user.phone_number,
+                    'ok': True
+                },status=status.HTTP_200_OK)
 
-            response =  Response({
-                'token': token.key,
-                'user_id': user.id,
-                'first_name': user.first_name,
-                'phone_number': user.phone_number,
-                'ok': True
-            },status=status.HTTP_200_OK)
-
-            user_cookie = request.COOKIES.get('user_token') 
-            
-            if user_cookie == token.key:
+                user_cookie = request.COOKIES.get('user_token') 
+                
+                if user_cookie == token.key:
+                    return response
+                
+                response.set_cookie('user_token', token.key)
                 return response
             
-            response.set_cookie('user_token', token.key)
-            return response
-
+            
+            return Response({
+                'detail': "Password not correct"
+            },status=status.HTTP_400_BAD_REQUEST)
         
+
         return Response({
-            'detail': "Password not correct"
+            'detail': "User not found"
         },status=status.HTTP_400_BAD_REQUEST)
 
 class UserLogout(APIView):

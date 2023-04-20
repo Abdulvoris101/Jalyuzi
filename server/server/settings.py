@@ -346,7 +346,6 @@ JAZZMIN_SETTINGS = {
 }
 
 
-TIME_ZONE = 'Asia/Tashkent'
 
 
 JAZZMIN_SETTINGS["show_ui_builder"] = True
