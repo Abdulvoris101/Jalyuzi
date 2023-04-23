@@ -383,7 +383,7 @@ export default {
 }
 .img-product {
     height: 100%;
-    max-height: 200px;
+    max-height: 270px;
     width: 100%;
 }
 .product-title {
