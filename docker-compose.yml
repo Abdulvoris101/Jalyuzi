@@ -24,6 +24,7 @@ services:
     volumes:
       - static_volume:/app/static
       - /home/Jalyuzi/server/media:/app/media
+      # - /home/abdulvoris/Documents/Jalyuzi/server/media:/app/media
     ports:
       - "8000:8000"
     networks:

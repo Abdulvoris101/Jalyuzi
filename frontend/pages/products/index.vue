@@ -312,6 +312,7 @@ export default {
         padding-top: 12px;
         margin-left: auto;
         max-height: 200px;
+        height: 100%;
         width: 170px;
         margin-right: auto;
     }

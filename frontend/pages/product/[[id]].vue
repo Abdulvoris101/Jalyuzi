@@ -382,6 +382,8 @@ export default {
     padding-bottom: 9px;
 }
 .img-product {
+    height: 100%;
+    max-height: 200px;
     width: 100%;
 }
 .product-title {

@@ -159,6 +159,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://jalyuzi.com",
     "http://jalyuzi.com",
+    "http://192.168.100.73"
 ]
 
 
@@ -169,7 +170,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://0.0.0.0:3000",
     "http://localhost:3000",
     "https://jalyuzi.com",
-    "http://jalyuzi.com"
+    "http://jalyuzi.com",
+    "http://192.168.100.73"
 ]
 
 
