@@ -3,7 +3,7 @@
         <Splide :options="{ gap: 5, autoplay: true, perPage : 4, pagination: false, autoheight: true  }"  v-if="is_product" aria-label="My Favorite Images">
             <SplideSlide v-for="product in getData" :key="product.id">
                 <div class="card main-card">
-                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" style="margin-top: 20px; padding: 0;" class="img-fluid" :alt="product.name" ></NuxtLink>
+                    <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="me-auto ms-auto"><img :src="baseUrl + product.image" style="margin-top: 20px; padding: 0;" class="img-fluid product-name" :alt="product.name" ></NuxtLink>
                     <div class="card-body">
                         <NuxtLink :to="{ name: 'product-id', params: { id: product.slug } }" class="nav-link">
                             <h4 class="card-title">{{ product.name }} - {{ product.weight }}</h4>
@@ -58,11 +58,15 @@ export default {
         padding-top: 12px;
         width: 170px;
         height: 100%;
-        max-height: 200px;
+        max-height: 270px;
         margin-left: auto;
         margin-right: auto;
     }
+    .product-name {
+        max-height: 200px;
+        height: 100%;
 
+    }
     .card-title {
         font-size: 20px;
         padding-top: 10px;
