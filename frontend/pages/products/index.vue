@@ -311,7 +311,7 @@ export default {
     .card-img {
         padding-top: 12px;
         margin-left: auto;
-        height: 200px;
+        max-height: 200px;
         width: 170px;
         margin-right: auto;
     }
