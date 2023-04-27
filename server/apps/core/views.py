@@ -58,7 +58,7 @@ class CategoryView(ListCreateAPIView):
     authentication_classes = [BasicAuthentication, TokenAuthentication, SessionAuthentication]
 
 class ProductView(ListCreateAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('price')
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     authentication_classes = [BasicAuthentication, TokenAuthentication, SessionAuthentication]
@@ -140,9 +140,9 @@ class ProductView(ListCreateAPIView):
         
 
 
-            return products
+            return products.order_by('price')
         
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('price')
 
         return products
             
