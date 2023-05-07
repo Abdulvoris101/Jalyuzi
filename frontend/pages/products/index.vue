@@ -1,8 +1,19 @@
 <template>
     <div id="products">
-        <Title>Jalyuzi - Все продукты  жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
-        <Meta name="keywords" content="Жалюзи в ташкенте, купить жалюзи в ташкенте, жалюзи в узбекистане, жалюзи уз, Производство и установка жалюзей в Ташкенте, фото жалюзи в ташкенте, jalyuzi, jalyuzi uz, jalyuzi pardalar" />
-        <Meta name="description" content="цены на жалюзи в ташкенте" />
+        
+        <Head>
+            <Title>Все модели жалюзи, роллет и штор | Diamond Jalyuzi </Title>
+
+           
+            <Meta name="keywords" content="жалюзи, роллеты, все товары, каталог, цены, доставка" />
+            <Meta name="description" content="Здесь вы найдете все доступные в нашем магазине модели жалюзи, роллет и штор. Мы предлагаем широкий выбор материалов, размеров и цветов. Все изделия изготавливаются на заказ и доставляются по Узбекистану" />
+
+            <Meta property="og:title" content="Все товары - Diamond Jalyuzi" />           
+            <meta property="og:description" content="Полный каталог товаров компании, представленных на сайте">           
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" content="https://jalyuzi.com/products/" />
+
+        </Head>
 
         
         <div class="row gx-0">

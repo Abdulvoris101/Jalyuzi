@@ -1,9 +1,39 @@
 <template>
     <div id="detail-product">
-        <Title>Jalyuzi - {{ product.name }} </Title>
 
-        <Meta name="keywords" content="цены на жалюзи в ташкенте" />
-        <Meta name="description" content="цены на жалюзи в ташкенте" />
+        <Head>
+            <Title>{{ product.name }} - {{ getMyCategory.name }}  Купить онлайн в Узбекистане | Diamond Jalyuzi </Title>
+
+            <Meta name="keywords" :content="product.name + ', ' + getMyProperty.name + ', ' + getMyColors.name" />
+            <Meta name="description" :content="product.name +  ' | ' + product.price  + ', купить онлайн - Diamond Jalyuzi'" />
+
+
+            <Meta property="og:title" :content="product.name + ' продукт - купить по лучшей цене | Diamond Jalyuzi'" />
+            <Meta property="og:description" :content="'Купите' +  product.name + 'продукт по лучшей цене в Ташкенте. Наши эксперты помогут Вам выбрать жалюзи, которые идеально подходят для Вашего дома или офиса. Звоните сейчас.'" />
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" :content="'https://jalyuzi.com/product/' + product.slug" /> 
+            
+            <Script>
+                {
+                    "@context": "http://schema.org/",
+                    "@type": "Product",
+                    "name": `${product.name}` ,
+                    "image": `${product.image}`,
+                    "description": `${product.name} - это наши качественные и стильные рулонные шторы, которые прекрасно подойдут для любого интерьера. Они изготовлены из лучших материалов и доступны в разных размерах и цветах. Вы можете выбрать свою идеальную пару жалюзи`,
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Diamond Jalyuzi"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "UZS",
+                        "price": `${product.price}`,
+                        "availability": "http://schema.org/InStock"
+                    }
+                }
+            </Script>
+                
+        </Head>
 
         <div class="container">
 
@@ -209,6 +239,7 @@ export default {
             inCart: false,
             errorType: '',
             typeProduct: '',
+            category_name: ''
         }
     },
     computed: {
@@ -346,11 +377,22 @@ export default {
                 this.inCart = false
             }
 
-        }
+        },
+
+        async getCategory() {
+            const { data, error } = await useAsyncData('category', () => $fetch(`${this.baseUrl}/api/category/${this.product.category_id}/`, {
+                headers: useRequestHeaders(['cookie'])
+            }), { initialCache : false })
+
+            this.category_name = data.value.name
+
+        },
+
 
     },
     created() {
         this.getProduct()
+        this.getCategory()
         
     },
 }

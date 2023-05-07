@@ -1,7 +1,19 @@
 <template>
     <div id="portfolio">
+        <Head>
+            <Title>Наши работы по жалюзи: портфолио компании в Ташкенте</Title>
+
+            <Meta name="keywords" content="жалюзи, портфолио, работы, фото, компания, Ташкент" />
+            <Meta name="description" content="Просмотрите наше портфолио с фотографиями работ по жалюзи. Мы являемся профессиональной компанией в Ташкенте и предлагаем широкий выбор качественных жалюзи по доступной цене" />
+
+            <Meta property="og:title" content="Jalyuzi - жалюзи и шторы в Ташкенте" />
+            <Meta property="og:description" content="Просмотрите наше портфолио с фотографиями работ по жалюзи. Мы являемся профессиональной компанией в Ташкенте и предлагаем широкий выбор качественных жалюзи по доступной цене" />
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" content="https://jalyuzi.com/portfolio/" />
+        </Head>
+
         <div class="container">
-            <h4 class="portfolio-title mt-3 mb-3">Portfolio</h4>
+            <h4 class="portfolio-title mt-3 mb-3">Портфолио</h4>
 
             <div class="row mb-5">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3" v-for="(post, index) in posts" :key="index">
@@ -10,7 +22,7 @@
                         <article class="card insta-card" style="box-shadow: none !important;">
                 
                         <div class="card-image ">
-                          <img :src="post.mediaUrl" v-if="post.mediaType == 'IMAGE'" class="img-fluid img" :alt="post.caption">
+                          <img :src="post.mediaUrl" v-if="post.mediaType == 'IMAGE' || post.mediaType == 'CAROUSEL_ALBUM'" class="img-fluid img" :alt="post.caption">
                           <img :src="post.thumbnailUrl" v-else class="img-fluid img" :alt="post.caption">
                         </div> <!-- card-image end//-->
                         
@@ -19,12 +31,12 @@
                          
                           <div class="media">
         
-                                <div class="content">
+                            <div class="content">
                                     <span class="content-body" >{{ post.caption }}</span>
                                     
-                                </div> <!-- content end // -->
+                                </div> 
                             </div>
-                        </main>
+                        </main> 
                         
                     </article></nuxt-link>
                 </div>

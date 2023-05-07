@@ -1,10 +1,20 @@
 <template>
     <div id="products">
-        <Title>Jalyuzi - {{ category_name }} жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса </Title>
         
-        <Meta name="description"  :content=" category_name + 'жалюзи в ташкенте жалюзи в г.ташкенте цены и адреса Jalyuzi'" />
-        <Meta name="keywords" content="Жалюзи в ташкенте, купить жалюзи в ташкенте, жалюзи в узбекистане, жалюзи уз, Производство и установка жалюзей в Ташкенте, фото жалюзи в ташкенте, jalyuzi, jalyuzi uz, jalyuzi pardalar" />
+        <Head>
+            <Title>{{ category_name }} жалюзи в Ташкенте - купить по лучшей цене | Diamond Jalyuzi </Title>
 
+           
+            <Meta name="keywords" :content="category_name + ' жалюзи, Ташкент, купить, лучшая цена '" />
+            <Meta name="description" :content="'Купите '  + category_name +  ' жалюзи по лучшей цене в Ташкенте. Наши эксперты помогут Вам выбрать жалюзи, которые идеально подходят для Вашего дома или офиса. Звоните сейчас.'" />
+
+
+            <Meta property="og:title" :content="category_name + ' жалюзи в Ташкенте - купить по лучшей цене | Diamond Jalyuzi'" />
+            <Meta property="og:description" :content="'Купите' +  category_name + 'жалюзи по лучшей цене в Ташкенте. Наши эксперты помогут Вам выбрать жалюзи, которые идеально подходят для Вашего дома или офиса. Звоните сейчас.'" />
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" :content="'https://jalyuzi.com/category/' + category_id" />
+
+        </Head>
 
         <div class="row gx-0">
             <div class="col-lg-3">
@@ -111,6 +121,7 @@ export default {
     data() {
         return {
             category_name: '',
+            category_id: '',
             subcategories: [],
             subcategory_status: false,
             height: '150',
@@ -287,6 +298,7 @@ export default {
             }), { initialCache : false })
 
             this.category_name = data.value.name
+            this.category_id = data.value.id
 
             if (data.value.subcategories.length > 1) {
                 this.subcategory_status = true

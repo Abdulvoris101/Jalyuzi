@@ -1,15 +1,24 @@
 <template>
     <div id="contact">
 
-        <Title>Jalyuzi - Контакт </Title>
-        <Meta name="description" content="цены на жалюзи в ташкенте" />
+        <Head>
+            <Title>Контакты - связаться с нами | Jalyuzi.com</Title>
+
+            <Meta name="keywords" content="Контакты, связаться, заказ, жалюзи, Ташкент, консультация" />
+            <Meta name="description" content=" Свяжитесь с Jalyuzi.com для заказа жалюзи, получения консультации по выбору, оформления заказа или других вопросов. Мы находимся в Ташкенте и предоставляем широкий ассортимент жалюзи." />
+            <Meta property="og:title" content="Контакты - связаться с нами | Jalyuzi.com" />
+            <Meta property="og:description" content="Свяжитесь с Jalyuzi.com для заказа жалюзи, получения консультации" />
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" content="https://jalyuzi.com/contact/" />
+        
+        </Head>
 
         <section class="intro">
             <div class="container">
                 <div class="intro-inner">
                     <div class="intro-text">
-                        <h2 class="intro-title">Contact</h2>
-                        <h5 class="intro-path">Home / Contact</h5>
+                        <h2 class="intro-title">Контакт</h2>
+                        <h5 class="intro-path">Главная / Контакт</h5>
                     </div>  
                 </div>
             </div>

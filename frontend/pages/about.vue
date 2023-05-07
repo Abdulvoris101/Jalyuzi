@@ -1,8 +1,18 @@
 <template>
     <main id="about">
-        <Title>О нас</Title>
-        <Meta name="description" content="Жалюзи в Ташкенте" />
-        <Meta name="keywords" content="Жалюзи в Ташкенте" />
+
+        <Head>
+            <Title>О нас - Изготовление жалюзи в Ташкенте - Jalyuzi.com</Title>
+
+            <Meta name="keywords" content="производство, установка, помощь, выбор" />
+            <Meta name="description" content=" На странице О нас вы можете узнать о нашей компании, которая занимается производством и установкой качественных жалюзи в Ташкенте. Мы гарантируем высокое качество и быстрое выполнение заказов. Обращайтесь к нам за профессиональной помощью в выборе жалюзи для вашего дома или офиса." />
+            <Meta property="og:title" content="О нас - Изготовление жалюзи в Ташкенте - Jalyuzi.com" />
+            <Meta property="og:description" content="Просмотрите наше портфолио с фотографиями работ по жалюзи. Мы являемся профессиональной компанией в Ташкенте и предлагаем широкий выбор качественных жалюзи по доступной цене" />
+            <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
+            <Meta property="og:url" content="https://jalyuzi.com/about/" />
+        
+        </Head>
+
 
         <section class="intro">
             <div class="container">
