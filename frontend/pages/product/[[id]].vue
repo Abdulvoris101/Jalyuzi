@@ -13,7 +13,7 @@
             <Meta property="og:image" content="http://www.jalyuzi.uz/image/catalog/favicon.png" />
             <Meta property="og:url" :content="'https://jalyuzi.com/product/' + product.slug" /> 
             
-            <Script>
+            <Script>    
                 {
                     "@context": "http://schema.org/",
                     "@type": "Product",
