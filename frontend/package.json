@@ -13,6 +13,7 @@
     "@nuxt/image": "^0.7.1",
     "@pinia/nuxt": "^0.4.3",
     "@types/node": "^18.11.10",
+    "compression-webpack-plugin": "^10.0.0",
     "nuxt": "3.0.0-rc.11",
     "nuxt-simple-sitemap": "^1.0.9",
     "sitemap": "^7.1.1"

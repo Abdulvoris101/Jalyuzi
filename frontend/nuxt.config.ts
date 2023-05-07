@@ -9,7 +9,11 @@ export default defineNuxtConfig({
     publicRuntimeConfig: {
         baseUrl: process.env.baseUrl,
     },
+
+
+
     
+
 
     routeRules: {    
         '/': { swr: true },    
@@ -23,8 +27,18 @@ export default defineNuxtConfig({
         '/search': { static: true },   
     },
     
+    render: {
+        static: {
+          // Set the cache-control header to a high value (1 year)
+          headers: {
+            'Cache-Control': 'public, max-age=31536000, immutable'
+          }
+        }
+    },
+
     modules: [ [
         '@pinia/nuxt',
+        '@nuxt/image',
 
         {
             autoImports: [

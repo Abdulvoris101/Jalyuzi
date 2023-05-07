@@ -8,7 +8,7 @@
                 <NuxtLink  :to='"category/" + category.id'>
                     <div class="grid">
                         <figure class="effect-lily">
-                            <img :src="category.image" height="350" alt="img12"/>
+                            <img :src="category.image" width="100" height="350" alt="img12"/>
                             
                             <figcaption>
                                 <div>
@@ -166,7 +166,7 @@ export default {
     
     figure.effect-lily img {
         max-width: none;
-        width: -webkit-calc(100% + 50px);
+        width: calc(100% + 50px);
         opacity: 0.4;
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
@@ -228,7 +228,6 @@ export default {
     .effect-lily img {
         object-fit: cover;
         object-position: center;
-
     }
     
       
