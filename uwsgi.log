@@ -1,0 +1,41 @@
+*** Starting uWSGI 2.0.22 (64bit) on [Sat Jul 29 14:29:54 2023] ***
+compiled with version: 11.3.0 on 29 July 2023 09:19:06
+os: Linux-6.2.0-76060200-generic #202302191831~1678319661~22.04~4d98339 SMP PREEMPT_DYNAMIC Thu M
+nodename: pop-os
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/abdulvoris/Documents/Diamond/Jalyuzi
+detected binary path: /home/abdulvoris/.local/bin/uwsgi
+*** dumping internal routing table ***
+[rule: 0] subject: http_host regexp: ^(?!uwsgi).+$ action: last:
+*** end of the internal routing table ***
+chdir() to server/
+your processes number limit is 63246
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8000 fd 7
+uwsgi socket 0 bound to TCP address 127.0.0.1:42245 (port auto-assigned) fd 6
+Python version: 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55e15a41cb20
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 218760 bytes (213 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55e15a41cb20 pid: 14394 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 14394)
+spawned uWSGI worker 1 (pid: 14395, cores: 1)
+spawned uWSGI worker 2 (pid: 14396, cores: 1)
+spawned uWSGI http 1 (pid: 14397)
+Could not reverse url from auth.user
+[pid: 14395|app: 0|req: 1/1] 127.0.0.1 () {46 vars in 792 bytes} [Sat Jul 29 14:29:56 2023] GET /admin/login/?next=/admin/ => generated 2995 bytes in 75 msecs (HTTP/1.1 200) 10 headers in 478 bytes (1 switches on core 0)
+SIGINT/SIGTERM received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 14397)
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+goodbye to uWSGI.

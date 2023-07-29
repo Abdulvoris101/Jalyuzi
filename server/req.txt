@@ -48,3 +48,4 @@ xlwt==1.3.0
 gunicorn
 psycopg2-binary==2.9.5
 whitenoise
+gunicorn==21.2.0
