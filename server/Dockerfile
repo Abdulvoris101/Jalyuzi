@@ -9,7 +9,6 @@ COPY ./req.txt /app/
 RUN pip install -r req.txt
 
 COPY . /app
-
 COPY scripts/start_prod.sh /app/
 
 RUN chmod +x start_prod.sh
