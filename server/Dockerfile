@@ -10,7 +10,7 @@ RUN pip install -r req.txt
 
 COPY . /app
 COPY scripts/start_prod.sh /app/
-RUN sudo apt update && sudo apt install build-essential
+RUN apk add --update --no-cache build-base
 RUN chmod +x start_prod.sh
 
 
