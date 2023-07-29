@@ -29,11 +29,10 @@ services:
       - "8000:8000"
     networks:
       - main
-    depends_on:
+    depends_on: 
       - db
   
   
-
   frontend:
     container_name: frontend
     build: ./frontend
