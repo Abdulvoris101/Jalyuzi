@@ -1,5 +1,5 @@
 ## Jalyuzi web app
-Jalyuzi.uz - created for salling products in internet, and this web app have many features. 
+Jalyuzi.uz - created for selling products in internet, and this web app have many features. 
 
  
 
